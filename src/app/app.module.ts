@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CadastroLoginComponent } from './cadastro-login/cadastro-login.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CadastroLoginComponent
   ],
   imports: [
     BrowserModule,
