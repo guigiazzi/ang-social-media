@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-cadastro-login',
@@ -7,9 +8,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CadastroLoginComponent implements OnInit {
 
-  constructor() { }
+  isSubmitted = false;
+  
+  State: any = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','TO']
+
+  constructor(public fb: FormBuilder) { }
 
   ngOnInit() {
   }
 
+  loginForm = this.fb.group({
+    login: ['',[Validators.required]],
+    password: ['',[Validators.required]]
+  })
+
+  registrationForm = this.fb.group({
+    stateName: ['', [Validators.required]]
+  })
+
+  changeState(e) {
+    console.log(e.value)
+    this.stateName.setValue(e.target.value, {
+      onlySelf: true
+    })
+  }
+
+  get stateName() {
+    return this.registrationForm.get('stateName');
+  }
+
+  onSubmit() {
+    this.isSubmitted = true;
+    if (!this.registrationForm.valid) {
+      return false;
+    } else {
+      alert(JSON.stringify(this.registrationForm.value))
+    }
+
+  }
 }
