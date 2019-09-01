@@ -19,7 +19,12 @@
         </div>
     </div>
     <hr>
-    <div class="topicos">
+    <div class="Topic">
         <p>Tópicos de Interesse:</p>
+        <div class="row topicos">
+            <div *ngFor='let topico of topics'>
+                {{topico}}
+            </div>
+        </div>
     </div>
 </div>

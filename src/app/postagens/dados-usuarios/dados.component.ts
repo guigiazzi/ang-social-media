@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class DadosComponent implements OnInit {
   //public usuario: User;
   public usuario = {};
+  public topics = [];
 
   constructor() { }
 
@@ -23,5 +24,7 @@ export class DadosComponent implements OnInit {
       inicialDate: '17/06/2005',
       instructionlevel: 'Cursando Ensino Superior'
     };
+
+    this.topics = ['1','2','3','4'];
    }
 }

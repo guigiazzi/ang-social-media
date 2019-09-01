@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CadastroLoginComponent } from './cadastro-login/cadastro-login.component';
 import { PostagensComponent } from './postagens/postagens.component';
-import { DadosComponent } from './components/dados/dados.component'
+import { DadosComponent } from './postagens/dados-usuarios/dados.component'
 
 @NgModule({
   declarations: [
