@@ -1,0 +1,18 @@
+h1 {
+    text-align: center;
+}
+
+.postagens{
+    padding-top: 2%;
+}
+
+input{
+    margin-top: 1%;
+    padding-bottom: 5%;
+    width: 100%;
+}
+
+.button-postar{
+    margin-top: 1%;
+    float: right;
+}
