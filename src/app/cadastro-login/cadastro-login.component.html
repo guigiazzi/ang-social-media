@@ -35,9 +35,10 @@
         Faça parte você também dessa Rede Social para Cientistas de Dados e venha compartilhar seus conhecimentos com
         todos!
       </p>
+      <button type="submit" class="btn btn-primary" (click)="habilitaCadastro()">Criar conta!</button>
     </div>
   </div>
-  <div class="col-md-6 shadow-sm p-3 bg-white rounded cadastro">
+  <div *ngIf="criarConta" class="col-md-6 shadow-sm p-3 bg-white rounded cadastro">
     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
       <div class="form-row">
         <div class="form-group col-md-6">
@@ -101,14 +102,34 @@
         <input type="text" class="form-control" id="inputGrade">
       </div>
       <div class="form-group">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="gridCheck">
-          <label class="form-check-label" for="gridCheck">
-            Check me out
-          </label>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+          <label class="custom-control-label" for="defaultUnchecked" (click)="habilitaPagamento()">Conta Premium</label>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Sign in</button>
+
+      <div *ngIf="contaPremium" class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputJob">Nome do cartão</label>
+          <input type="text" class="form-control" id="inputJob">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputGrade">Número do cartão</label>
+          <input type="text" class="form-control" id="inputGrade" maxlength="16">
+        </div>
+      </div>
+
+      <div *ngIf="contaPremium" class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputJob">Data de validade</label>
+            <input type="text" class="form-control" id="inputJob">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="inputGrade">CCV</label>
+            <input type="text" class="form-control" id="inputGrade" maxlength="3">
+          </div>
+        </div>
+      <button type="submit" class="btn btn-primary">Cadastrar-se</button>
     </form>
   </div>
 </div>

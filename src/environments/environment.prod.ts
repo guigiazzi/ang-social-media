@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  enablePreRender: true,
+  enableServerSideRender: false,
+  apiMack: '/api'
 };

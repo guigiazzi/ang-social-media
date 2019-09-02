@@ -9,6 +9,8 @@ import { FormBuilder, Validators } from "@angular/forms";
 export class CadastroLoginComponent implements OnInit {
 
   isSubmitted = false;
+  public criarConta = false;
+  public contaPremium = false;
   
   State: any = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','TO']
 
@@ -45,5 +47,17 @@ export class CadastroLoginComponent implements OnInit {
       alert(JSON.stringify(this.registrationForm.value))
     }
 
+  }
+
+  habilitaCadastro(){
+    this.criarConta = !this.criarConta;
+  }
+
+  habilitaPagamento(){
+    this.contaPremium = !this.contaPremium;
+  }
+
+  verificaBandeira(event){
+    alert("opa");
   }
 }
