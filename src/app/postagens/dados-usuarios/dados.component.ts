@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class DadosComponent implements OnInit {
+  @Input() isMyProfile = isPersonProfile: boolean;
   //public usuario: User;
   public usuario = {};
   public topics = [];

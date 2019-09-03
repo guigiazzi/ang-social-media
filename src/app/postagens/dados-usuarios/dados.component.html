@@ -16,6 +16,9 @@
                 <p>Data de Inicío na Área de Ciência de Dados: {{usuario.inicialDate}}</p>
                 <p>Nivel de Instrução: {{usuario.instructionlevel}}</p>
             </div>
+            <div *ngIf="isMyProfile">
+                <button type="submit" class="btn btn-primary" routerLink="/atualizar-perfil">Postar</button>
+            </div>
         </div>
     </div>
     <hr>

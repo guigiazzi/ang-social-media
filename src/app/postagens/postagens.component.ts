@@ -10,6 +10,7 @@ import { Validators, FormBuilder }  from '@angular/forms';
 
 export class PostagensComponent implements OnInit{ 
   public post;
+  public isMyProfile = true;
 
   constructor( private formBuilder: FormBuilder) { }
 
