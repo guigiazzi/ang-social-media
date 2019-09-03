@@ -4,8 +4,12 @@
     <div class="postagens">
         <h1>Postagens</h1>
         <div>
-            <input type="text" id="inputPost" placeholder="Digite aqui o que deseja postar!">
-            <button type="submit" class="btn btn-primary button-postar">Postar</button>
+            <form [formGroup]="postForm" (ngSubmit)="onSubmit(postForm.value)">
+                <div>
+                    <input type="text" id="post" formControlName="post" placeholder="Digite aqui o que deseja postar!">
+                    <button type="submit" class="btn btn-primary button-postar">Postar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

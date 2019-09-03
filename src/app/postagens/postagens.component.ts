@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Validators, FormBuilder }  from '@angular/forms';
+
 
 @Component({
   selector: 'app-postagens',
@@ -6,8 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./postagens.component.css']
 })
 
-export class PostagensComponent implements OnInit {
-  constructor() { }
+export class PostagensComponent implements OnInit{ 
+  public post;
 
-  ngOnInit() { }
+  constructor( private formBuilder: FormBuilder) { }
+
+  ngOnInit(){}
+
+  postForm = this.formBuilder.group({
+    post: ['', Validators.required]
+  });
+
+  onSubmit(postagem) {
+    // Process checkout data here
+    console.warn('Ta ai sua postage', postagem);
+    this.postForm.reset();
+  }
 }

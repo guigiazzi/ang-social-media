@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CadastroLoginComponent } from './cadastro-login/cadastro-login.component';
 import { PostagensComponent } from './postagens/postagens.component';
 import { DadosComponent } from './postagens/dados-usuarios/dados.component'
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,9 @@ import { DadosComponent } from './postagens/dados-usuarios/dados.component'
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
