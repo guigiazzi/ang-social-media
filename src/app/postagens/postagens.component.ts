@@ -21,7 +21,8 @@ export class PostagensComponent implements OnInit{
 
   onSubmit(postagem) {
     // Process checkout data here
-    console.warn('Ta ai sua postage', postagem);
+    this.post = postagem;
+    console.warn('Ta ai sua postage', this.post);
     this.postForm.reset();
   }
 }
