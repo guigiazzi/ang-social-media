@@ -8,7 +8,7 @@ import { Validators, FormBuilder }  from '@angular/forms';
   styleUrls: ['./postagens.component.css']
 })
 
-export class PostagensComponent implements OnInit{ 
+export class PostagensComponent implements OnInit{
   public post;
   public isMyProfile = true;
 

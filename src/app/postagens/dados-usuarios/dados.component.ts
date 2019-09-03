@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-dados',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class DadosComponent implements OnInit {
-  @Input() isMyProfile = isPersonProfile: boolean;
+  @Input() isPersonProfile;
   //public usuario: User;
   public usuario = {};
   public topics = [];
@@ -15,6 +15,7 @@ export class DadosComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.isPersonProfile)
     this.usuario = {
       name:'Joao Rocco da Silva',
       birthdate: '11/01/2001',
