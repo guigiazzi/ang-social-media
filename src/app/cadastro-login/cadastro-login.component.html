@@ -3,7 +3,7 @@
     <img src="http://agbrands.com.br/wp-content/uploads/2017/01/perfil.jpg" class="rounded float-left imgLogin"
       alt="...">
     <a class="navbar-brand nameComp" href="#">Bem Vindo ao DSSM</a>
-    <form class="form-inline" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <form class="form-inline" (ngSubmit)="onSubmit()">
       <div class="form-group mb-2">
         <label for="staticEmail2" class="sr-only">Email</label>
         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
@@ -39,97 +39,6 @@
     </div>
   </div>
   <div *ngIf="criarConta" class="col-md-6 shadow-sm p-3 bg-white rounded cadastro">
-    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputNome4">Nome</label>
-          <input type="text" class="form-control" id="inputNome4" placeholder="Nome">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="inputLogin4">Login</label>
-          <input type="text" class="form-control" id="inputLogin4" placeholder="Login">
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputEmail4">Email</label>
-          <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="inputPassword4">Password</label>
-          <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputCity">Cidade onde trabalha</label>
-          <input type="text" class="form-control" id="inputCity" placeholder="São Paulo">
-        </div>
-
-        <div class="form-group col-md-6">
-          <label for="inputState">Estado onde trabalha</label>
-          <select class="custom-select" (change)="changeState($event)" formControlName="stateName">
-            <option value="">Estado</option>
-            <option *ngFor="let state of State" id="inputState" [ngValue]="state">{{state}}</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputAddress">Birth Date</label>
-          <input type="date" data-provide="datepicker" class="form-control" id="inputBDay" placeholder="10/10/1990">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="inputAddress">Start date working in DS</label>
-          <input type="date" data-provide="datepicker" class="form-control" id="inputBDay" placeholder="10/10/1990">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputJob">Empresa atual</label>
-          <input type="text" class="form-control" id="inputJob">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="inputGrade">Nível de instrução</label>
-          <input type="text" class="form-control" id="inputGrade">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputGrade">Salario atual</label>
-        <input type="text" class="form-control" id="inputGrade">
-      </div>
-      <div class="form-group">
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-          <label class="custom-control-label" for="defaultUnchecked" (click)="habilitaPagamento()">Conta Premium</label>
-        </div>
-      </div>
-
-      <div *ngIf="contaPremium" class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputJob">Nome do cartão</label>
-          <input type="text" class="form-control" id="inputJob">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="inputGrade">Número do cartão</label>
-          <input type="text" class="form-control" id="inputGrade" maxlength="16">
-        </div>
-      </div>
-
-      <div *ngIf="contaPremium" class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputJob">Data de validade</label>
-            <input type="text" class="form-control" id="inputJob">
-          </div>
-          <div class="form-group col-md-2">
-            <label for="inputGrade">CCV</label>
-            <input type="text" class="form-control" id="inputGrade" maxlength="3">
-          </div>
-        </div>
-      <button type="submit" class="btn btn-primary">Cadastrar-se</button>
-    </form>
+    <app-form-cadastro></app-form-cadastro>
   </div>
 </div>

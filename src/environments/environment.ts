@@ -4,9 +4,7 @@
 
 export const environment = {
   production: false,
-  enablePreRender: true,
-  enableServerSideRender: false,
-  apiMack: 'http://localhost:3200'
+  dssmApiUrl: 'https://java-ds-social-media.herokuapp.com'
 };
 
 /*
