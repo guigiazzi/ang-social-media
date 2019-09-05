@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder }  from '@angular/forms';
+import { Publication } from './../interfaces/publication';
+import { AppService }  from './../app.service';
 
 
 @Component({
@@ -9,21 +10,18 @@ import { Validators, FormBuilder }  from '@angular/forms';
 })
 
 export class PostagensComponent implements OnInit{
-  public post;
+  public publication: Publication = <Publication>{};
   public isMyProfile = true;
 
-  constructor( private formBuilder: FormBuilder) { }
+  constructor(private appservice : AppService) { }
 
-  ngOnInit(){}
+  ngOnInit(){
+    this.publication.author = "Jaozin";
+  }
 
-  postForm = this.formBuilder.group({
-    post: ['', Validators.required]
-  });
-
-  onSubmit(postagem) {
-    // Process checkout data here
-    this.post = postagem;
-    console.warn('Ta ai sua postage', this.post);
-    this.postForm.reset();
+  onSubmit() {
+    console.warn('Ta ai sua postage', this.publication);
+    this.appservice.cadastrarPublication(this.publication);
+    this.publication.text = "";
   }
 }

@@ -13,7 +13,7 @@ import { DadosComponent } from './postagens/dados-usuarios/dados.component'
   declarations: [
     AppComponent,
     CadastroLoginComponent,
-    FormCadastroComponent
+    FormCadastroComponent,
     PostagensComponent,
     DadosComponent
   ],
