@@ -1,15 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Professional } from '../interfaces/professional';
 
 @Component({
   selector: 'app-cadastro-login',
   templateUrl: './cadastro-login.component.html',
   styleUrls: ['./cadastro-login.component.css']
 })
-export class CadastroLoginComponent implements OnInit {
+export class CadastroLoginComponent {
 
+  isSubmitted = false;
+  public criarConta = false;
+  public contaPremium = false;
+
+
+  @Input() professional: Professional = <Professional>{};
+  
   constructor() { }
 
-  ngOnInit() {
+  habilitaCadastro(){
+    this.criarConta = !this.criarConta;
+    if (this.criarConta===true){
+      this.contaPremium = false
+    }
   }
-
 }

@@ -1,0 +1,97 @@
+<form #form="ngForm" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="name">Nome</label>
+      <input type="text" class="form-control" id="name" #name="ngModel" name="name" [(ngModel)]="professional.name"
+        placeholder="Nome">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="userLogin">Login</label>
+      <input type="text" class="form-control" id="userLogin" #userLogin="ngModel" name="userLogin"
+        [(ngModel)]="professional.userLogin" placeholder="Login">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Email</label>
+      <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" #password="ngModel" name="password"
+        [(ngModel)]="professional.password" placeholder="Password">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">Cidade onde trabalha</label>
+      <input type="text" class="form-control" id="inputCity" placeholder="São Paulo">
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="inputState">Estado onde trabalha</label>
+      <select class="custom-select">
+        <option value="">Estado</option>
+        <option *ngFor="let state of states" id="inputState" [ngValue]="state">{{state}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="birthDate">Birth Date</label>
+      <input type="date" data-provide="datepicker" class="form-control" id="birthDate" #birthDate="ngModel" name="birthDate" 
+      [(ngModel)]="professional.birthDate" placeholder="10/10/1990">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="careerDate">Start date working in DS</label>
+      <input type="date" data-provide="datepicker" class="form-control" id="careerDate" #careerDate="ngModel" name="careerDate" 
+      [(ngModel)]="professional.careerDate" placeholder="10/10/1990">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputJob">Empresa atual</label>
+      <input type="text" class="form-control" id="inputJob">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputGrade">Nível de instrução</label>
+      <input type="text" class="form-control" id="inputGrade">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputGrade">Salario atual</label>
+    <input type="text" class="form-control" id="inputGrade">
+  </div>
+  <div class="form-group">
+    <div class="custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+      <label class="custom-control-label" for="defaultUnchecked" (click)="habilitaPagamento()">Conta Premium</label>
+    </div>
+  </div>
+
+  <div *ngIf="contaPremium" class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputJob">Nome do cartão</label>
+      <input type="text" class="form-control" id="inputJob">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputGrade">Número do cartão</label>
+      <input type="text" class="form-control" id="inputGrade" maxlength="16">
+    </div>
+  </div>
+
+  <div *ngIf="contaPremium" class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputJob">Data de validade</label>
+      <input type="text" class="form-control" id="inputJob">
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputGrade">CCV</label>
+      <input type="text" class="form-control" id="inputGrade" maxlength="3">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" >Cadastrar-se</button>
+</form>
