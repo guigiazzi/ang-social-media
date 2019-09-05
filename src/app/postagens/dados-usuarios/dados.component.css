@@ -1,0 +1,27 @@
+.imgPerson {
+    width: 20%;
+    float: left;
+}
+
+.profile-box {
+    border-radius: 5%;
+    text-align: center;
+    padding: 1% 2% 1% 2%;
+}
+
+.info1 {
+    padding-left: 4%;
+}
+
+.info2 {
+    padding-left: 15%;
+}
+
+.Topic{
+    text-align:left;
+    padding-left: 5%;
+}
+
+.topicos{
+    padding: 1%;
+}

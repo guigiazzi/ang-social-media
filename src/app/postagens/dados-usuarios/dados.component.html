@@ -1,0 +1,33 @@
+<div class="profile-box border border-secondary">
+    <h2 class="postTitle">Dados</h2>
+    <hr>
+    <div class="dados-usuario">
+        <img src="http://agbrands.com.br/wp-content/uploads/2017/01/perfil.jpg" class="imgPerson" alt="...">
+        <div class="row">
+            <div class="info1">
+                <p>Nome: {{usuario.name}}</p>
+                <p>Data de Nascimento: {{usuario.birthdate}}</p>
+                <p>Cidade: {{usuario.city}}</p>
+                <p>Estado: {{usuario.state}}</p>
+            </div>
+            <div class="info2">
+                <p>Empresa: {{usuario.company}}</p>
+                <p>Salário: R${{usuario.salary}}</p>
+                <p>Data de Inicío na Área de Ciência de Dados: {{usuario.inicialDate}}</p>
+                <p>Nivel de Instrução: {{usuario.instructionlevel}}</p>
+            </div>
+            <div *ngIf="isMyProfile">
+                <button type="submit" class="btn btn-primary" routerLink="/atualizar-perfil">Postar</button>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="Topic">
+        <p>Tópicos de Interesse:</p>
+        <div class="row topicos">
+            <div *ngFor='let topico of topics'>
+                {{topico}}
+            </div>
+        </div>
+    </div>
+</div>

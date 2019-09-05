@@ -1,0 +1,15 @@
+<div class="container">
+    <h1>Perfil</h1>
+    <app-dados [isPersonProfile]="isMyProfile"></app-dados>
+    <div class="postagens">
+        <h1>Postagens</h1>
+        <div>
+            <form [formGroup]="postForm" (ngSubmit)="onSubmit(postForm.value)">
+                <div>
+                    <input type="text" id="post" formControlName="post" placeholder="Digite aqui o que deseja postar!">
+                    <button type="submit" class="btn btn-primary button-postar">Postar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
