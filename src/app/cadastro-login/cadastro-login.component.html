@@ -1,14 +1,13 @@
-<div class="container">
+<div class="container body">
   <nav class="navbar navbar-expand-lg navbar-light bg-light menuTopo">
     <img src="http://agbrands.com.br/wp-content/uploads/2017/01/perfil.jpg" class="rounded float-left imgLogin"
       alt="...">
     <a class="navbar-brand nameComp" href="#">Bem Vindo ao DSSM</a>
-    <form class="form-inline">
+    <form class="form-inline" (ngSubmit)="onSubmit()">
       <div class="form-group mb-2">
         <label for="staticEmail2" class="sr-only">Email</label>
         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
           placeholder="Enter email">
-        <!-- <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@example.com"> -->
       </div>
       <div class="form-group mx-sm-5 mb-2">
         <label for="inputPassword2" class="sr-only">Password</label>
@@ -18,58 +17,28 @@
     </form>
   </nav>
 
-  <div class="cadastro">
-    <form>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputEmail4">Email</label>
-          <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="inputPassword4">Password</label>
-          <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputAddress">Address</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-3 mr-5">
-          <label for="inputAddress">Birth Date</label>
-          <input type="date" data-provide="datepicker" class="form-control" id="inputBDay" placeholder="10/10/1990">
-        </div>
-        <div class="form-group col-md-3 ml-5">
-            <label for="inputAddress">Start date working in DS</label>
-            <input type="date" data-provide="datepicker" class="form-control" id="inputBDay" placeholder="10/10/1990">
-          </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputCity">City</label>
-          <input type="text" class="form-control" id="inputCity">
-        </div>
-        <div class="form-group col-md-4">
-          <label for="inputState">State</label>
-          <select id="inputState" class="form-control">
-            <option selected>Choose...</option>
-            <option>...</option>
-          </select>
-        </div>
-        <div class="form-group col-md-2">
-          <label for="inputZip">Zip</label>
-          <input type="text" class="form-control" id="inputZip">
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="gridCheck">
-          <label class="form-check-label" for="gridCheck">
-            Check me out
-          </label>
-        </div>
-      </div>
-      <button type="submit" class="btn btn-primary">Sign in</button>
-    </form>
+
+  <div class="info col-md-6">
+    <div class="container-fluid cadastro">
+      <h3>
+        Bem vindo ao DSSM
+      </h3>
+      <p>
+        Aqui você consegue se conectar com outros profissionais da área de Ciência de dados para assim compartilhar
+        suas
+        experiências de trabalhos,
+        compartilhar novas ideias que possui, achar parceiros para o de desenvolvimento dessas ideias, compartilhar
+        coisas interessantes ou que ocorreram no seu dia a dia e que podem ser relevantes,
+        mostrar aos outros suas áreas de interesse, focalizando suas conexões, recomendar um amigo ou parceiro de
+        trabalho, entre muitas outras coisas.
+
+        Faça parte você também dessa Rede Social para Cientistas de Dados e venha compartilhar seus conhecimentos com
+        todos!
+      </p>
+      <button type="submit" class="btn btn-primary" (click)="habilitaCadastro()">Criar conta!</button>
+    </div>
+  </div>
+  <div *ngIf="criarConta" class="col-md-6 shadow-sm p-3 bg-white rounded cadastro">
+    <app-form-cadastro></app-form-cadastro>
   </div>
 </div>
