@@ -16,3 +16,13 @@ input{
     margin-top: 1%;
     float: right;
 }
+
+::ng-deep .blue-snackbar {
+    color: black;
+    background-color: red;
+}
+
+::ng-deep .snackbar {
+    color: white;
+    background-color: green;
+}

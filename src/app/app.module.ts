@@ -7,7 +7,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FormCadastroComponent } from './shared/form-cadastro/form-cadastro.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PostagensComponent } from './postagens/postagens.component';
-import { DadosComponent } from './postagens/dados-usuarios/dados.component'
+import { DadosComponent } from './postagens/dados-usuarios/dados.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { DadosComponent } from './postagens/dados-usuarios/dados.component'
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
