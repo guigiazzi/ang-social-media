@@ -23,4 +23,8 @@ export class CadastroLoginComponent {
       this.contaPremium = false
     }
   }
+
+  onSubmit() {
+    console.log(this.professional);
+  }
 }
