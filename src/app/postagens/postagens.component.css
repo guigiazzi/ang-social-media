@@ -17,12 +17,18 @@ input{
     float: right;
 }
 
-::ng-deep .blue-snackbar {
+::ng-deep .error-snackbar {
     color: black;
     background-color: red;
+    .mat-simple-snackbar-action {
+        color: black;
+    }
 }
 
-::ng-deep .snackbar {
+::ng-deep .success-snackbar {
     color: white;
     background-color: green;
+    .mat-simple-snackbar-action {
+        color: white;
+    }
 }
