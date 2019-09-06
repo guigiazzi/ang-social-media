@@ -25,14 +25,14 @@ export class PostagensComponent implements OnInit{
       .subscribe(res =>{
         console.log(res)
         this.snackbar.open('Publicação feita com sucesso!', 'Dismiss', {
-          duration:5000,
-          panelClass: ['snackbar']
+          duration:4000,
+          panelClass: ['success-snackbar']
         });
       }, err=>{
         console.log(err);
-        this.snackbar.open('Publicação não foi feita com sucesso!', 'Dismiss', {
-          duration:5000,
-          panelClass: ['blue-snackbar']
+        this.snackbar.open('Ocorreu um erro ao publicar!', 'Dismiss', {
+          duration:4000,
+          panelClass: ['error-snackbar']
         });
       });
     this.publication.text = "";
