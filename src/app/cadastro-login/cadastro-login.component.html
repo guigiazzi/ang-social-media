@@ -1,0 +1,44 @@
+<div class="container body">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light menuTopo">
+    <img src="http://agbrands.com.br/wp-content/uploads/2017/01/perfil.jpg" class="rounded float-left imgLogin"
+      alt="...">
+    <a class="navbar-brand nameComp" href="#">Bem Vindo ao DSSM</a>
+    <form class="form-inline" (ngSubmit)="onSubmit()">
+      <div class="form-group mb-2">
+        <label for="staticEmail2" class="sr-only">Email</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+          placeholder="Enter email">
+      </div>
+      <div class="form-group mx-sm-5 mb-2">
+        <label for="inputPassword2" class="sr-only">Password</label>
+        <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+      </div>
+      <button type="submit" class="btn btn-primary mb-2">Login</button>
+    </form>
+  </nav>
+
+
+  <div class="info col-md-6">
+    <div class="container-fluid cadastro">
+      <h3>
+        Bem vindo ao DSSM
+      </h3>
+      <p>
+        Aqui você consegue se conectar com outros profissionais da área de Ciência de dados para assim compartilhar
+        suas
+        experiências de trabalhos,
+        compartilhar novas ideias que possui, achar parceiros para o de desenvolvimento dessas ideias, compartilhar
+        coisas interessantes ou que ocorreram no seu dia a dia e que podem ser relevantes,
+        mostrar aos outros suas áreas de interesse, focalizando suas conexões, recomendar um amigo ou parceiro de
+        trabalho, entre muitas outras coisas.
+
+        Faça parte você também dessa Rede Social para Cientistas de Dados e venha compartilhar seus conhecimentos com
+        todos!
+      </p>
+      <button type="submit" class="btn btn-primary" (click)="habilitaCadastro()">Criar conta!</button>
+    </div>
+  </div>
+  <div *ngIf="criarConta" class="col-md-6 shadow-sm p-3 bg-white rounded cadastro">
+    <app-form-cadastro></app-form-cadastro>
+  </div>
+</div>
