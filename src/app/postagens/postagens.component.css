@@ -18,17 +18,28 @@ input{
 }
 
 ::ng-deep .error-snackbar {
-    color: black;
+    color: white;
     background-color: red;
-    .mat-simple-snackbar-action {
-        color: black;
-    }
 }
 
 ::ng-deep .success-snackbar {
     color: white;
     background-color: green;
-    .mat-simple-snackbar-action {
-        color: white;
-    }
+}
+
+::ng-deep .mat-simple-snackbar-action {
+  color: white;
+}
+
+.card {
+  margin-top: 7%;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.resizing {
+  height:0%;
 }

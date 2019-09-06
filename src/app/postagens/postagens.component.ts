@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Publication } from './../interfaces/publication';
-import { AppService }  from './../app.service';
+import { AppService } from './../app.service';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
@@ -9,32 +9,33 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./postagens.component.css']
 })
 
-export class PostagensComponent implements OnInit{
-  public publication: Publication = <Publication>{};
+export class PostagensComponent implements OnInit {
+  public publication: Publication = <Publication> {};
   public isMyProfile = true;
 
-  constructor(private appservice : AppService, private snackbar : MatSnackBar) { }
+  constructor(private appservice: AppService, private snackbar: MatSnackBar) { }
 
-  ngOnInit(){
-    this.publication.author = "Jaozin";
-  }
+  ngOnInit() {
+    this.publication.author = 'Jaozin';
+    this.publication.text = 'sjbfssdusdds';
+;  }
 
   onSubmit() {
     console.warn('Ta ai sua postage', this.publication);
     this.appservice.cadastrarPublication(this.publication)
-      .subscribe(res =>{
-        console.log(res)
+      .subscribe(res => {
+        console.log(res);
         this.snackbar.open('Publicação feita com sucesso!', 'Dismiss', {
-          duration:4000,
+          duration: 4000,
           panelClass: ['success-snackbar']
         });
-      }, err=>{
+      }, err => {
         console.log(err);
         this.snackbar.open('Ocorreu um erro ao publicar!', 'Dismiss', {
-          duration:4000,
+          duration: 4000,
           panelClass: ['error-snackbar']
         });
       });
-    this.publication.text = "";
+    this.publication.text = '';
   }
 }

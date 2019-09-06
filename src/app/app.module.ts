@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
 
 //Components
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { CadastroLoginComponent } from './cadastro-login/cadastro-login.componen
 import { FormCadastroComponent } from './shared/form-cadastro/form-cadastro.component';
 import { PostagensComponent } from './postagens/postagens.component';
 import { DadosComponent } from './postagens/dados-usuarios/dados.component';
+import { HeaderToolbarComponent } from './shared/header-toolbar/header-toolbar.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { DadosComponent } from './postagens/dados-usuarios/dados.component';
     CadastroLoginComponent,
     FormCadastroComponent,
     PostagensComponent,
-    DadosComponent
+    DadosComponent,
+    HeaderToolbarComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import { DadosComponent } from './postagens/dados-usuarios/dados.component';
     BrowserAnimationsModule,
     MatSnackBarModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
