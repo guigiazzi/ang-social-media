@@ -33,8 +33,7 @@ import { DadosComponent } from './postagens/dados-usuarios/dados.component';
     BrowserAnimationsModule,
     MatSnackBarModule,
     MatToolbarModule,
-    MatIconModule,
-    MatToolbarModule
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
