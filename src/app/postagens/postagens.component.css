@@ -40,3 +40,7 @@ input{
   background-image: url('http://agbrands.com.br/wp-content/uploads/2017/01/perfil.jpg');
   background-size: cover;
 }
+
+.loading {
+  margin-top: 1%;
+}

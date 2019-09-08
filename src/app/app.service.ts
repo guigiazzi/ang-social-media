@@ -21,5 +21,15 @@ export class AppService {
     const url = `${environment.dssmApiUrl}/publicate`;
     return this.http.post<Publication>(url,publication);
   }
+
+  listrarPostagens(userId): Observable<any> {
+    const url = `${environment.dssmApiUrl}/retrievePublicationList`;
+    return this.http.post<Publication>(url,userId);
+  }
+
+  retornarDadosUsuario(userId): Observable<any> {
+    const url = `${environment.dssmApiUrl}/retrieveProfessionalData`;
+    return this.http.post<Publication>(url,userId);
+  }
 }
 

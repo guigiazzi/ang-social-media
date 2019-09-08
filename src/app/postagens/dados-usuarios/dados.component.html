@@ -6,15 +6,15 @@
         <div class="row">
             <div class="info1">
                 <p>Nome: {{usuario.name}}</p>
-                <p>Data de Nascimento: {{usuario.birthdate}}</p>
+                <p>Data de Nascimento: {{usuario.birthDate}}</p>
                 <p>Cidade: {{usuario.city}}</p>
                 <p>Estado: {{usuario.state}}</p>
             </div>
             <div class="info2">
                 <p>Empresa: {{usuario.company}}</p>
                 <p>Salário: R${{usuario.salary}}</p>
-                <p>Data de Inicío na Área de Ciência de Dados: {{usuario.inicialDate}}</p>
-                <p>Nivel de Instrução: {{usuario.instructionlevel}}</p>
+                <p>Data de Inicío na Área de Ciência de Dados: {{usuario.careerDate}}</p>
+                <p>Nivel de Instrução: {{usuario.instructionLevel}}</p>
             </div>
         </div>
         <div *ngIf="isPersonProfile">

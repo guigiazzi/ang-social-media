@@ -9,6 +9,7 @@ import { MatSnackBarModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 //Components
 import { AppComponent } from './app.component';
@@ -37,7 +38,8 @@ import { HeaderToolbarComponent } from './shared/header-toolbar/header-toolbar.c
     MatSnackBarModule,
     MatToolbarModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
