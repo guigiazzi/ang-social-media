@@ -30,7 +30,6 @@ export class PostagensComponent implements OnInit {
   }
 
   onSubmit() {
-    //TO DO: ASSIM QUE MANDAR, ATUALIZAR A LISTA DE PUBLICACOES
     this.showSpinner = true;
     this.appservice.cadastrarPublication(this.publication)
       .subscribe(res => {
@@ -40,7 +39,7 @@ export class PostagensComponent implements OnInit {
           panelClass: ['success-snackbar']
         });
         this.showSpinner = false;
-        this.userPublications.push(res)
+        this.userPublications.unshift(res)
       }, err => {
         console.log(err);
         this.snackbar.open('Ocorreu um erro ao publicar!', 'Dismiss', {
