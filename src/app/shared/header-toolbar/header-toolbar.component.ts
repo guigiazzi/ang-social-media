@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-header-toolbar',
@@ -7,10 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class HeaderToolbarComponent {
-  constructor() { }
+  public searchName: string = '';
+  public pessoas = [];
 
-  logout(){
+  constructor(private appservice: AppService) { }
 
+  logout(){}
+
+  search(){
+    console.log('hellow',this.searchName)
+    if(this.searchName.length > 0)
+    this.appservice.searchbar({name: this.searchName})
+    .subscribe(res =>{
+      res.forEach(pessoa => {
+        this.pessoas.push(pessoa)
+      });
+      console.log(this.pessoas)
+    })
   }
-  
 }

@@ -1,6 +1,12 @@
 <mat-toolbar color="primary" class="cont">
   <mat-toolbar-row class="header">
     <span>DSSM</span>
+    <div>
+      <mat-icon>search</mat-icon>
+      <mat-form-field class="search-bar">
+        <input matInput (keydown)="search()" [(ngModel)]="searchName" placeholder="Pesquise">
+      </mat-form-field>
+    </div>
     <div class="perfil-amigos">
       <a class="amigos" routerLink="/postagens">
           <mat-icon>home</mat-icon>

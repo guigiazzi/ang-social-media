@@ -29,7 +29,12 @@ export class AppService {
 
   retornarDadosUsuario(userId): Observable<any> {
     const url = `${environment.dssmApiUrl}/retrieveProfessionalData`;
-    return this.http.post<Publication>(url,userId);
+    return this.http.post(url,userId);
+  }
+  
+  searchbar(searchitem): Observable<any>{
+    const url = `${environment.dssmApiUrl}/search`;
+    return this.http.post(url,searchitem);
   }
 }
 
