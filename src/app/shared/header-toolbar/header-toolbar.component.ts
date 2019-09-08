@@ -6,8 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header-toolbar.component.css']
 })
 
-export class HeaderToolbarComponent implements OnInit {
+export class HeaderToolbarComponent {
   constructor() { }
 
-  ngOnInit() { }
+  logout(){
+
+  }
+  
 }
