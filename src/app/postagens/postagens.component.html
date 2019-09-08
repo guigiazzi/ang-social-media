@@ -1,0 +1,33 @@
+<app-header-toolbar></app-header-toolbar>
+<div class="container">
+    <h1>Perfil</h1>
+    <app-dados [isPersonProfile]="isMyProfile"></app-dados>
+    <div class="postagens">
+        <h1>Postagens</h1>
+        <div *ngIf="isMyProfile">
+          <input type="text" id="post" #text [(ngModel)]="publication.text" placeholder="Digite aqui o que deseja postar!">
+          <button type="submit" class="btn btn-primary button-postar" mat-button (click)="onSubmit()">Postar</button>
+          <div *ngIf="showSpinner" class="d-flex justify-content-center loading">
+            <mat-spinner></mat-spinner>
+          </div>
+        </div>
+    </div>
+    <hr>
+    <div *ngFor='let publication of userPublications'>
+      <mat-card class="card">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{publication.author}}</mat-card-title>
+          </mat-card-header>
+          <hr>
+          <mat-card-content>
+            <p>
+              {{publication.text}}
+            </p>
+            <p>
+              {{publication.publicationDate}}
+            </p>
+          </mat-card-content>
+        </mat-card>
+    </div>
+</div>

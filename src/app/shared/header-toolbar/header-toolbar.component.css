@@ -1,0 +1,19 @@
+.amigos {
+  margin-left: 2%;
+  font-size: 75%;
+  color: white;
+}
+
+.header{
+  justify-content: space-between;
+}
+
+.cont {
+  margin-bottom: 1%;
+  position: fixed;
+  z-index:999;
+}
+
+.search-bar {
+  width: 150%;
+}

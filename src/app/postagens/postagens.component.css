@@ -1,0 +1,50 @@
+h1 {
+    text-align: center;
+}
+
+.postagens{
+    padding-top: 2%;
+    margin-bottom: 6%;
+}
+
+input{
+    margin-top: 1%;
+    padding-bottom: 5%;
+    width: 100%;
+}
+
+.button-postar{
+    margin-top: 1%;
+    float: right;
+}
+
+::ng-deep .error-snackbar {
+    color: white;
+    background-color: red;
+}
+
+::ng-deep .success-snackbar {
+    color: white;
+    background-color: green;
+}
+
+::ng-deep .mat-simple-snackbar-action {
+  color: white;
+}
+
+.card {
+  margin-bottom: 2%;
+}
+
+.example-header-image {
+  background-image: url('http://agbrands.com.br/wp-content/uploads/2017/01/perfil.jpg');
+  background-size: cover;
+}
+
+.loading {
+  margin-top: 1%;
+}
+
+.container {
+  padding-top: 3%;
+}
