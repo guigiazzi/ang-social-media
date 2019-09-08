@@ -1,7 +1,7 @@
 <div class="profile-box border border-secondary">
     <h2 class="postTitle">Dados</h2>
     <hr>
-    <div class="dados-usuario">
+    <div>
         <img src="http://agbrands.com.br/wp-content/uploads/2017/01/perfil.jpg" class="imgPerson" alt="...">
         <div class="row">
             <div class="info1">
@@ -16,11 +16,11 @@
                 <p>Data de Inicío na Área de Ciência de Dados: {{usuario.inicialDate}}</p>
                 <p>Nivel de Instrução: {{usuario.instructionlevel}}</p>
             </div>
-            <div *ngIf="isMyProfile">
-                <button type="submit" class="btn btn-primary" routerLink="/atualizar-perfil">
-                  <mat-icon>person</mat-icon>
-                  Atualizar Perfil</button>
-            </div>
+        </div>
+        <div *ngIf="isPersonProfile">
+            <button type="submit" class="btn btn-primary" routerLink="/atualizar-perfil">
+            <mat-icon>person</mat-icon>
+            Atualizar Perfil</button>
         </div>
     </div>
     <hr>
