@@ -11,9 +11,10 @@ import { MatSnackBar } from '@angular/material';
 
 export class PostagensComponent implements OnInit {
   public publication: Publication = <Publication> {};
-  public isMyProfile = true;
-  public showSpinner = false;
+  public isMyProfile: boolean = true;
+  public showSpinner: boolean = false;
   public userPublications: Publication[] = [];
+  public numPublications: number;
 
   constructor(private appservice: AppService, private snackbar: MatSnackBar) { }
 
@@ -26,6 +27,7 @@ export class PostagensComponent implements OnInit {
         this.userPublications.push(publication)
       });
       console.log(this.userPublications)
+      this.numPublications = this.userPublications.length;
     });
   }
 
