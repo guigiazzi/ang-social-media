@@ -31,7 +31,7 @@ export class AppService {
     const url = `${environment.dssmApiUrl}/retrieveProfessionalData`;
     return this.http.post(url,userId);
   }
-  
+
   searchbar(searchitem): Observable<any>{
     const url = `${environment.dssmApiUrl}/search`;
     return this.http.post(url,searchitem);

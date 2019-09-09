@@ -10,9 +10,9 @@ import { MatSnackBar } from '@angular/material';
 })
 
 export class PostagensComponent implements OnInit {
-  public publication: Publication = <Publication> {};
-  public isMyProfile: boolean = true;
-  public showSpinner: boolean = false;
+  public publication: Publication = {} as Publication;
+  public isMyProfile = true;
+  public showSpinner = false;
   public userPublications: Publication[] = [];
   public numPublications: number;
 
@@ -22,11 +22,23 @@ export class PostagensComponent implements OnInit {
     this.publication.professionalID = '5d719baf5c15490004e1f21e';
 
     this.appservice.listrarPostagens({professionalID: '5d719baf5c15490004e1f21e'})
-    .subscribe(publications=>{
+    .subscribe(publications => {
       publications.forEach(publication => {
-        this.userPublications.push(publication)
+        const hour = new Date(publication.publicationDate).getHours();
+        const minutes = new Date(publication.publicationDate).getMinutes();
+
+        publication.publicationDate = publication.publicationDate.substr(0, 10);
+        publication.publicationDate = new Date(publication.publicationDate.replace(/-/g, '\/'));
+        publication.publicationDate =  ('0' + publication.publicationDate.getDate()).substr(-2) + '/'
+        + ('0' + (publication.publicationDate.getMonth() + 1)).substr(-2) + '/' + publication.publicationDate.getFullYear();
+
+        if (minutes < 10) {
+          publication.publicationDate = ( +`${hour}` + ':' + `0` + `${minutes}` + ` - ` + publication.publicationDate);
+        } else {
+          publication.publicationDate = ( +`${hour}` + ':' + `${minutes}` + ` - ` + publication.publicationDate);
+        }
+        this.userPublications.push(publication);
       });
-      console.log(this.userPublications)
       this.numPublications = this.userPublications.length;
     }, err => {
       this.snackbar.open('Ocorreu um erro ao listar as publicações!', 'Dismiss', {
@@ -47,7 +59,7 @@ export class PostagensComponent implements OnInit {
           panelClass: ['success-snackbar']
         });
         this.showSpinner = false;
-        this.userPublications.unshift(res)
+        this.userPublications.unshift(res);
       }, err => {
         console.log(err);
         this.snackbar.open('Ocorreu um erro ao publicar!', 'Dismiss', {
