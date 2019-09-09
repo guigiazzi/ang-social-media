@@ -28,6 +28,12 @@ export class PostagensComponent implements OnInit {
       });
       console.log(this.userPublications)
       this.numPublications = this.userPublications.length;
+    }, err => {
+      this.snackbar.open('Ocorreu um erro ao listar as publicações!', 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
+      });
+      console.log(err);
     });
   }
 
