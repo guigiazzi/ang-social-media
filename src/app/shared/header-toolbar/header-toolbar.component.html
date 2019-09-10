@@ -1,25 +1,29 @@
-<mat-toolbar color="primary" class="cont">
-  <mat-toolbar-row class="header">
-    <span>DSSM</span>
-    <div>
-      <mat-icon>search</mat-icon>
-      <mat-form-field class="search-bar">
-        <input matInput (input)="searchPosts($event.target.value)" placeholder="Pesquise">
-      </mat-form-field>
-      <div *ngFor="let person of searchUsers" class="dropdown pessoas">
-        <a class="dropdown-item">{{person.name}}</a>
+<div class="cont">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row class="header">
+      <span>DSSM</span>
+      <div>
+        <div>
+          <mat-icon>search</mat-icon>
+          <mat-form-field class="search-bar" floatPlaceholder="never">
+            <input matInput (input)="searchPosts($event.target.value)" placeholder="Pesquise" onfocus="this.placeholder=''">
+          </mat-form-field>
+        </div>
       </div>
-    </div>
-    <div class="perfil-amigos">
-      <a class="amigos" routerLink="/postagens">
-          <mat-icon>home</mat-icon>
-          Home
-      </a>
-        <a class='amigos' routerLink="/">
-          <mat-icon>people</mat-icon>
-          Amigos
+      <div class="perfil-amigos">
+        <a class="amigos" routerLink="/postagens">
+            <mat-icon>home</mat-icon>
+            Home
         </a>
-      <a class="amigos" (click)="logout()" routerLink="/">Logout</a>
-    </div>
-  </mat-toolbar-row>
-</mat-toolbar>
+          <a class='amigos' routerLink="/">
+            <mat-icon>people</mat-icon>
+            Amigos
+          </a>
+        <a class="amigos" (click)="logout()" routerLink="/">Logout</a>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div *ngFor="let person of searchUsers" class="d-flex justify-content-center">
+      <a class="border border-secondary rounded pessoas" color="white">{{person.name}}</a>
+  </div>
+</div>
