@@ -33,9 +33,9 @@ export class PostagensComponent implements OnInit {
         + ('0' + (publication.publicationDate.getMonth() + 1)).substr(-2) + '/' + publication.publicationDate.getFullYear();
 
         if (minutes < 10) {
-          publication.publicationDate = ( +`${hour}` + ':' + `0` + `${minutes}` + ` - ` + publication.publicationDate);
+          publication.publicationDate = (`${hour}` + ':' + `0` + `${minutes}` + ` - ` + publication.publicationDate);
         } else {
-          publication.publicationDate = ( +`${hour}` + ':' + `${minutes}` + ` - ` + publication.publicationDate);
+          publication.publicationDate = (`${hour}` + ':' + `${minutes}` + ` - ` + publication.publicationDate);
         }
         this.userPublications.push(publication);
       });
