@@ -4,8 +4,11 @@
     <div>
       <mat-icon>search</mat-icon>
       <mat-form-field class="search-bar">
-        <input matInput (keydown)="search()" [(ngModel)]="searchName" placeholder="Pesquise">
+        <input matInput (input)="searchPosts($event.target.value)" placeholder="Pesquise">
       </mat-form-field>
+      <div *ngFor="let person of searchUsers" class="dropdown pessoas">
+        <a class="dropdown-item">{{person.name}}</a>
+      </div>
     </div>
     <div class="perfil-amigos">
       <a class="amigos" routerLink="/postagens">

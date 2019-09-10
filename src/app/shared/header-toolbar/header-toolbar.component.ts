@@ -8,22 +8,20 @@ import { AppService } from 'src/app/app.service';
 })
 
 export class HeaderToolbarComponent {
-  public searchName: string = '';
-  public pessoas = [];
+  public searchUsers = [];
 
   constructor(private appservice: AppService) { }
 
   logout(){}
 
-  search(){
-    console.log('hellow',this.searchName)
-    if(this.searchName.length > 0)
-    this.appservice.searchbar({name: this.searchName})
-    .subscribe(res =>{
+  searchPosts(searchValue) {
+    this.searchUsers = [];
+    this.appservice.searchbar({name: searchValue})
+    .subscribe(res => {
       res.forEach(pessoa => {
-        this.pessoas.push(pessoa)
+        this.searchUsers.push(pessoa);
       });
-      console.log(this.pessoas)
-    })
+      console.log(this.searchUsers);
+    });
   }
 }
