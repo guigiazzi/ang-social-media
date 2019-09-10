@@ -6,7 +6,8 @@ import { PostagensComponent} from './postagens/postagens.component';
 const routes: Routes = [
   { path: '', component: CadastroLoginComponent },
   { path: 'signUp', component: CadastroLoginComponent },
-  { path: 'postagens', component: PostagensComponent}
+  { path: 'postagens', component: PostagensComponent},
+  { path: 'postagens:/id', component: PostagensComponent}
 ];
 
 @NgModule({
