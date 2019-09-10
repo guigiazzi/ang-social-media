@@ -22,13 +22,13 @@ export class AppService {
     return this.http.post<Publication>(url,publication);
   }
 
-  listrarPostagens(userId): Observable<any> {
-    const url = `${environment.dssmApiUrl}/retrievePublicationList`;
+  listrarPostagens(userId: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/retrievePublicationList/${userId}`;
     return this.http.get<Publication>(url);
   }
 
-  retornarDadosUsuario(userId): Observable<any> {
-    const url = `${environment.dssmApiUrl}/retrieveProfessionalData`;
+  retornarDadosUsuario(userId: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/retrieveProfessionalData/${userId}`;
     return this.http.get<Professional>(url);
   }
 
