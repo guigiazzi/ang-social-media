@@ -20,23 +20,12 @@ export class PostagensComponent implements OnInit {
 
   ngOnInit() {
     this.publication.professionalID = '5d719baf5c15490004e1f21e';
+    this.publication.author = 'aaaaaaa';
 
     this.appservice.listrarPostagens({professionalID: '5d719baf5c15490004e1f21e'})
     .subscribe(publications => {
       publications.forEach(publication => {
-        const hour = new Date(publication.publicationDate).getHours();
-        const minutes = new Date(publication.publicationDate).getMinutes();
-
-        publication.publicationDate = publication.publicationDate.substr(0, 10);
-        publication.publicationDate = new Date(publication.publicationDate.replace(/-/g, '\/'));
-        publication.publicationDate =  ('0' + publication.publicationDate.getDate()).substr(-2) + '/'
-        + ('0' + (publication.publicationDate.getMonth() + 1)).substr(-2) + '/' + publication.publicationDate.getFullYear();
-
-        if (minutes < 10) {
-          publication.publicationDate = (`${hour}` + ':' + `0` + `${minutes}` + ` - ` + publication.publicationDate);
-        } else {
-          publication.publicationDate = (`${hour}` + ':' + `${minutes}` + ` - ` + publication.publicationDate);
-        }
+        publication.publicationDate = this.formatDate(publication.publicationDate)
         this.userPublications.push(publication);
       });
       this.numPublications = this.userPublications.length;
@@ -51,6 +40,7 @@ export class PostagensComponent implements OnInit {
 
   onSubmit() {
     this.showSpinner = true;
+    console.log(this.publication)
     this.appservice.cadastrarPublication(this.publication)
       .subscribe(res => {
         console.log(res);
@@ -58,6 +48,7 @@ export class PostagensComponent implements OnInit {
           duration: 4000,
           panelClass: ['success-snackbar']
         });
+        res.publicationDate = this.formatDate(res.publicationDate)
         this.showSpinner = false;
         this.userPublications.unshift(res);
       }, err => {
@@ -70,4 +61,22 @@ export class PostagensComponent implements OnInit {
       });
     this.publication.text = '';
   }
+
+  formatDate(date: string) {
+    const hour = new Date(date).getHours();
+    const minutes = new Date(date).getMinutes();
+
+    let dayMonthYearSTR = date.substr(0, 10);
+    let dayMonthYearNBR = new Date(dayMonthYearSTR.replace(/-/g, '\/'));
+    dayMonthYearSTR =  ('0' + dayMonthYearNBR.getDate()).substr(-2) + '/'
+    + ('0' + (dayMonthYearNBR.getMonth() + 1)).substr(-2) + '/' + dayMonthYearNBR.getFullYear();
+
+    if (minutes < 10 || hour < 10) {
+      date = (`${hour}` + ':' + `0` + `${minutes}` + ` - ` + dayMonthYearSTR);
+    } else {
+      date = (`${hour}` + ':' + `${minutes}` + ` - ` + dayMonthYearSTR);
+    }
+    return date;
+  }
+
 }
