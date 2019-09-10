@@ -1,29 +1,29 @@
-<div class="cont">
+<div class="header">
   <mat-toolbar color="primary">
-    <mat-toolbar-row class="header">
+    <mat-toolbar-row class="toolbar">
       <span>DSSM</span>
       <div>
         <div>
           <mat-icon>search</mat-icon>
-          <mat-form-field class="search-bar" floatPlaceholder="never">
-            <input matInput (input)="searchPosts($event.target.value)" placeholder="Pesquise" onfocus="this.placeholder=''">
+          <mat-form-field class="search-bar">
+            <input matInput (input)="searchPosts($event.target.value)" placeholder="Pesquise">
           </mat-form-field>
         </div>
       </div>
       <div class="perfil-amigos">
-        <a class="amigos" routerLink="/postagens">
+        <a class="menuItens" routerLink="/postagens">
             <mat-icon>home</mat-icon>
             Home
         </a>
-          <a class='amigos' routerLink="/">
+          <a class='menuItens' routerLink="/">
             <mat-icon>people</mat-icon>
             Amigos
           </a>
-        <a class="amigos" (click)="logout()" routerLink="/">Logout</a>
+        <a class="menuItens" (click)="logout()" routerLink="/">Logout</a>
       </div>
     </mat-toolbar-row>
   </mat-toolbar>
   <div *ngFor="let person of searchUsers" class="d-flex justify-content-center">
-      <a class="border border-secondary rounded pessoas" color="white">{{person.name}}</a>
+      <a class="border border-secondary rounded dropdownItens" color="white">{{person.name}}</a>
   </div>
 </div>

@@ -1,31 +1,27 @@
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+.header {
+  position: fixed;
+  z-index:999;
+  width: 100%;
+}
 
-.amigos {
+.menuItens {
   margin-left: 2%;
   font-size: 75%;
   color: white;
 }
 
-.header{
+.toolbar{
   justify-content: space-between;
 }
-
 
 .search-bar {
   width: 150%;
   padding-top: 8%;
 }
 
-.pessoas {
+.dropdownItens {
   font-size: 150%;
   background-color: white;
-  width: 13%;
+  width: 23%;
   text-align: center;
-}
-
-.cont {
-  position: fixed;
-  z-index:999;
-  width: 100%;
-  margin-bottom: 1%;
 }

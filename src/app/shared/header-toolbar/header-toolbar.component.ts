@@ -21,7 +21,6 @@ export class HeaderToolbarComponent {
       res.forEach(pessoa => {
         this.searchUsers.push(pessoa);
       });
-      console.log(this.searchUsers);
     });
   }
 }
