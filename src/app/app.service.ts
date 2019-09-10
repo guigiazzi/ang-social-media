@@ -24,12 +24,12 @@ export class AppService {
 
   listrarPostagens(userId): Observable<any> {
     const url = `${environment.dssmApiUrl}/retrievePublicationList`;
-    return this.http.post<Publication>(url,userId);
+    return this.http.get<Publication>(url);
   }
 
   retornarDadosUsuario(userId): Observable<any> {
     const url = `${environment.dssmApiUrl}/retrieveProfessionalData`;
-    return this.http.post(url,userId);
+    return this.http.get<Professional>(url);
   }
 
   searchbar(searchitem): Observable<any>{
