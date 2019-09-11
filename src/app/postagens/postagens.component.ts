@@ -3,7 +3,8 @@ import { Publication } from './../interfaces/publication';
 import { AppService } from './../app.service';
 import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
-
+import { FormatDateService } from './../shared/formatDateService/format-date.service';
+import { SessionService } from './../shared/sessionService/session.service';
 
 @Component({
   selector: 'app-postagens',
@@ -13,16 +14,26 @@ import { ActivatedRoute } from '@angular/router';
 
 export class PostagensComponent implements OnInit {
   public publication: Publication = {} as Publication;
-  public isMyProfile = true;
+  public isMyProfile = false;
   public showSpinner = false;
   public userPublications: Publication[] = [];
   public numPublications: number;
 
-  constructor(private appservice: AppService, private snackbar: MatSnackBar, private route: ActivatedRoute) { }
+  constructor(
+    private appservice: AppService,
+    private snackbar: MatSnackBar,
+    private route: ActivatedRoute,
+    private formatDateService: FormatDateService,
+    private sessionService: SessionService
+    ) { }
 
   ngOnInit() {
-    this.publication.author = 'aaaaaaa';
+    this.sessionService.saveUserLoggedId('5d719baf5c15490004e1f21e');
+    const userLoggedId = this.sessionService.getUserLogged();
     this.publication.professionalID = this.route.snapshot.paramMap.get('id');
+    if (userLoggedId === this.publication.professionalID) {
+      this.isMyProfile = true;
+    }
     this.listarPostagens(this.publication.professionalID);
   }
 
@@ -36,7 +47,7 @@ export class PostagensComponent implements OnInit {
           duration: 4000,
           panelClass: ['success-snackbar']
         });
-        res.publicationDate = this.formatDate(res.publicationDate)
+        res.publicationDate = this.formatDateService.formatDate(res.publicationDate);
         this.showSpinner = false;
         this.userPublications.unshift(res);
       }, err => {
@@ -54,7 +65,7 @@ export class PostagensComponent implements OnInit {
     this.appservice.listrarPostagens(userId)
     .subscribe(publications => {
       publications.forEach(publication => {
-        publication.publicationDate = this.formatDate(publication.publicationDate)
+        publication.publicationDate = this.formatDateService.formatDate(publication.publicationDate);
         this.userPublications.push(publication);
       });
       this.numPublications = this.userPublications.length;
@@ -67,29 +78,6 @@ export class PostagensComponent implements OnInit {
       this.numPublications = this.userPublications.length;
       console.log(err);
     });
-  }
-
-  formatDate(date: string) {
-    const hour = new Date(date).getHours();
-    const minutes = new Date(date).getMinutes();
-
-    let dayMonthYearSTR = date.substr(0, 10);
-    const dayMonthYearNBR = new Date(dayMonthYearSTR.replace(/-/g, '\/'));
-    dayMonthYearSTR =  ('0' + dayMonthYearNBR.getDate()).substr(-2) + '/'
-    + ('0' + (dayMonthYearNBR.getMonth() + 1)).substr(-2) + '/' + dayMonthYearNBR.getFullYear();
-
-    if (minutes < 10 || hour < 10) {
-      if (hour < 10 && minutes < 10) {
-        date = (`0` + `${hour}` + ':' + `0` + `${minutes}` + ` - ` + dayMonthYearSTR);
-      } else if (minutes < 10) {
-        date = (`${hour}` + ':' + `0` + `${minutes}` + ` - ` + dayMonthYearSTR);
-      } else {
-        date = (`0` + `${hour}` + ':' + `0` + `${minutes}` + ` - ` + dayMonthYearSTR);
-      }
-    } else {
-      date = (`${hour}` + ':' + `${minutes}` + ` - ` + dayMonthYearSTR);
-    }
-    return date;
   }
 
 }

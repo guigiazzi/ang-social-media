@@ -20,6 +20,10 @@ import { PostagensComponent } from './postagens/postagens.component';
 import { DadosComponent } from './postagens/dados-usuarios/dados.component';
 import { HeaderToolbarComponent } from './shared/header-toolbar/header-toolbar.component';
 
+//Services
+import { FormatDateService } from './shared/formatDateService/format-date.service';
+import { SessionService } from './shared/sessionService/session.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +47,10 @@ import { HeaderToolbarComponent } from './shared/header-toolbar/header-toolbar.c
     MatProgressSpinnerModule,
     MatInputModule
   ],
-  providers: [],
+  providers: [
+    FormatDateService,
+    SessionService
+  ],
   bootstrap: [AppComponent]
 })
 

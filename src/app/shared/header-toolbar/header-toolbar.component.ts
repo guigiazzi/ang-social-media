@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AppService } from 'src/app/app.service';
 import { Router } from '@angular/router';
+import { SessionService } from '../sessionService/session.service';
+
 
 @Component({
   selector: 'app-header-toolbar',
@@ -11,11 +13,14 @@ import { Router } from '@angular/router';
 export class HeaderToolbarComponent {
   public searchUsers = [];
 
-  constructor(private appservice: AppService, private router: Router) {
+  constructor(private appservice: AppService, private router: Router, private sessionService: SessionService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
    }
 
-  logout(){}
+  logout(){
+    this.sessionService.logoutUser();
+    console.log(this.sessionService);
+  }
 
   searchPosts(searchValue) {
     this.searchUsers = [];
@@ -28,6 +33,6 @@ export class HeaderToolbarComponent {
   }
 
   goTo(userId: string) {
-    this.router.navigateByUrl(`postagens/${userId}`);
+    this.router.navigate([`postagens`, userId]);
   }
 }

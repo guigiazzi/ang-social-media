@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AppService } from './../../app.service';
 import { Professional } from './../../interfaces/professional';
+import { FormatDateService } from 'src/app/shared/formatDateService/format-date.service';
 
 @Component({
   selector: 'app-dados',
@@ -14,7 +15,7 @@ export class DadosComponent implements OnInit {
   public usuario: Professional;
   public topics = [];
 
-  constructor(private appservice: AppService) { }
+  constructor(private appservice: AppService, private formatDateService: FormatDateService) { }
 
   ngOnInit() {
     this.retornaDadosUsuarios(this.user);
@@ -23,17 +24,11 @@ export class DadosComponent implements OnInit {
   retornaDadosUsuarios(user) {
     this.appservice.retornarDadosUsuario(user)
       .subscribe(user => {
-        if(user.birthDate){
-          user.birthDate = user.birthDate.substr(0,10);
-          user.birthDate = new Date(user.birthDate.replace(/-/g, '\/'));
-          user.birthDate =  ('0' + user.birthDate.getDate()).substr(-2) + '/'
-          + ('0' + (user.birthDate.getMonth() + 1)).substr(-2) + '/' + user.birthDate.getFullYear();
+        if (user.birthDate) {
+          user.birthDate = this.formatDateService.formatDatewithoutHour(user.birthDate);
         }
-        if(user.careerDate){
-          user.careerDate = user.careerDate.substr(0,10);
-          user.careerDate = new Date(user.careerDate.replace(/-/g, '\/'));
-          user.careerDate = ('0' + user.careerDate.getDate()).substr(-2) + '/'
-          + ('/' + (user.careerDate.getMonth() + 1)).substr(-2) + '/' + user.careerDate.getFullYear();
+        if (user.careerDate) {
+          user.careerDate = this.formatDateService.formatDatewithoutHour(user.careerDate);
         }
         this.usuario = user;
       });
