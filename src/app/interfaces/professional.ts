@@ -1,4 +1,5 @@
 import { JobRole } from './job-role';
+import { EmailValidator } from '@angular/forms';
 
 export interface Professional {
   professionalID: string;
