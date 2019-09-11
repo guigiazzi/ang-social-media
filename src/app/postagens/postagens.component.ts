@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Publication } from './../interfaces/publication';
 import { AppService } from './../app.service';
 import { MatSnackBar } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-postagens',
@@ -16,26 +18,12 @@ export class PostagensComponent implements OnInit {
   public userPublications: Publication[] = [];
   public numPublications: number;
 
-  constructor(private appservice: AppService, private snackbar: MatSnackBar) { }
+  constructor(private appservice: AppService, private snackbar: MatSnackBar, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.publication.professionalID = '5d719baf5c15490004e1f21e';
     this.publication.author = 'aaaaaaa';
-    console.log(`aaaa`)
-    this.appservice.listrarPostagens('5d719baf5c15490004e1f21e')
-    .subscribe(publications => {
-      publications.forEach(publication => {
-        publication.publicationDate = this.formatDate(publication.publicationDate)
-        this.userPublications.push(publication);
-      });
-      this.numPublications = this.userPublications.length;
-    }, err => {
-      this.snackbar.open('Ocorreu um erro ao listar as publicações!', 'Dismiss', {
-        duration: 4000,
-        panelClass: ['error-snackbar']
-      });
-      console.log(err);
-    });
+    this.publication.professionalID = this.route.snapshot.paramMap.get('id');
+    this.listarPostagens(this.publication.professionalID);
   }
 
   onSubmit() {
@@ -60,6 +48,25 @@ export class PostagensComponent implements OnInit {
         this.showSpinner = false;
       });
     this.publication.text = '';
+  }
+
+  listarPostagens(userId: string) {
+    this.appservice.listrarPostagens(userId)
+    .subscribe(publications => {
+      publications.forEach(publication => {
+        publication.publicationDate = this.formatDate(publication.publicationDate)
+        this.userPublications.push(publication);
+      });
+      this.numPublications = this.userPublications.length;
+      console.log(this.userPublications.length);
+    }, err => {
+      this.snackbar.open('Ocorreu um erro ao listar as publicações!', 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
+      });
+      this.numPublications = this.userPublications.length;
+      console.log(err);
+    });
   }
 
   formatDate(date: string) {

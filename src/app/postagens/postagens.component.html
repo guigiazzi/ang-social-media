@@ -1,7 +1,7 @@
 <app-header-toolbar></app-header-toolbar>
 <div class="container">
     <h1>Perfil</h1>
-    <app-dados [isPersonProfile]="isMyProfile"></app-dados>
+    <app-dados [isPersonProfile]="isMyProfile" [user]="publication.professionalID"></app-dados>
     <div class="postagens">
         <h1>Postagens</h1>
         <div *ngIf="isMyProfile">
@@ -30,7 +30,7 @@
           </mat-card-content>
         </mat-card>
     </div>
-    <div *ngIf="numPublications == 0">
+    <div *ngIf="numPublications == 0" class="text-center">
       <p>Ainda não há postagens!</p>
     </div>
 </div>

@@ -10,25 +10,30 @@ import { Professional } from './../../interfaces/professional';
 
 export class DadosComponent implements OnInit {
   @Input() isPersonProfile;
+  @Input() user;
   public usuario: Professional;
   public topics = [];
 
   constructor(private appservice: AppService) { }
 
   ngOnInit() {
-    this.appservice.retornarDadosUsuario('5d719baf5c15490004e1f21e')
-    .subscribe(user => {
-      user.birthDate = user.birthDate.substr(0,10);
-      user.birthDate = new Date(user.birthDate.replace(/-/g, '\/'));
-      user.birthDate =  ('0' + user.birthDate.getDate()).substr(-2) + '/'
-      + ('0' + (user.birthDate.getMonth() + 1)).substr(-2) + '/' + user.birthDate.getFullYear();
+    this.retornaDadosUsuarios(this.user);
+  }
 
-      user.careerDate = user.careerDate.substr(0,10);
-      user.careerDate = new Date(user.careerDate.replace(/-/g, '\/'));
-      user.careerDate = ('0' + user.careerDate.getDate()).substr(-2) + '/'
-      + ('/' + (user.careerDate.getMonth() + 1)).substr(-2) + '/' + user.careerDate.getFullYear();
-      this.usuario = user;
-    });
-    this.topics = ['1','2','3','4'];
-   }
+  retornaDadosUsuarios(user) {
+    this.appservice.retornarDadosUsuario(user)
+      .subscribe(user => {
+        user.birthDate = user.birthDate.substr(0,10);
+        user.birthDate = new Date(user.birthDate.replace(/-/g, '\/'));
+        user.birthDate =  ('0' + user.birthDate.getDate()).substr(-2) + '/'
+        + ('0' + (user.birthDate.getMonth() + 1)).substr(-2) + '/' + user.birthDate.getFullYear();
+
+        user.careerDate = user.careerDate.substr(0,10);
+        user.careerDate = new Date(user.careerDate.replace(/-/g, '\/'));
+        user.careerDate = ('0' + user.careerDate.getDate()).substr(-2) + '/'
+        + ('/' + (user.careerDate.getMonth() + 1)).substr(-2) + '/' + user.careerDate.getFullYear();
+        this.usuario = user;
+      });
+      this.topics = ['1','2','3','4'];
+    }
 }
