@@ -17,7 +17,7 @@ import { AppComponent } from './app.component';
 import { CadastroLoginComponent } from './cadastro-login/cadastro-login.component';
 import { FormCadastroComponent } from './shared/form-cadastro/form-cadastro.component';
 import { PostagensComponent } from './postagens/postagens.component';
-import { DadosComponent } from './postagens/dados-usuarios/dados.component';
+import { PublicationComponent } from './shared/publicationsComponent/publication.component';
 import { HeaderToolbarComponent } from './shared/header-toolbar/header-toolbar.component';
 
 //Services
@@ -30,7 +30,7 @@ import { SessionService } from './shared/sessionService/session.service';
     CadastroLoginComponent,
     FormCadastroComponent,
     PostagensComponent,
-    DadosComponent,
+    PublicationComponent,
     HeaderToolbarComponent
   ],
   imports: [
