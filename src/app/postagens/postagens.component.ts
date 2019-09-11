@@ -21,8 +21,8 @@ export class PostagensComponent implements OnInit {
   ngOnInit() {
     this.publication.professionalID = '5d719baf5c15490004e1f21e';
     this.publication.author = 'aaaaaaa';
-
-    this.appservice.listrarPostagens({professionalID: '5d719baf5c15490004e1f21e'})
+    console.log(`aaaa`)
+    this.appservice.listrarPostagens('5d719baf5c15490004e1f21e')
     .subscribe(publications => {
       publications.forEach(publication => {
         publication.publicationDate = this.formatDate(publication.publicationDate)
@@ -67,12 +67,18 @@ export class PostagensComponent implements OnInit {
     const minutes = new Date(date).getMinutes();
 
     let dayMonthYearSTR = date.substr(0, 10);
-    let dayMonthYearNBR = new Date(dayMonthYearSTR.replace(/-/g, '\/'));
+    const dayMonthYearNBR = new Date(dayMonthYearSTR.replace(/-/g, '\/'));
     dayMonthYearSTR =  ('0' + dayMonthYearNBR.getDate()).substr(-2) + '/'
     + ('0' + (dayMonthYearNBR.getMonth() + 1)).substr(-2) + '/' + dayMonthYearNBR.getFullYear();
 
     if (minutes < 10 || hour < 10) {
-      date = (`${hour}` + ':' + `0` + `${minutes}` + ` - ` + dayMonthYearSTR);
+      if (hour < 10 && minutes < 10) {
+        date = (`0` + `${hour}` + ':' + `0` + `${minutes}` + ` - ` + dayMonthYearSTR);
+      } else if (minutes < 10) {
+        date = (`${hour}` + ':' + `0` + `${minutes}` + ` - ` + dayMonthYearSTR);
+      } else {
+        date = (`0` + `${hour}` + ':' + `0` + `${minutes}` + ` - ` + dayMonthYearSTR);
+      }
     } else {
       date = (`${hour}` + ':' + `${minutes}` + ` - ` + dayMonthYearSTR);
     }

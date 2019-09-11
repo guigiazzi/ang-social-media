@@ -16,7 +16,7 @@ export class DadosComponent implements OnInit {
   constructor(private appservice: AppService) { }
 
   ngOnInit() {
-    this.appservice.retornarDadosUsuario({professionalID: '5d719baf5c15490004e1f21e'})
+    this.appservice.retornarDadosUsuario('5d719baf5c15490004e1f21e')
     .subscribe(user => {
       user.birthDate = user.birthDate.substr(0,10);
       user.birthDate = new Date(user.birthDate.replace(/-/g, '\/'));
