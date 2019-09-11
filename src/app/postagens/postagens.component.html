@@ -1,7 +1,41 @@
 <app-header-toolbar></app-header-toolbar>
 <div class="container">
-    <h1>Perfil</h1>
-    <app-dados [isPersonProfile]="isMyProfile" [user]="publication.professionalID"></app-dados>
+    <h1 class="text-center">Perfil</h1>
+    <div class="profile-box border border-secondary">
+        <h2 class="postTitle">Dados</h2>
+        <hr>
+        <div>
+            <img src="http://agbrands.com.br/wp-content/uploads/2017/01/perfil.jpg" class="imgPerson" alt="...">
+            <div class="row">
+                <div class="info1">
+                    <p>Nome: {{usuario?.name}}</p>
+                    <p>Data de Nascimento: {{usuario?.birthDate}}</p>
+                    <p>Cidade: {{usuario?.city}}</p>
+                    <p>Estado: {{usuario?.state}}</p>
+                </div>
+                <div class="info2">
+                    <p>Empresa: {{usuario?.company}}</p>
+                    <p>Salário: R${{usuario?.salary}}</p>
+                    <p>Data de Inicío na Área de Ciência de Dados: {{usuario?.careerDate}}</p>
+                    <p>Nivel de Instrução: {{usuario?.instructionLevel}}</p>
+                </div>
+            </div>
+            <div *ngIf="isMyProfile">
+                <button type="submit" class="btn btn-primary" routerLink="/atualizar-perfil">
+                <mat-icon>person</mat-icon>
+                Atualizar Perfil</button>
+            </div>
+        </div>
+        <hr>
+        <div class="Topic">
+            <p>Tópicos de Interesse:</p>
+            <div class="row topicos">
+                <div *ngFor='let topico of topics'>
+                    {{topico}}
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="postagens">
         <h1>Postagens</h1>
         <div *ngIf="isMyProfile">
@@ -14,21 +48,7 @@
     </div>
     <hr>
     <div *ngFor='let publication of userPublications'>
-      <mat-card class="card">
-        <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{publication.author}}</mat-card-title>
-          </mat-card-header>
-          <hr>
-          <mat-card-content>
-            <p>
-              {{publication.text}}
-            </p>
-            <p class="d-flex justify-content-end">
-              {{publication.publicationDate}}
-            </p>
-          </mat-card-content>
-        </mat-card>
+      <app-card-publication [publication]="publication"></app-card-publication>
     </div>
     <div *ngIf="numPublications == 0" class="text-center">
       <p>Ainda não há postagens!</p>
