@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { FormatDateService } from './../shared/formatDateService/format-date.service';
 import { SessionService } from './../shared/sessionService/session.service';
+import { Professional } from '../interfaces/professional';
 
 @Component({
   selector: 'app-postagens',
@@ -18,6 +19,8 @@ export class PostagensComponent implements OnInit {
   public showSpinner = false;
   public userPublications: Publication[] = [];
   public numPublications: number;
+  public usuario: Professional = {} as Professional;
+  public topics = [];
 
   constructor(
     private appservice: AppService,
@@ -30,11 +33,12 @@ export class PostagensComponent implements OnInit {
   ngOnInit() {
     this.sessionService.saveUserLoggedId('5d719baf5c15490004e1f21e');
     const userLoggedId = this.sessionService.getUserLogged();
-    this.publication.professionalID = this.route.snapshot.paramMap.get('id');
-    if (userLoggedId === this.publication.professionalID) {
+    this.usuario.professionalID = this.route.snapshot.paramMap.get('id');
+    if (userLoggedId === this.usuario.professionalID) {
       this.isMyProfile = true;
     }
-    this.listarPostagens(this.publication.professionalID);
+    this.retornaDadosUsuarios(this.usuario.professionalID);
+    this.listarPostagens(this.usuario.professionalID);
   }
 
   onSubmit() {
@@ -80,4 +84,17 @@ export class PostagensComponent implements OnInit {
     });
   }
 
+  retornaDadosUsuarios(user) {
+    this.appservice.retornarDadosUsuario(user)
+      .subscribe(user => {
+        if (user.birthDate) {
+          user.birthDate = this.formatDateService.formatDatewithoutHour(user.birthDate);
+        }
+        if (user.careerDate) {
+          user.careerDate = this.formatDateService.formatDatewithoutHour(user.careerDate);
+        }
+        this.usuario = user;
+      });
+      this.topics = ['1','2','3','4'];
+  }
 }
