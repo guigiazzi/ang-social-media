@@ -10,6 +10,7 @@ import { Publication } from 'src/app/interfaces/publication';
 export class PublicationComponent {
   @Input() publication;
   @Output() clickedDeletPublication = new EventEmitter();
+  @Input() isMyProfile;
 
   constructor() {}
 
