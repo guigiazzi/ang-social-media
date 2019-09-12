@@ -31,7 +31,6 @@ export class PostagensComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.sessionService.saveUserLoggedId('5d719baf5c15490004e1f21e');
     const userLoggedId = this.sessionService.getUserLogged();
     this.usuario.professionalID = this.route.snapshot.paramMap.get('id');
     if (userLoggedId === this.usuario.professionalID) {
