@@ -7,8 +7,12 @@ import { Publication } from 'src/app/interfaces/publication';
   styleUrls: ['./publication.component.css']
 })
 
-export class PublicationComponent{
+export class PublicationComponent {
   @Input() publication;
 
-  constructor(){}
+  constructor() {}
+
+  deletePublication() {
+    console.log(`aha`)
+  }
 }

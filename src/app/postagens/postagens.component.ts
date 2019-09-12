@@ -44,6 +44,8 @@ export class PostagensComponent implements OnInit {
   onSubmit() {
     this.showSpinner = true;
     console.log(this.publication)
+    this.publication.author = this.usuario.name;
+    this.publication.professionalID = this.usuario.professionalID;
     this.appservice.cadastrarPublication(this.publication)
       .subscribe(res => {
         console.log(res);
