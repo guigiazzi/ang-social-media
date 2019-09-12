@@ -48,7 +48,7 @@
     </div>
     <hr>
     <div *ngFor='let publication of userPublications'>
-      <app-card-publication [publication]="publication"></app-card-publication>
+      <app-card-publication [publication]="publication" (clickedDeletPublication)='deletePublication($event)' [isMyProfile]="isMyProfile"></app-card-publication>
     </div>
     <div *ngIf="numPublications == 0" class="text-center">
       <p>Ainda não há postagens!</p>

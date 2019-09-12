@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Publication } from 'src/app/interfaces/publication';
 
 @Component({
@@ -7,8 +7,14 @@ import { Publication } from 'src/app/interfaces/publication';
   styleUrls: ['./publication.component.css']
 })
 
-export class PublicationComponent{
+export class PublicationComponent {
   @Input() publication;
+  @Output() clickedDeletPublication = new EventEmitter();
+  @Input() isMyProfile;
 
-  constructor(){}
+  constructor() {}
+
+  deletePublication() {
+    this.clickedDeletPublication.emit(this.publication.publicationID)
+  }
 }
