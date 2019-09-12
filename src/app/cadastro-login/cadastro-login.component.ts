@@ -3,6 +3,8 @@ import { Professional } from '../interfaces/professional';
 import { AppService } from '../app.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { SessionService } from '../shared/sessionService/session.service';
+
 @Component({
   selector: 'app-cadastro-login',
   templateUrl: './cadastro-login.component.html',
@@ -13,19 +15,33 @@ export class CadastroLoginComponent {
   isSubmitted = false;
   public criarConta = false;
   public contaPremium = false;
-
+  public showSpinner = false;
 
   @Input() professional: Professional = <Professional>{};
-  
-  constructor(private appService: AppService, private router: Router, private snackbar: MatSnackBar) { }
+
+  constructor(private appService: AppService, private router: Router, private snackbar: MatSnackBar,  private sessionService: SessionService) { }
 
   onSubmit() {
-    console.log(this.professional);
+    console.log('login ' + this.professional.userLogin + ' e ' + this.professional.password);
+    this.showSpinner = true;
+    this.appService.login(this.professional)
+      .subscribe(
+        res => {
+          this.sessionService.saveUserLoggedId(res.professionalID)
+          console.log(res.professionalID);
+          this.router.navigate(['postagens', res.professionalID]) 
+        },error => { 
+          console.log(error);
+          this.snackbar.open('Usuario ou senha incorreto!', '' , {
+          duration: 2000,
+          panelClass: ['error-snackbar'] }
+        );
+    });
   }
 
-  habilitaCadastro(){
+  habilitaCadastro() {
     this.criarConta = !this.criarConta;
-    if (this.criarConta===true){
+    if (this.criarConta === true) {
       this.contaPremium = false
     }
   }

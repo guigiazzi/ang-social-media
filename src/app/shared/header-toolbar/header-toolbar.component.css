@@ -21,7 +21,12 @@
 
 .dropdownItens {
   font-size: 150%;
-  background-color: white;
+  background-color: #bccff3;
+  opacity: 5%;
   width: 23%;
   text-align: center;
+}
+
+.dropdownItens:hover {
+  cursor: pointer;
 }

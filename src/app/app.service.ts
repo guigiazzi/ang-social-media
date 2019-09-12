@@ -36,5 +36,10 @@ export class AppService {
     const url = `${environment.dssmApiUrl}/search`;
     return this.http.post(url,searchitem);
   }
+
+  login(login: Professional): Observable<any> {
+    const url = `${environment.dssmApiUrl}/login`;
+    return this.http.post<Professional>(url, login);
+  }
 }
 
