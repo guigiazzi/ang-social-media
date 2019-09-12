@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Publication } from 'src/app/interfaces/publication';
 
 @Component({
@@ -9,10 +9,11 @@ import { Publication } from 'src/app/interfaces/publication';
 
 export class PublicationComponent {
   @Input() publication;
+  @Output() clickedDeletPublication = new EventEmitter();
 
   constructor() {}
 
   deletePublication() {
-    console.log(`aha`)
+    this.clickedDeletPublication.emit(this.publication.publicationID)
   }
 }

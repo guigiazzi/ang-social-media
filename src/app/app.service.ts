@@ -36,5 +36,9 @@ export class AppService {
     const url = `${environment.dssmApiUrl}/search`;
     return this.http.post(url,searchitem);
   }
-}
 
+  deletaPublication(publicationId: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/deletePublication/${publicationId}`;
+    return this.http.delete<Publication>(url);
+  }
+}
