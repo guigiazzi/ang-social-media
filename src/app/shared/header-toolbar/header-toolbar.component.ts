@@ -32,6 +32,11 @@ export class HeaderToolbarComponent {
     });
   }
 
+  goToHome(){
+    let user = this.sessionService.getUserLogged();
+    this.router.navigate([`postagens`, user]);
+  }
+
   goTo(userId: string) {
     this.router.navigate([`postagens`, userId]);
   }
