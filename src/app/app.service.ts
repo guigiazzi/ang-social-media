@@ -41,15 +41,12 @@ export class AppService {
     const url = `${environment.dssmApiUrl}/login`;
     return this.http.post<Professional>(url, login);
   }
-<<<<<<< HEAD
-
+  
   getInterestTopics(): Observable<any> {
     const url = `${environment.dssmApiUrl}/getInterestTopics`;
     return this.http.get(url);
   }
-}
-=======
->>>>>>> 79b51942d02f37fbc9b06a1ad17255755a7fefd8
+
 
   deletaPublication(publicationId: string): Observable<any> {
     const url = `${environment.dssmApiUrl}/deletePublication/${publicationId}`;
