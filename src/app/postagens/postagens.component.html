@@ -28,10 +28,13 @@
         </div>
         <hr>
         <div class="Topic">
-            <p>Tópicos de Interesse:</p>
-            <div class="row topicos">
+            <p class="d-flex justify-content-center"><b>Tópicos de Interesse</b></p>
+            <div class="d-flex justify-content-around topicos">
                 <div *ngFor='let topico of topics'>
                     {{topico}}
+                </div>
+                <div *ngIf="topics.length == 0">
+                    <p>Ainda não cadastrou interesse por nenhum tópico!</p>
                 </div>
             </div>
         </div>

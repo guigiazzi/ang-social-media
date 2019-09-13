@@ -38,6 +38,7 @@ export class PostagensComponent implements OnInit {
     }
     this.retornaDadosUsuarios(this.usuario.professionalID);
     this.listarPostagens(this.usuario.professionalID);
+    this.getProfessionalTopics(this.usuario.professionalID);
   }
 
   onSubmit() {
@@ -96,11 +97,9 @@ export class PostagensComponent implements OnInit {
         }
         this.usuario = user;
       });
-      this.topics = ['1','2','3','4'];
   }
 
   deletePublication(publicationId: string) {
-    this.deleteFromPubList(publicationId)
     this.appservice.deletaPublication(publicationId)
     .subscribe(res=>{
         this.snackbar.open('Publicação deletada com sucesso!', 'Dismiss', {
@@ -121,6 +120,21 @@ export class PostagensComponent implements OnInit {
   deleteFromPubList(publicationId: string){
     this.userPublications = this.userPublications.filter(function(pub, index, arr){
       return pub.publicationID != publicationId;
-  });
+    });
+  }
+
+  getProfessionalTopics(professionalId: string){
+    this.appservice.getProfessionalTopics(professionalId)
+    .subscribe(res=>{
+      res.forEach(topic =>{
+        this.topics.push(topic.description);
+      })
+    }, err => {
+      console.log(err);
+      this.snackbar.open('Ocorreu um erro ao buscar os Tópicos de Interesse!', 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
+      });
+    });
   }
 }
