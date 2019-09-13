@@ -41,5 +41,10 @@ export class AppService {
     const url = `${environment.dssmApiUrl}/login`;
     return this.http.post<Professional>(url, login);
   }
+
+  getInterestTopics(): Observable<any> {
+    const url = `${environment.dssmApiUrl}/getInterestTopics`;
+    return this.http.get(url);
+  }
 }
 
