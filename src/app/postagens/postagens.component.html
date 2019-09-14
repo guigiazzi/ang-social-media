@@ -28,10 +28,13 @@
         </div>
         <hr>
         <div class="Topic">
-            <p>Tópicos de Interesse:</p>
-            <div class="row topicos">
+            <p class="d-flex justify-content-center"><b>Tópicos de Interesse</b></p>
+            <div class="d-flex justify-content-around topicos">
                 <div *ngFor='let topico of topics'>
                     {{topico}}
+                </div>
+                <div *ngIf="topics.length == 0">
+                    <p>Ainda não cadastrou interesse por nenhum tópico!</p>
                 </div>
             </div>
         </div>
@@ -48,7 +51,7 @@
     </div>
     <hr>
     <div *ngFor='let publication of userPublications'>
-      <app-card-publication [publication]="publication"></app-card-publication>
+      <app-card-publication [publication]="publication" (clickedDeletPublication)='deletePublication($event)' [isMyProfile]="isMyProfile"></app-card-publication>
     </div>
     <div *ngIf="numPublications == 0" class="text-center">
       <p>Ainda não há postagens!</p>

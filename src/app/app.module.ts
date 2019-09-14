@@ -23,6 +23,7 @@ import { HeaderToolbarComponent } from './shared/header-toolbar/header-toolbar.c
 //Services
 import { FormatDateService } from './shared/formatDateService/format-date.service';
 import { SessionService } from './shared/sessionService/session.service';
+import { AtualizarPerfilComponent } from './atualizar-perfil/atualizar-perfil.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SessionService } from './shared/sessionService/session.service';
     FormCadastroComponent,
     PostagensComponent,
     PublicationComponent,
-    HeaderToolbarComponent
+    HeaderToolbarComponent,
+    AtualizarPerfilComponent
   ],
   imports: [
     BrowserModule,

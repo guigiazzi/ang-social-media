@@ -3,4 +3,5 @@ export interface Publication {
     text: string;
     author: string;
     publicationDate: string;
+    publicationID: string
 }

@@ -39,6 +39,26 @@ export class CadastroLoginComponent {
     });
   }
 
+  cadastrarUsuario(usuario) {
+    console.log(usuario, 'emitiuuuuu')
+    this.appService.cadastrarProfessional(usuario)
+      .subscribe(
+        () => {
+          this.snackbar.open('Publicação feita com sucesso!', 'Ok!', {
+            duration: 4000,
+            panelClass: ['success-snackbar']
+          });
+          this.showSpinner = false;
+        },
+        () => {
+          this.snackbar.open('Não foi possivel cadastrar o usuario!', 'Ok!', {
+            duration: 4000,
+            panelClass: ['error-snackbar']
+          });
+          this.showSpinner = false;
+        });
+  }
+
   habilitaCadastro() {
     this.criarConta = !this.criarConta;
     if (this.criarConta === true) {

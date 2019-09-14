@@ -41,5 +41,20 @@ export class AppService {
     const url = `${environment.dssmApiUrl}/login`;
     return this.http.post<Professional>(url, login);
   }
-}
+  
+  getInterestTopics(): Observable<any> {
+    const url = `${environment.dssmApiUrl}/getInterestTopics`;
+    return this.http.get(url);
+  }
 
+  getProfessionalTopics(userId: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/getProfessionalInterestTopics/${userId}`;
+    return this.http.get(url);
+  }
+  
+
+  deletaPublication(publicationId: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/deletePublication/${publicationId}`;
+    return this.http.delete<Publication>(url);
+  }
+}

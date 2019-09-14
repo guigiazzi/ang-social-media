@@ -38,11 +38,14 @@ export class PostagensComponent implements OnInit {
     }
     this.retornaDadosUsuarios(this.usuario.professionalID);
     this.listarPostagens(this.usuario.professionalID);
+    this.getProfessionalTopics(this.usuario.professionalID);
   }
 
   onSubmit() {
     this.showSpinner = true;
     console.log(this.publication)
+    this.publication.author = this.usuario.name;
+    this.publication.professionalID = this.usuario.professionalID;
     this.appservice.cadastrarPublication(this.publication)
       .subscribe(res => {
         console.log(res);
@@ -83,7 +86,7 @@ export class PostagensComponent implements OnInit {
     });
   }
 
-  retornaDadosUsuarios(user) {
+  retornaDadosUsuarios(user: string) {
     this.appservice.retornarDadosUsuario(user)
       .subscribe(user => {
         if (user.birthDate) {
@@ -94,6 +97,44 @@ export class PostagensComponent implements OnInit {
         }
         this.usuario = user;
       });
-      this.topics = ['1','2','3','4'];
+  }
+
+  deletePublication(publicationId: string) {
+    this.appservice.deletaPublication(publicationId)
+    .subscribe(res=>{
+        this.snackbar.open('Publicação deletada com sucesso!', 'Dismiss', {
+          duration: 4000,
+          panelClass: ['success-snackbar']
+        });
+        this.deleteFromPubList(publicationId);
+      }, err => {
+        console.log(err);
+        this.snackbar.open('Ocorreu um erro ao deletar a publicação!', 'Dismiss', {
+          duration: 4000,
+          panelClass: ['error-snackbar']
+        });
+      });
+    this.publication.text = '';
+  }
+
+  deleteFromPubList(publicationId: string){
+    this.userPublications = this.userPublications.filter(function(pub, index, arr){
+      return pub.publicationID != publicationId;
+    });
+  }
+
+  getProfessionalTopics(professionalId: string){
+    this.appservice.getProfessionalTopics(professionalId)
+    .subscribe(res=>{
+      res.forEach(topic =>{
+        this.topics.push(topic.description);
+      })
+    }, err => {
+      console.log(err);
+      this.snackbar.open('Ocorreu um erro ao buscar os Tópicos de Interesse!', 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
+      });
+    });
   }
 }

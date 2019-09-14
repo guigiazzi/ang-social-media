@@ -9,9 +9,16 @@
           <p>
             {{publication.text}}
           </p>
-          <p class="d-flex justify-content-end">
-            {{publication.publicationDate}}
-          </p>
+          <div class="d-flex justify-content-end">
+            <p>
+              {{publication.publicationDate}}
+            </p>
+            <div *ngIf="isMyProfile">
+              <a (click)="deletePublication()" class="delete">
+                  <mat-icon>delete</mat-icon>
+              </a>
+            </div>
+          </div>
         </mat-card-content>
       </mat-card>
 </div>

@@ -9,8 +9,6 @@ export interface Professional {
   profileImage: File;
   profileType: string;
   instructionLevel: string;
-  salary: string;
-  company: string;
   state: string;
   city: string;
   birthDate: Date;

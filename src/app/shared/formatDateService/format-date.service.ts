@@ -33,10 +33,8 @@ export class FormatDateService {
     const dayMonthYearNBR = new Date(dayMonthYearSTR.replace(/-/g, '\/'));
     dayMonthYearSTR =  ('0' + dayMonthYearNBR.getDate()).substr(-2) + '/'
     + ('0' + (dayMonthYearNBR.getMonth() + 1)).substr(-2) + '/' + dayMonthYearNBR.getFullYear();
-
-    date = ( dayMonthYearSTR);
-
-    return date;
+    
+    return dayMonthYearSTR;
   }
 
 }

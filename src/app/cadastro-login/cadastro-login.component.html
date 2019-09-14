@@ -37,6 +37,6 @@
     </div>
   </div>
   <div *ngIf="criarConta" class="col-md-6 shadow-sm p-3 bg-white rounded cadastro">
-    <app-form-cadastro></app-form-cadastro>
+    <app-form-cadastro (outProfessional)="cadastrarUsuario($event)"></app-form-cadastro>
   </div>
 </div>
