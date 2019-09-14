@@ -32,7 +32,7 @@ export class CadastroLoginComponent {
           this.router.navigate(['postagens', res.professionalID]) 
         },error => { 
           console.log(error);
-          this.snackbar.open('Usuario ou senha incorreto!', '' , {
+          this.snackbar.open('Usuario ou senha incorreto!', 'Dismiss' , {
           duration: 2000,
           panelClass: ['error-snackbar'] }
         );
@@ -44,14 +44,14 @@ export class CadastroLoginComponent {
     this.appService.cadastrarProfessional(usuario)
       .subscribe(
         () => {
-          this.snackbar.open('Publicação feita com sucesso!', 'Ok!', {
+          this.snackbar.open('Usuário cadastrado com sucesso!', 'Dismiss', {
             duration: 4000,
             panelClass: ['success-snackbar']
           });
           this.showSpinner = false;
         },
         () => {
-          this.snackbar.open('Não foi possivel cadastrar o usuario!', 'Ok!', {
+          this.snackbar.open('Não foi possivel cadastrar o usuario!', 'Dismiss', {
             duration: 4000,
             panelClass: ['error-snackbar']
           });

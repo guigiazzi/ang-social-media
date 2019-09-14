@@ -14,20 +14,6 @@ input{
     float: right;
 }
 
-::ng-deep .error-snackbar {
-    color: white;
-    background-color: red;
-}
-
-::ng-deep .success-snackbar {
-    color: white;
-    background-color: green;
-}
-
-::ng-deep .mat-simple-snackbar-action {
-  color: white;
-}
-
 .loading {
   margin-top: 1%;
 }
