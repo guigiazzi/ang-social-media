@@ -40,7 +40,6 @@ export class CadastroLoginComponent {
   }
 
   cadastrarUsuario(usuario) {
-    console.log(usuario, 'emitiuuuuu')
     this.appService.cadastrarProfessional(usuario)
       .subscribe(
         () => {
