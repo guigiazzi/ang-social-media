@@ -12,34 +12,16 @@ import { MatSnackBar } from '@angular/material';
 export class FormCadastroComponent {
   states: any = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'TO'];
 
-  public isMyProfile = true;
-  public showSpinner = false;
   public contaPremium = false;
   public professionalProfile: Professional[] = [];
-  constructor(private appService: AppService, private router: Router, private snackbar: MatSnackBar) { }
+  constructor() { }
+
   @Input() professional: Professional = <Professional>{};
-  @Output() outPutProfessional: EventEmitter<Professional> = new EventEmitter();
+  @Output() outProfessional: EventEmitter<Professional> = new EventEmitter();
 
   onSubmit() {
     console.log(this.professional);
-    this.showSpinner = true;
-    this.appService.cadastrarProfessional(this.professional)
-      .subscribe(
-        () => {
-          this.snackbar.open('Publicação feita com sucesso!', 'Ok!', {
-            duration: 4000,
-            panelClass: ['success-snackbar']
-          });
-          this.showSpinner = false;
-        },
-        () => {
-          this.snackbar.open('Não foi possivel cadastrar o usuario!', 'Ok!', {
-            duration: 4000,
-            panelClass: ['error-snackbar']
-          });
-          this.showSpinner = false;
-        });
-
+    this.outProfessional.emit(this.professional);
   }
 
   habilitaPagamento() {
