@@ -3,7 +3,7 @@
     <div class="form-group col-md-6">
       <label for="name">Nome</label>
       <input type="text" class="form-control" id="name" #name="ngModel" name="name" [(ngModel)]="professional.name"
-        placeholder="Nome">
+        placeholder="Nome" value="professional.name">
     </div>
     <div class="form-group col-md-6">
       <label for="userLogin">Login</label>
@@ -27,14 +27,15 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCity">Cidade onde trabalha</label>
-      <input type="text" class="form-control" id="inputCity" placeholder="São Paulo">
+      <input type="text" class="form-control" id="city" #city="ngModel" name="city"
+        [(ngModel)]="professional.city" placeholder="Cidade">
     </div>
 
     <div class="form-group col-md-6">
-      <label for="inputState">Estado onde trabalha</label>
-      <select class="custom-select">
+      <label for="state">Estado onde trabalha</label>
+      <select class="custom-select"  id="state" #state="ngModel" name="state" [(ngModel)]="professional.state">
         <option value="">Estado</option>
-        <option *ngFor="let state of states" id="inputState" [ngValue]="state">{{state}}</option>
+        <option *ngFor="let state of states" id="state" [ngValue]="state">{{state}}</option>
       </select>
     </div>
   </div>
@@ -42,28 +43,32 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="birthDate">Birth Date</label>
-      <input type="date" data-provide="datepicker" class="form-control" id="birthDate" #birthDate="ngModel" name="birthDate" 
-      [(ngModel)]="professional.birthDate" placeholder="10/10/1990">
+      <input type="date" data-provide="datepicker" class="form-control" id="birthDate" #birthDate="ngModel"
+        name="birthDate" [(ngModel)]="professional.birthDate" maxlength="8" placeholder="10/10/1990">
     </div>
     <div class="form-group col-md-6">
       <label for="careerDate">Start date working in DS</label>
-      <input type="date" data-provide="datepicker" class="form-control" id="careerDate" #careerDate="ngModel" name="careerDate" 
-      [(ngModel)]="professional.careerDate" placeholder="10/10/1990">
+      <input type="date" data-provide="datepicker" class="form-control" id="careerDate" #careerDate="ngModel"
+        name="careerDate" [(ngModel)]="professional.careerDate" maxlength="8" placeholder="10/10/1990">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputJob">Empresa atual</label>
-      <input type="text" class="form-control" id="inputJob">
+      <label for="companyName">Empresa atual</label>
+      <input type="text" class="form-control" id="companyName" #companyName="ngModel" name="companyName"
+        [(ngModel)]="jobRole.companyName" placeholder="Empresa">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputGrade">Nível de instrução</label>
-      <input type="text" class="form-control" id="inputGrade">
+      <label for="instructionLevel">Nível de instrução</label>
+      <select class="custom-select"  id="instructionLevel" #instructionLevel="ngModel" name="instructionLevel" [(ngModel)]="professional.instructionLevel">
+        <option *ngFor="let enum of keys(enums)" [ngValue]="enum">{{enums[enum]}}</option>
+      </select>
     </div>
   </div>
   <div class="form-group">
-    <label for="inputGrade">Salario atual</label>
-    <input type="text" class="form-control" id="inputGrade">
+    <label for="salary">Salario atual</label>
+    <input type="text" class="form-control" id="salary" #salary="ngModel" name="salary"
+        [(ngModel)]="jobRole.salary" placeholder="Salario" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
   </div>
   <div class="form-group">
     <div class="custom-control custom-checkbox">
@@ -93,5 +98,5 @@
       <input type="text" class="form-control" id="inputGrade" maxlength="3">
     </div>
   </div>
-  <button type="submit" class="btn btn-primary" >Cadastrar-se</button>
+  <button type="submit" class="btn btn-primary">Cadastrar-se</button>
 </form>

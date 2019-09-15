@@ -1,0 +1,46 @@
+.postagens{
+    padding-top: 2%;
+    margin-bottom: 6%;
+}
+
+input{
+    margin-top: 1%;
+    padding-bottom: 5%;
+    width: 100%;
+}
+
+.button-postar{
+    margin-top: 1%;
+    float: right;
+}
+
+.loading {
+  margin-top: 1%;
+}
+
+.container {
+  padding-top: 6%;
+}
+
+.imgPerson {
+  width: 20%;
+  float: left;
+}
+
+.profile-box {
+  border-radius: 5%;
+  text-align: center;
+  padding: 1% 2% 1% 2%;
+}
+
+.info1 {
+  padding-left: 4%;
+}
+
+.info2 {
+  padding-left: 15%;
+}
+
+.topicos{
+  padding: 2%;
+}

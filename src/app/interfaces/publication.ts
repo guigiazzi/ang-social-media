@@ -1,5 +1,7 @@
 export interface Publication {
-    author: string;
+    professionalID: string;
     text: string;
-    publicationDate: Date;
+    author: string;
+    publicationDate: string;
+    publicationID: string
 }

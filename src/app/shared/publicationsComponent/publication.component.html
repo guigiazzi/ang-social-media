@@ -1,0 +1,24 @@
+<div>
+    <mat-card class="card">
+      <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{publication.author}}</mat-card-title>
+        </mat-card-header>
+        <hr>
+        <mat-card-content>
+          <p>
+            {{publication.text}}
+          </p>
+          <div class="d-flex justify-content-end">
+            <p>
+              {{publication.publicationDate}}
+            </p>
+            <div *ngIf="isMyProfile">
+              <a (click)="deletePublication()" class="delete">
+                  <mat-icon>delete</mat-icon>
+              </a>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+</div>

@@ -2,6 +2,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Professional } from '../../interfaces/professional';
 import { AppService } from '../../app.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
+import { JobRole } from 'src/app/interfaces/job-role';
 
 @Component({
   selector: 'app-form-cadastro',
@@ -10,21 +12,30 @@ import { Router } from '@angular/router';
 })
 export class FormCadastroComponent {
   states: any = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'TO'];
-
+  keys = Object.keys;
+  public enums = InstructionLevel;
   public contaPremium = false;
-  
-  constructor(private appService: AppService, private router: Router) { }
+  public professionalProfile: Professional[] = [];
+  constructor() { }
+
   @Input() professional: Professional = <Professional>{};
-  @Output() outPutProfessional: EventEmitter<Professional> = new EventEmitter();
+  @Input() jobRole: JobRole = <JobRole>{};
+  @Output() outProfessional: EventEmitter<Professional> = new EventEmitter();
 
   onSubmit() {
+    this.professional.jobRole = this.jobRole;
     console.log(this.professional);
-    this.appService.cadastrarProfessional(this.professional)
-      .subscribe(
-        () => { this.router.navigateByUrl('/'); });
+    this.outProfessional.emit(this.professional);
   }
 
   habilitaPagamento() {
     this.contaPremium = !this.contaPremium;
   }
 }
+export enum InstructionLevel {
+  NENHUM = "Nenhum nível de instrução",
+  BACHAREL = "Bacharelado",
+  MESTRE = "Mestrado",
+  DOUTOR = "Doutorado",
+}
+
