@@ -37,7 +37,7 @@ export class InterestTopicsComponent implements OnInit {
 
   addTopic(topic: interestTopic) {
     console.log(topic.interestTopicID);
-    let ut:UserTopics = {professionalId: this.professionalId, interestTopicId: topic.interestTopicID}
+    let ut:UserTopics = {professionalID: this.professionalId, interestTopicID: topic.interestTopicID}
     this.userTopic.push(ut);
     this.showedTopic.splice(this.showedTopic.indexOf(topic),1);
     if (this.userTopic.length === 5) {
@@ -65,6 +65,6 @@ export class InterestTopicsComponent implements OnInit {
 }
 
 export interface UserTopics {
-  professionalId: string;
-  interestTopicId: string;
+  professionalID: string;
+  interestTopicID: string;
 }
