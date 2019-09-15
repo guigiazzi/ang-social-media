@@ -24,8 +24,11 @@ export class AtualizarPerfilComponent{
       delete usuario.jobRole.salary;
     }
 
+    if(usuario.name){
+      usuario.name = usuario.name.charAt(0).toUpperCase() + usuario.name.substr(1);
+    }
+
     usuario.professionalID = this.sessionService.getUserLogged();
-    usuario.name = usuario.name.charAt(0).toUpperCase() + usuario.name.substr(1);
     this.appService.updateProfessional(usuario)
     .subscribe(res=>{
       this.snackbar.open('Usuário cadastrado com sucesso!', 'Dismiss', {
