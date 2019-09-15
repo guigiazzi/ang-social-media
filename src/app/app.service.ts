@@ -54,8 +54,8 @@ export class AppService {
     return this.http.get(url);
   }
   
-  updateupdateProfessionalInterestTopics(topics: UserTopics[]): Observable<any> {
-    const url = `${environment.dssmApiUrl}/updateProfessionalInterestTopics`;
+  updateProfessionalInterestTopics(topics: UserTopics[]): Observable<any> {
+    const url = `${environment.dssmApiUrl}/setProfessionalInterestTopics`;
     return this.http.post<UserTopics>(url, topics);
   }
 
