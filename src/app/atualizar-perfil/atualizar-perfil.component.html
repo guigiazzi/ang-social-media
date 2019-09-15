@@ -1,4 +1,22 @@
 <app-header-toolbar></app-header-toolbar>
 <div class="container cont">
     <h1 class="text-center">Atualizar Perfil</h1>
+    <div *ngIf="!showTopics" class="text-center">
+        <p>Preencha os campos que deseja alterar ou clique no botão em baixo para pular para os tópicos!</p>
+    </div>
+    <div *ngIf="showTopics" class="text-center">
+        <p>Seleciones os tópicos ou clique no botão em baixo para voltar ao perfil!</p>
+    </div>
+    <div [ngStyle]="{'display' :showTopics === true ? 'none' : 'block' }" class="shadow-sm p-3 bg-white rounded cadastro">
+        <app-form-cadastro (outProfessional)="atualizarUsuario($event)"></app-form-cadastro>
+    </div>
+    <div *ngIf="!showTopics">
+        <button (click)="changeTopics()" class="btn btn-primary botaoTopicos">Alterar os Tópicos</button>
+    </div>
+    <div *ngIf="showTopics" class="shadow-sm p-3 bg-white rounded">
+        <app-interest-topics [professionalId]="idP"></app-interest-topics>
+    </div>
+    <div *ngIf="showTopics">
+        <button (click)="goToHome()" class="btn btn-primary botaoTopicos">Voltar ao perfil</button>
+    </div>
 </div>

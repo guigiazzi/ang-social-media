@@ -16,7 +16,7 @@
     </form>
   </nav>
 
-  <div class="info col-md-6">
+  <div class="info col-md-6" [ngStyle]="{'display' :criarConta === true ? 'none' : 'block' }">
     <div class="container-fluid cadastro">
       <h3>
         Bem vindo ao DSSM
@@ -36,7 +36,10 @@
       <button type="submit" class="btn btn-primary" (click)="habilitaCadastro()">Criar conta!</button>
     </div>
   </div>
-  <div *ngIf="criarConta" class="col-md-6 shadow-sm p-3 bg-white rounded cadastro">
+  <div *ngIf="criarConta" [ngStyle]="{'display' :showTopics === true ? 'none' : 'block' }" class="shadow-sm p-3 bg-white rounded cadastro">
     <app-form-cadastro (outProfessional)="cadastrarUsuario($event)"></app-form-cadastro>
+  </div>
+  <div *ngIf="showTopics" class="shadow-sm p-3 bg-white rounded">
+    <app-interest-topics [professionalId]="idP"></app-interest-topics>
   </div>
 </div>
