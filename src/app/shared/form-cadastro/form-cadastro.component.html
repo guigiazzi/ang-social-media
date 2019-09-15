@@ -3,7 +3,7 @@
     <div class="form-group col-md-6">
       <label for="name">Nome</label>
       <input type="text" class="form-control" id="name" #name="ngModel" name="name" [(ngModel)]="professional.name"
-        placeholder="Nome">
+        placeholder="Nome" value="professional.name">
     </div>
     <div class="form-group col-md-6">
       <label for="userLogin">Login</label>
@@ -44,12 +44,12 @@
     <div class="form-group col-md-6">
       <label for="birthDate">Birth Date</label>
       <input type="date" data-provide="datepicker" class="form-control" id="birthDate" #birthDate="ngModel"
-        name="birthDate" [(ngModel)]="professional.birthDate" placeholder="10/10/1990">
+        name="birthDate" [(ngModel)]="professional.birthDate" maxlength="8" placeholder="10/10/1990">
     </div>
     <div class="form-group col-md-6">
       <label for="careerDate">Start date working in DS</label>
       <input type="date" data-provide="datepicker" class="form-control" id="careerDate" #careerDate="ngModel"
-        name="careerDate" [(ngModel)]="professional.careerDate" placeholder="10/10/1990">
+        name="careerDate" [(ngModel)]="professional.careerDate" maxlength="8" placeholder="10/10/1990">
     </div>
   </div>
   <div class="form-row">
@@ -68,7 +68,7 @@
   <div class="form-group">
     <label for="salary">Salario atual</label>
     <input type="text" class="form-control" id="salary" #salary="ngModel" name="salary"
-        [(ngModel)]="jobRole.salary" placeholder="Salario">
+        [(ngModel)]="jobRole.salary" placeholder="Salario" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
   </div>
   <div class="form-group">
     <div class="custom-control custom-checkbox">

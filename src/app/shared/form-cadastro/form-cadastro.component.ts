@@ -33,9 +33,9 @@ export class FormCadastroComponent {
   }
 }
 export enum InstructionLevel {
-  NONE = "Nenhum nível de instrução",
-  BACHELOR = "Bacharelado",
-  MASTER = "Mestrado",
-  DOCTOR = "Doutorado",
+  NENHUM = "Nenhum nível de instrução",
+  BACHAREL = "Bacharelado",
+  MESTRE = "Mestrado",
+  DOUTOR = "Doutorado",
 }
 
