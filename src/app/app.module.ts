@@ -9,8 +9,9 @@ import { MatSnackBarModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatInputModule} from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatInputModule } from '@angular/material/input';
+import { CurrencyMaskModule } from "ng2-currency-mask";
 
 //Components
 import { AppComponent } from './app.component';
@@ -49,7 +50,8 @@ import { InterestTopicsComponent } from './shared/interest-topics/interest-topic
     MatIconModule,
     MatCardModule,
     MatProgressSpinnerModule,
-    MatInputModule
+    MatInputModule,
+    CurrencyMaskModule
   ],
   providers: [
     FormatDateService,

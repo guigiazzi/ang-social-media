@@ -41,6 +41,7 @@ export class CadastroLoginComponent {
   }
 
   cadastrarUsuario(usuario) {
+    usuario.name = usuario.name.charAt(0).toUpperCase() + usuario.name.substr(1);
     this.appService.cadastrarProfessional(usuario)
       .subscribe(
         res => {
