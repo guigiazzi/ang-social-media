@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Professional } from './interfaces/professional';
 import { Publication } from './interfaces/publication';
+import { interestTopic } from './interfaces/interest-topic';
+import { UserTopics } from './shared/interest-topics/interest-topics.component';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +54,10 @@ export class AppService {
     return this.http.get(url);
   }
   
+  updateupdateProfessionalInterestTopics(topics: UserTopics[]): Observable<any> {
+    const url = `${environment.dssmApiUrl}/updateProfessionalInterestTopics`;
+    return this.http.post<UserTopics>(url, topics);
+  }
 
   deletaPublication(publicationId: string): Observable<any> {
     const url = `${environment.dssmApiUrl}/deletePublication/${publicationId}`;

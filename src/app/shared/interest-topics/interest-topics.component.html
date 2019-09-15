@@ -1,0 +1,12 @@
+<div class="container">
+    <span>Escolha 5 tópicos de seu interesse:</span>
+    <div class="list-group overflow-auto divTopic"  [ngStyle]="{'display' :fimCad === true ? 'none' : 'block' }">
+      <button *ngFor="let topic of showedTopic" (click)="addTopic(topic)" type="button"
+        class="list-group-item list-group-item-action">
+        {{topic.description}}
+      </button>
+    </div>
+    <div [ngStyle]="{'display' :fimCad === true ? 'block' : 'none' }">
+        <span> Cadastro Finalizado com sucesso, agora é só logar e curtir!</span>
+    </div>
+</div>

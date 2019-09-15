@@ -24,6 +24,7 @@ import { HeaderToolbarComponent } from './shared/header-toolbar/header-toolbar.c
 import { FormatDateService } from './shared/formatDateService/format-date.service';
 import { SessionService } from './shared/sessionService/session.service';
 import { AtualizarPerfilComponent } from './atualizar-perfil/atualizar-perfil.component';
+import { InterestTopicsComponent } from './shared/interest-topics/interest-topics.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AtualizarPerfilComponent } from './atualizar-perfil/atualizar-perfil.co
     PostagensComponent,
     PublicationComponent,
     HeaderToolbarComponent,
-    AtualizarPerfilComponent
+    AtualizarPerfilComponent,
+    InterestTopicsComponent
   ],
   imports: [
     BrowserModule,
