@@ -63,4 +63,9 @@ export class AppService {
     const url = `${environment.dssmApiUrl}/deletePublication/${publicationId}`;
     return this.http.delete<Publication>(url);
   }
+
+  updateProfessional(professional): Observable<any> {
+    const url = `${environment.dssmApiUrl}/updateProfile`;
+    return this.http.put(url, professional);
+  }
 }
