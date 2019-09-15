@@ -1,0 +1,32 @@
+.header {
+  position: fixed;
+  z-index:999;
+  width: 100%;
+}
+
+.menuItens {
+  margin-left: 2%;
+  font-size: 75%;
+  color: white;
+}
+
+.toolbar{
+  justify-content: space-between;
+}
+
+.search-bar {
+  width: 150%;
+  padding-top: 8%;
+}
+
+.dropdownItens {
+  font-size: 150%;
+  background-color: #bccff3;
+  opacity: 5%;
+  width: 23%;
+  text-align: center;
+}
+
+.dropdownItens:hover {
+  cursor: pointer;
+}

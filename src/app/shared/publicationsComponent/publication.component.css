@@ -1,0 +1,12 @@
+.card {
+  margin-bottom: 2%;
+}
+
+.example-header-image {
+  background-image: url('http://agbrands.com.br/wp-content/uploads/2017/01/perfil.jpg');
+  background-size: cover;
+}
+
+.delete {
+  margin-left: 1%;
+}
