@@ -41,7 +41,7 @@ export class InterestTopicsComponent implements OnInit {
     this.userTopic.push(ut);
     this.showedTopic.splice(this.showedTopic.indexOf(topic),1);
     if (this.userTopic.length === 5) {
-      this.appService.updateupdateProfessionalInterestTopics(this.userTopic as UserTopics[])
+      this.appService.updateProfessionalInterestTopics(this.userTopic as UserTopics[])
       .subscribe(
         res => {
           this.snackbar.open('Cadastro Finalizado com sucesso!', '' , {
