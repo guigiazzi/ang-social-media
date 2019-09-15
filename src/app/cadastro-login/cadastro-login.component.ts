@@ -15,7 +15,6 @@ export class CadastroLoginComponent {
   isSubmitted = false;
   public criarConta = false; // false
   public contaPremium = false;
-  public showSpinner = false;
   public showTopics = false; // false
   public idP: string;
 
@@ -26,7 +25,6 @@ export class CadastroLoginComponent {
 
   onSubmit() {
     console.log('login ' + this.professional.userLogin + ' e ' + this.professional.password);
-    this.showSpinner = true;
     this.appService.login(this.professional)
       .subscribe(
         res => {
@@ -50,7 +48,6 @@ export class CadastroLoginComponent {
             duration: 4000,
             panelClass: ['success-snackbar']
           });
-          this.showSpinner = false;
           this.showTopics = true;
           this.idP = res.professionalID;
         },
@@ -59,7 +56,6 @@ export class CadastroLoginComponent {
             duration: 4000,
             panelClass: ['error-snackbar']
           });
-          this.showSpinner = false;
         });
   }
 
