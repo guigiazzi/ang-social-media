@@ -18,7 +18,6 @@ export class PostagensComponent implements OnInit {
   public isMyProfile = false;
   public showSpinner = false;
   public userPublications: Publication[] = [];
-  public numPublications: number;
   public usuario: Professional = {} as Professional;
   public topics = [];
 
@@ -29,7 +28,7 @@ export class PostagensComponent implements OnInit {
     private formatDateService: FormatDateService,
     private sessionService: SessionService
     ) { }
-  
+
   ngOnInit() {
     const userLoggedId = this.sessionService.getUserLogged();
     this.usuario.professionalID = this.route.snapshot.paramMap.get('id');
@@ -40,7 +39,7 @@ export class PostagensComponent implements OnInit {
     this.listarPostagens(this.usuario.professionalID);
     this.getProfessionalTopics(this.usuario.professionalID);
   }
-  ////verificar se dar pra tirar o numPublications e usar no html o userPublications.length
+
   onSubmit() {
     this.showSpinner = true;
     console.log(this.publication)
@@ -56,7 +55,6 @@ export class PostagensComponent implements OnInit {
         res.publicationDate = this.formatDateService.formatDate(res.publicationDate);
         this.showSpinner = false;
         this.userPublications.unshift(res);
-        this.numPublications = this.userPublications.length;
       }, err => {
         console.log(err);
         this.snackbar.open('Ocorreu um erro ao publicar!', 'Dismiss', {
@@ -75,14 +73,12 @@ export class PostagensComponent implements OnInit {
         publication.publicationDate = this.formatDateService.formatDate(publication.publicationDate);
         this.userPublications.push(publication);
       });
-      this.numPublications = this.userPublications.length;
       console.log(this.userPublications.length);
     }, err => {
       this.snackbar.open('Ocorreu um erro ao listar as publicações!', 'Dismiss', {
         duration: 4000,
         panelClass: ['error-snackbar']
       });
-      this.numPublications = this.userPublications.length;
       console.log(err);
     });
   }
