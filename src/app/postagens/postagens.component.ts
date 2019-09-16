@@ -18,7 +18,6 @@ export class PostagensComponent implements OnInit {
   public isMyProfile = false;
   public showSpinner = false;
   public userPublications: Publication[] = [];
-  public numPublications: number;
   public usuario: Professional = {} as Professional;
   public topics = [];
 
@@ -74,14 +73,12 @@ export class PostagensComponent implements OnInit {
         publication.publicationDate = this.formatDateService.formatDate(publication.publicationDate);
         this.userPublications.push(publication);
       });
-      this.numPublications = this.userPublications.length;
       console.log(this.userPublications.length);
     }, err => {
       this.snackbar.open('Ocorreu um erro ao listar as publicações!', 'Dismiss', {
         duration: 4000,
         panelClass: ['error-snackbar']
       });
-      this.numPublications = this.userPublications.length;
       console.log(err);
     });
   }
