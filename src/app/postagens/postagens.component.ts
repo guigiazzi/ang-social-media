@@ -29,7 +29,7 @@ export class PostagensComponent implements OnInit {
     private formatDateService: FormatDateService,
     private sessionService: SessionService
     ) { }
-
+  
   ngOnInit() {
     const userLoggedId = this.sessionService.getUserLogged();
     this.usuario.professionalID = this.route.snapshot.paramMap.get('id');
@@ -40,7 +40,7 @@ export class PostagensComponent implements OnInit {
     this.listarPostagens(this.usuario.professionalID);
     this.getProfessionalTopics(this.usuario.professionalID);
   }
-
+  ////verificar se dar pra tirar o numPublications e usar no html o userPublications.length
   onSubmit() {
     this.showSpinner = true;
     console.log(this.publication)
@@ -56,6 +56,7 @@ export class PostagensComponent implements OnInit {
         res.publicationDate = this.formatDateService.formatDate(res.publicationDate);
         this.showSpinner = false;
         this.userPublications.unshift(res);
+        this.numPublications = this.userPublications.length;
       }, err => {
         console.log(err);
         this.snackbar.open('Ocorreu um erro ao publicar!', 'Dismiss', {
