@@ -1,5 +1,6 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["styles"],{
 
+<<<<<<< HEAD
 /***/ "./node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/@angular/material/prebuilt-themes/indigo-pink.css":
 /*!*****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!./node_modules/postcss-loader/src??embedded!./node_modules/@angular/material/prebuilt-themes/indigo-pink.css ***!
@@ -11,6 +12,8 @@ module.exports = [[module.i, ".mat-badge-content{font-weight:600;font-size:12px;
 
 /***/ }),
 
+=======
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
 /***/ "./node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/bootstrap/dist/css/bootstrap.css":
 /*!************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!./node_modules/postcss-loader/src??embedded!./node_modules/bootstrap/dist/css/bootstrap.css ***!
@@ -29,6 +32,7 @@ module.exports = [[module.i, "/*!\n * Bootstrap v4.3.1 (https://getbootstrap.com
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+<<<<<<< HEAD
 module.exports = [[module.i, "/* You can add global styles to this file, and also import other style files */\r\n\r\nhtml, body { height: 100%; }\r\n\r\nbody { margin: 0; font-family: Roboto, \"Helvetica Neue\", sans-serif; }\r\n\r\n.error-snackbar {\r\n    color: white;\r\n    background-color: red;\r\n}\r\n\r\n.success-snackbar {\r\n    color: white;\r\n    background-color: green;\r\n}\r\n\r\n.mat-simple-snackbar-action {\r\n  color: white;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9zdHlsZXMuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDhFQUE4RTs7QUFFOUUsYUFBYSxZQUFZLEVBQUU7O0FBQzNCLE9BQU8sU0FBUyxFQUFFLGlEQUFpRCxFQUFFOztBQUVyRTtJQUNJLFlBQVk7SUFDWixxQkFBcUI7QUFDekI7O0FBRUE7SUFDSSxZQUFZO0lBQ1osdUJBQXVCO0FBQzNCOztBQUVBO0VBQ0UsWUFBWTtBQUNkIiwiZmlsZSI6InNyYy9zdHlsZXMuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyogWW91IGNhbiBhZGQgZ2xvYmFsIHN0eWxlcyB0byB0aGlzIGZpbGUsIGFuZCBhbHNvIGltcG9ydCBvdGhlciBzdHlsZSBmaWxlcyAqL1xyXG5cclxuaHRtbCwgYm9keSB7IGhlaWdodDogMTAwJTsgfVxyXG5ib2R5IHsgbWFyZ2luOiAwOyBmb250LWZhbWlseTogUm9ib3RvLCBcIkhlbHZldGljYSBOZXVlXCIsIHNhbnMtc2VyaWY7IH1cclxuXHJcbi5lcnJvci1zbmFja2JhciB7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZWQ7XHJcbn1cclxuXHJcbi5zdWNjZXNzLXNuYWNrYmFyIHtcclxuICAgIGNvbG9yOiB3aGl0ZTtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IGdyZWVuO1xyXG59XHJcblxyXG4ubWF0LXNpbXBsZS1zbmFja2Jhci1hY3Rpb24ge1xyXG4gIGNvbG9yOiB3aGl0ZTtcclxufVxyXG4iXX0= */", '', '']]
 
 /***/ }),
@@ -57,6 +61,9 @@ if (content.locals) {
   module.exports = content.locals;
 }
 
+=======
+module.exports = [[module.i, "/* You can add global styles to this file, and also import other style files */\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9zdHlsZXMuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDhFQUE4RSIsImZpbGUiOiJzcmMvc3R5bGVzLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIFlvdSBjYW4gYWRkIGdsb2JhbCBzdHlsZXMgdG8gdGhpcyBmaWxlLCBhbmQgYWxzbyBpbXBvcnQgb3RoZXIgc3R5bGUgZmlsZXMgKi9cclxuIl19 */", '', '']]
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
 
 /***/ }),
 
@@ -408,6 +415,7 @@ if (content.locals) {
 /***/ }),
 
 /***/ 3:
+<<<<<<< HEAD
 /*!***********************************************************************************************************************************************!*\
   !*** multi ./node_modules/@angular/material/prebuilt-themes/indigo-pink.css ./node_modules/bootstrap/dist/css/bootstrap.css ./src/styles.css ***!
   \***********************************************************************************************************************************************/
@@ -415,6 +423,14 @@ if (content.locals) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\dev\angular\ang-social-media\node_modules\@angular\material\prebuilt-themes\indigo-pink.css */"./node_modules/@angular/material/prebuilt-themes/indigo-pink.css");
+=======
+/*!******************************************************************************!*\
+  !*** multi ./node_modules/bootstrap/dist/css/bootstrap.css ./src/styles.css ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
 __webpack_require__(/*! C:\dev\angular\ang-social-media\node_modules\bootstrap\dist\css\bootstrap.css */"./node_modules/bootstrap/dist/css/bootstrap.css");
 module.exports = __webpack_require__(/*! C:\dev\angular\ang-social-media\src\styles.css */"./src/styles.css");
 

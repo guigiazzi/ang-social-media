@@ -36,6 +36,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/atualizar-perfil/atualizar-perfil.component.html":
 /*!********************************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/atualizar-perfil/atualizar-perfil.component.html ***!
@@ -49,6 +50,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+=======
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/cadastro-login/cadastro-login.component.html":
 /*!****************************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/cadastro-login/cadastro-login.component.html ***!
@@ -58,6 +61,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+<<<<<<< HEAD
 /* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container body\">\r\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light menuTopo\">\r\n    <img src=\"http://agbrands.com.br/wp-content/uploads/2017/01/perfil.jpg\" class=\"rounded float-left imgLogin\"\r\n      alt=\"...\">\r\n    <a class=\"navbar-brand nameComp\" href=\"#\">Bem Vindo ao DSSM</a>\r\n    <form class=\"form-inline\" #ngForm=\"ngForm\" (ngSubmit)=\"onSubmit()\">\r\n      <div class=\"form-group mr-2\">\r\n        <label for=\"userLogin\" class=\"mr-2\">Usuário: </label>\r\n        <input type=\"userLogin\" class=\"form-control\" id=\"userLogin\" #userLogin=\"ngModel\" name=\"userLogin\" [(ngModel)]=\"professional.userLogin\">\r\n      </div>\r\n      <div class=\"form-group mr-2\">\r\n        <label for=\"password\" class=\"mr-2\">Senha: </label>\r\n        <input type=\"password\" class=\"form-control\" id=\"password\" #password=\"ngModel\" name=\"password\" [(ngModel)]=\"professional.password\">\r\n      </div>\r\n      <button type=\"submit\" class=\"btn btn-primary\">Entrar</button>\r\n    </form>\r\n  </nav>\r\n\r\n  <div class=\"info col-md-6\" [ngStyle]=\"{'display' :criarConta === true ? 'none' : 'block' }\">\r\n    <div class=\"container-fluid cadastro\">\r\n      <h3>\r\n        Bem vindo ao DSSM\r\n      </h3>\r\n      <p>\r\n        Aqui você consegue se conectar com outros profissionais da área de Ciência de dados para assim compartilhar\r\n        suas\r\n        experiências de trabalhos,\r\n        compartilhar novas ideias que possui, achar parceiros para o de desenvolvimento dessas ideias, compartilhar\r\n        coisas interessantes ou que ocorreram no seu dia a dia e que podem ser relevantes,\r\n        mostrar aos outros suas áreas de interesse, focalizando suas conexões, recomendar um amigo ou parceiro de\r\n        trabalho, entre muitas outras coisas.\r\n\r\n        Faça parte você também dessa Rede Social para Cientistas de Dados e venha compartilhar seus conhecimentos com\r\n        todos!\r\n      </p>\r\n      <button type=\"submit\" class=\"btn btn-primary\" (click)=\"habilitaCadastro()\">Criar conta!</button>\r\n    </div>\r\n  </div>\r\n  <div *ngIf=\"criarConta\" [ngStyle]=\"{'display' :showTopics === true ? 'none' : 'block' }\" class=\"shadow-sm p-3 bg-white rounded cadastro\">\r\n    <app-form-cadastro (outProfessional)=\"cadastrarUsuario($event)\"></app-form-cadastro>\r\n  </div>\r\n  <div *ngIf=\"showTopics\" class=\"shadow-sm p-3 bg-white rounded\">\r\n    <app-interest-topics [professionalId]=\"idP\"></app-interest-topics>\r\n  </div>\r\n</div>");
 
 /***/ }),
@@ -72,6 +76,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("<app-header-toolbar></app-header-toolbar>\r\n<div class=\"container\">\r\n    <h1 class=\"text-center\">Perfil</h1>\r\n    <div class=\"profile-box border border-secondary\">\r\n        <h2 class=\"postTitle\">Dados</h2>\r\n        <hr>\r\n        <div>\r\n            <img src=\"http://agbrands.com.br/wp-content/uploads/2017/01/perfil.jpg\" class=\"imgPerson\" alt=\"...\">\r\n            <div class=\"row\">\r\n                <div class=\"info1\">\r\n                    <p>Nome: {{usuario?.name}}</p>\r\n                    <p>Data de Nascimento: {{usuario?.birthDate}}</p>\r\n                    <p>Cidade: {{usuario?.city}}</p>\r\n                    <p>Estado: {{usuario?.state}}</p>\r\n                </div>\r\n                <div class=\"info2\">\r\n                    <p>Empresa: {{usuario?.jobRole?.companyName}}</p>\r\n                    <p>Salário: {{usuario.jobRole?.salary | currency:'BRL':true}}</p>\r\n                    <p>Data de Inicío na Área de Ciência de Dados: {{usuario?.careerDate}}</p>\r\n                    <p>Nivel de Instrução: {{usuario?.instructionLevel}}</p>\r\n                </div>\r\n            </div>\r\n            <div *ngIf=\"isMyProfile\">\r\n                <button type=\"submit\" class=\"btn btn-primary\" routerLink=\"/atualizarperfil\">\r\n                <mat-icon>person</mat-icon>\r\n                Atualizar Perfil</button>\r\n            </div>\r\n        </div>\r\n        <hr>\r\n        <div class=\"Topic\">\r\n            <p class=\"d-flex justify-content-center\"><b>Tópicos de Interesse</b></p>\r\n            <div class=\"d-flex justify-content-around topicos\">\r\n                <div *ngFor='let topico of topics'>\r\n                    {{topico}}\r\n                </div>\r\n                <div *ngIf=\"topics.length == 0\">\r\n                    <p>Ainda não cadastrou interesse por nenhum tópico!</p>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"postagens\">\r\n        <h1>Postagens</h1>\r\n        <div *ngIf=\"isMyProfile\">\r\n          <input type=\"text\" id=\"post\" #text [(ngModel)]=\"publication.text\" placeholder=\"Digite aqui o que deseja postar!\">\r\n          <button type=\"submit\" class=\"btn btn-primary button-postar\" mat-button (click)=\"onSubmit()\">Postar</button>\r\n          <div *ngIf=\"showSpinner\" class=\"d-flex justify-content-center loading\">\r\n            <mat-spinner></mat-spinner>\r\n          </div>\r\n        </div>\r\n    </div>\r\n    <hr>\r\n    <div *ngFor='let publication of userPublications'>\r\n      <app-card-publication [publication]=\"publication\" (clickedDeletPublication)='deletePublication($event)' [isMyProfile]=\"isMyProfile\"></app-card-publication>\r\n    </div>\r\n    <div *ngIf=\"numPublications == 0\" class=\"text-center\">\r\n      <p>Ainda não há postagens!</p>\r\n    </div>\r\n</div>\r\n");
+=======
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container body\">\r\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light menuTopo\">\r\n    <img src=\"http://agbrands.com.br/wp-content/uploads/2017/01/perfil.jpg\" class=\"rounded float-left imgLogin\"\r\n      alt=\"...\">\r\n    <a class=\"navbar-brand nameComp\" href=\"#\">Bem Vindo ao DSSM</a>\r\n    <form class=\"form-inline\" (ngSubmit)=\"onSubmit()\">\r\n      <div class=\"form-group mb-2\">\r\n        <label for=\"staticEmail2\" class=\"sr-only\">Email</label>\r\n        <input type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\"\r\n          placeholder=\"Enter email\">\r\n      </div>\r\n      <div class=\"form-group mx-sm-5 mb-2\">\r\n        <label for=\"inputPassword2\" class=\"sr-only\">Password</label>\r\n        <input type=\"password\" class=\"form-control\" id=\"inputPassword2\" placeholder=\"Password\">\r\n      </div>\r\n      <button type=\"submit\" class=\"btn btn-primary mb-2\">Login</button>\r\n    </form>\r\n  </nav>\r\n\r\n\r\n  <div class=\"info col-md-6\">\r\n    <div class=\"container-fluid cadastro\">\r\n      <h3>\r\n        Bem vindo ao DSSM\r\n      </h3>\r\n      <p>\r\n        Aqui você consegue se conectar com outros profissionais da área de Ciência de dados para assim compartilhar\r\n        suas\r\n        experiências de trabalhos,\r\n        compartilhar novas ideias que possui, achar parceiros para o de desenvolvimento dessas ideias, compartilhar\r\n        coisas interessantes ou que ocorreram no seu dia a dia e que podem ser relevantes,\r\n        mostrar aos outros suas áreas de interesse, focalizando suas conexões, recomendar um amigo ou parceiro de\r\n        trabalho, entre muitas outras coisas.\r\n\r\n        Faça parte você também dessa Rede Social para Cientistas de Dados e venha compartilhar seus conhecimentos com\r\n        todos!\r\n      </p>\r\n      <button type=\"submit\" class=\"btn btn-primary\" (click)=\"habilitaCadastro()\">Criar conta!</button>\r\n    </div>\r\n  </div>\r\n  <div *ngIf=\"criarConta\" class=\"col-md-6 shadow-sm p-3 bg-white rounded cadastro\">\r\n    <app-form-cadastro></app-form-cadastro>\r\n  </div>\r\n</div>");
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
 
 /***/ }),
 
@@ -84,6 +91,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+<<<<<<< HEAD
 /* harmony default export */ __webpack_exports__["default"] = ("<form #form=\"ngForm\" (ngSubmit)=\"onSubmit()\">\r\n  <div class=\"form-row\">\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"name\">Nome</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"name\" #name=\"ngModel\" name=\"name\" [(ngModel)]=\"professional.name\"\r\n        placeholder=\"Nome\" value=\"professional.name\">\r\n    </div>\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"userLogin\">Login</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"userLogin\" #userLogin=\"ngModel\" name=\"userLogin\"\r\n        [(ngModel)]=\"professional.userLogin\" placeholder=\"Login\">\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"form-row\">\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"inputEmail4\">Email</label>\r\n      <input type=\"email\" class=\"form-control\" id=\"inputEmail4\" placeholder=\"Email\">\r\n    </div>\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"password\">Password</label>\r\n      <input type=\"password\" class=\"form-control\" id=\"password\" #password=\"ngModel\" name=\"password\"\r\n        [(ngModel)]=\"professional.password\" placeholder=\"Password\">\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"form-row\">\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"inputCity\">Cidade onde trabalha</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"city\" #city=\"ngModel\" name=\"city\"\r\n        [(ngModel)]=\"professional.city\" placeholder=\"Cidade\">\r\n    </div>\r\n\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"state\">Estado onde trabalha</label>\r\n      <select class=\"custom-select\"  id=\"state\" #state=\"ngModel\" name=\"state\" [(ngModel)]=\"professional.state\">\r\n        <option value=\"\">Estado</option>\r\n        <option *ngFor=\"let state of states\" id=\"state\" [ngValue]=\"state\">{{state}}</option>\r\n      </select>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"form-row\">\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"birthDate\">Birth Date</label>\r\n      <input type=\"date\" data-provide=\"datepicker\" class=\"form-control\" id=\"birthDate\" #birthDate=\"ngModel\"\r\n        name=\"birthDate\" [(ngModel)]=\"professional.birthDate\" maxlength=\"8\" placeholder=\"10/10/1990\">\r\n    </div>\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"careerDate\">Start date working in DS</label>\r\n      <input type=\"date\" data-provide=\"datepicker\" class=\"form-control\" id=\"careerDate\" #careerDate=\"ngModel\"\r\n        name=\"careerDate\" [(ngModel)]=\"professional.careerDate\" maxlength=\"8\" placeholder=\"10/10/1990\">\r\n    </div>\r\n  </div>\r\n  <div class=\"form-row\">\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"companyName\">Empresa atual</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"companyName\" #companyName=\"ngModel\" name=\"companyName\"\r\n        [(ngModel)]=\"jobRole.companyName\" placeholder=\"Empresa\">\r\n    </div>\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"instructionLevel\">Nível de instrução</label>\r\n      <select class=\"custom-select\"  id=\"instructionLevel\" #instructionLevel=\"ngModel\" name=\"instructionLevel\" [(ngModel)]=\"professional.instructionLevel\">\r\n        <option *ngFor=\"let enum of keys(enums)\" [ngValue]=\"enum\">{{enums[enum]}}</option>\r\n      </select>\r\n    </div>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"salary\">Salario atual</label>\r\n    <input type=\"text\" class=\"form-control\" id=\"salary\" #salary=\"ngModel\" name=\"salary\"\r\n        [(ngModel)]=\"jobRole.salary\" placeholder=\"Salario\" currencyMask [options]=\"{ prefix: 'R$ ', thousands: '.', decimal: ',' }\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <div class=\"custom-control custom-checkbox\">\r\n      <input type=\"checkbox\" class=\"custom-control-input\" id=\"defaultUnchecked\">\r\n      <label class=\"custom-control-label\" for=\"defaultUnchecked\" (click)=\"habilitaPagamento()\">Conta Premium</label>\r\n    </div>\r\n  </div>\r\n\r\n  <div *ngIf=\"contaPremium\" class=\"form-row\">\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"inputJob\">Nome do cartão</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"inputJob\">\r\n    </div>\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"inputGrade\">Número do cartão</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"inputGrade\" maxlength=\"16\">\r\n    </div>\r\n  </div>\r\n\r\n  <div *ngIf=\"contaPremium\" class=\"form-row\">\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"inputJob\">Data de validade</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"inputJob\">\r\n    </div>\r\n    <div class=\"form-group col-md-2\">\r\n      <label for=\"inputGrade\">CCV</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"inputGrade\" maxlength=\"3\">\r\n    </div>\r\n  </div>\r\n  <button type=\"submit\" class=\"btn btn-primary\">Cadastrar-se</button>\r\n</form>");
 
 /***/ }),
@@ -124,6 +132,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("<div>\r\n    <mat-card class=\"card\">\r\n      <mat-card-header>\r\n          <div mat-card-avatar class=\"example-header-image\"></div>\r\n          <mat-card-title>{{publication.author}}</mat-card-title>\r\n        </mat-card-header>\r\n        <hr>\r\n        <mat-card-content>\r\n          <p>\r\n            {{publication.text}}\r\n          </p>\r\n          <div class=\"d-flex justify-content-end\">\r\n            <p>\r\n              {{publication.publicationDate}}\r\n            </p>\r\n            <div *ngIf=\"isMyProfile\">\r\n              <a (click)=\"deletePublication()\" class=\"delete\">\r\n                  <mat-icon>delete</mat-icon>\r\n              </a>\r\n            </div>\r\n          </div>\r\n        </mat-card-content>\r\n      </mat-card>\r\n</div>\r\n");
+=======
+/* harmony default export */ __webpack_exports__["default"] = ("<form #form=\"ngForm\" (ngSubmit)=\"onSubmit()\">\r\n  <div class=\"form-row\">\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"name\">Nome</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"name\" #name=\"ngModel\" name=\"name\" [(ngModel)]=\"professional.name\"\r\n        placeholder=\"Nome\">\r\n    </div>\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"userLogin\">Login</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"userLogin\" #userLogin=\"ngModel\" name=\"userLogin\"\r\n        [(ngModel)]=\"professional.userLogin\" placeholder=\"Login\">\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"form-row\">\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"inputEmail4\">Email</label>\r\n      <input type=\"email\" class=\"form-control\" id=\"inputEmail4\" placeholder=\"Email\">\r\n    </div>\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"password\">Password</label>\r\n      <input type=\"password\" class=\"form-control\" id=\"password\" #password=\"ngModel\" name=\"password\"\r\n        [(ngModel)]=\"professional.password\" placeholder=\"Password\">\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"form-row\">\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"inputCity\">Cidade onde trabalha</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"inputCity\" placeholder=\"São Paulo\">\r\n    </div>\r\n\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"inputState\">Estado onde trabalha</label>\r\n      <select class=\"custom-select\">\r\n        <option value=\"\">Estado</option>\r\n        <option *ngFor=\"let state of states\" id=\"inputState\" [ngValue]=\"state\">{{state}}</option>\r\n      </select>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"form-row\">\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"birthDate\">Birth Date</label>\r\n      <input type=\"date\" data-provide=\"datepicker\" class=\"form-control\" id=\"birthDate\" #birthDate=\"ngModel\" name=\"birthDate\" \r\n      [(ngModel)]=\"professional.birthDate\" placeholder=\"10/10/1990\">\r\n    </div>\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"careerDate\">Start date working in DS</label>\r\n      <input type=\"date\" data-provide=\"datepicker\" class=\"form-control\" id=\"careerDate\" #careerDate=\"ngModel\" name=\"careerDate\" \r\n      [(ngModel)]=\"professional.careerDate\" placeholder=\"10/10/1990\">\r\n    </div>\r\n  </div>\r\n  <div class=\"form-row\">\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"inputJob\">Empresa atual</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"inputJob\">\r\n    </div>\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"inputGrade\">Nível de instrução</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"inputGrade\">\r\n    </div>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"inputGrade\">Salario atual</label>\r\n    <input type=\"text\" class=\"form-control\" id=\"inputGrade\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <div class=\"custom-control custom-checkbox\">\r\n      <input type=\"checkbox\" class=\"custom-control-input\" id=\"defaultUnchecked\">\r\n      <label class=\"custom-control-label\" for=\"defaultUnchecked\" (click)=\"habilitaPagamento()\">Conta Premium</label>\r\n    </div>\r\n  </div>\r\n\r\n  <div *ngIf=\"contaPremium\" class=\"form-row\">\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"inputJob\">Nome do cartão</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"inputJob\">\r\n    </div>\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"inputGrade\">Número do cartão</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"inputGrade\" maxlength=\"16\">\r\n    </div>\r\n  </div>\r\n\r\n  <div *ngIf=\"contaPremium\" class=\"form-row\">\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"inputJob\">Data de validade</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"inputJob\">\r\n    </div>\r\n    <div class=\"form-group col-md-2\">\r\n      <label for=\"inputGrade\">CCV</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"inputGrade\" maxlength=\"3\">\r\n    </div>\r\n  </div>\r\n  <button type=\"submit\" class=\"btn btn-primary\" >Cadastrar-se</button>\r\n</form>");
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
 
 /***/ }),
 
@@ -370,19 +381,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _cadastro_login_cadastro_login_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./cadastro-login/cadastro-login.component */ "./src/app/cadastro-login/cadastro-login.component.ts");
+<<<<<<< HEAD
 /* harmony import */ var _postagens_postagens_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./postagens/postagens.component */ "./src/app/postagens/postagens.component.ts");
 /* harmony import */ var _atualizar_perfil_atualizar_perfil_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./atualizar-perfil/atualizar-perfil.component */ "./src/app/atualizar-perfil/atualizar-perfil.component.ts");
 
 
+=======
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
 
 
 
 
 const routes = [
     { path: '', component: _cadastro_login_cadastro_login_component__WEBPACK_IMPORTED_MODULE_3__["CadastroLoginComponent"] },
+<<<<<<< HEAD
     { path: 'signUp', component: _cadastro_login_cadastro_login_component__WEBPACK_IMPORTED_MODULE_3__["CadastroLoginComponent"] },
     { path: 'postagens/:id', component: _postagens_postagens_component__WEBPACK_IMPORTED_MODULE_4__["PostagensComponent"] },
     { path: 'atualizarperfil', component: _atualizar_perfil_atualizar_perfil_component__WEBPACK_IMPORTED_MODULE_5__["AtualizarPerfilComponent"] }
+=======
+    { path: 'signUp', component: _cadastro_login_cadastro_login_component__WEBPACK_IMPORTED_MODULE_3__["CadastroLoginComponent"] }
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -454,6 +472,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm2015/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+<<<<<<< HEAD
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
@@ -487,27 +506,42 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+=======
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _cadastro_login_cadastro_login_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./cadastro-login/cadastro-login.component */ "./src/app/cadastro-login/cadastro-login.component.ts");
+/* harmony import */ var _shared_form_cadastro_form_cadastro_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./shared/form-cadastro/form-cadastro.component */ "./src/app/shared/form-cadastro/form-cadastro.component.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
 
 
 
 
+<<<<<<< HEAD
 //Components
+=======
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
 
 
 
 
 
 
+<<<<<<< HEAD
 //Services
 
 
 
 
+=======
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
 let AppModule = class AppModule {
 };
 AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
         declarations: [
+<<<<<<< HEAD
             _app_component__WEBPACK_IMPORTED_MODULE_14__["AppComponent"],
             _cadastro_login_cadastro_login_component__WEBPACK_IMPORTED_MODULE_15__["CadastroLoginComponent"],
             _shared_form_cadastro_form_cadastro_component__WEBPACK_IMPORTED_MODULE_16__["FormCadastroComponent"],
@@ -537,6 +571,21 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _shared_sessionService_session_service__WEBPACK_IMPORTED_MODULE_21__["SessionService"]
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_14__["AppComponent"]]
+=======
+            _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
+            _cadastro_login_cadastro_login_component__WEBPACK_IMPORTED_MODULE_6__["CadastroLoginComponent"],
+            _shared_form_cadastro_form_cadastro_component__WEBPACK_IMPORTED_MODULE_7__["FormCadastroComponent"]
+        ],
+        imports: [
+            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
+            _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"]
+        ],
+        providers: [],
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
     })
 ], AppModule);
 
@@ -570,6 +619,7 @@ let AppService = class AppService {
         const url = `${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].dssmApiUrl}/signUp`;
         return this.http.post(url, professional);
     }
+<<<<<<< HEAD
     cadastrarPublication(publication) {
         const url = `${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].dssmApiUrl}/publicate`;
         return this.http.post(url, publication);
@@ -610,6 +660,8 @@ let AppService = class AppService {
         const url = `${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].dssmApiUrl}/updateProfile`;
         return this.http.put(url, professional);
     }
+=======
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
 };
 AppService.ctorParameters = () => [
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"] }
@@ -624,6 +676,7 @@ AppService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./src/app/atualizar-perfil/atualizar-perfil.component.css":
 /*!*****************************************************************!*\
   !*** ./src/app/atualizar-perfil/atualizar-perfil.component.css ***!
@@ -723,6 +776,8 @@ AtualizarPerfilComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+=======
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
 /***/ "./src/app/cadastro-login/cadastro-login.component.css":
 /*!*************************************************************!*\
   !*** ./src/app/cadastro-login/cadastro-login.component.css ***!
@@ -732,7 +787,11 @@ AtualizarPerfilComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+<<<<<<< HEAD
 /* harmony default export */ __webpack_exports__["default"] = (".imgLogin {\r\n    width: 10%;\r\n    height: 10%;\r\n    padding-right: 2%;\r\n}\r\n\r\n.menuTopo{\r\n    border-bottom: 1px solid #19548f;\r\n}\r\n\r\n.nameComp{\r\n    margin-right: 10%;\r\n}\r\n\r\n.cadastro{\r\n    padding-top: 5%;\r\n    margin-top: 5%;\r\n}\r\n\r\n.cadBody{\r\n    display: flex;\r\n    justify-content: space-between;\r\n}\r\n\r\n.info{\r\n    margin-right: 0;\r\n    margin-top: 5%;\r\n    background-color: #3786bd;\r\n    padding-bottom:2%;\r\n    float: left;\r\n    border-radius: 2%;\r\n    font-family: 'Open Sans', sans-serif;\r\n    font-size: 15px;\r\n    font-weight: 300;\r\n    line-height: 1.5;\r\n    color: white;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FkYXN0cm8tbG9naW4vY2FkYXN0cm8tbG9naW4uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLFVBQVU7SUFDVixXQUFXO0lBQ1gsaUJBQWlCO0FBQ3JCOztBQUVBO0lBQ0ksZ0NBQWdDO0FBQ3BDOztBQUVBO0lBQ0ksaUJBQWlCO0FBQ3JCOztBQUVBO0lBQ0ksZUFBZTtJQUNmLGNBQWM7QUFDbEI7O0FBRUE7SUFDSSxhQUFhO0lBQ2IsOEJBQThCO0FBQ2xDOztBQUVBO0lBQ0ksZUFBZTtJQUNmLGNBQWM7SUFDZCx5QkFBeUI7SUFDekIsaUJBQWlCO0lBQ2pCLFdBQVc7SUFDWCxpQkFBaUI7SUFDakIsb0NBQW9DO0lBQ3BDLGVBQWU7SUFDZixnQkFBZ0I7SUFDaEIsZ0JBQWdCO0lBQ2hCLFlBQVk7QUFDaEIiLCJmaWxlIjoic3JjL2FwcC9jYWRhc3Ryby1sb2dpbi9jYWRhc3Ryby1sb2dpbi5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmltZ0xvZ2luIHtcclxuICAgIHdpZHRoOiAxMCU7XHJcbiAgICBoZWlnaHQ6IDEwJTtcclxuICAgIHBhZGRpbmctcmlnaHQ6IDIlO1xyXG59XHJcblxyXG4ubWVudVRvcG97XHJcbiAgICBib3JkZXItYm90dG9tOiAxcHggc29saWQgIzE5NTQ4ZjtcclxufVxyXG5cclxuLm5hbWVDb21we1xyXG4gICAgbWFyZ2luLXJpZ2h0OiAxMCU7XHJcbn1cclxuXHJcbi5jYWRhc3Ryb3tcclxuICAgIHBhZGRpbmctdG9wOiA1JTtcclxuICAgIG1hcmdpbi10b3A6IDUlO1xyXG59XHJcblxyXG4uY2FkQm9keXtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XHJcbn1cclxuXHJcbi5pbmZve1xyXG4gICAgbWFyZ2luLXJpZ2h0OiAwO1xyXG4gICAgbWFyZ2luLXRvcDogNSU7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzc4NmJkO1xyXG4gICAgcGFkZGluZy1ib3R0b206MiU7XHJcbiAgICBmbG9hdDogbGVmdDtcclxuICAgIGJvcmRlci1yYWRpdXM6IDIlO1xyXG4gICAgZm9udC1mYW1pbHk6ICdPcGVuIFNhbnMnLCBzYW5zLXNlcmlmO1xyXG4gICAgZm9udC1zaXplOiAxNXB4O1xyXG4gICAgZm9udC13ZWlnaHQ6IDMwMDtcclxuICAgIGxpbmUtaGVpZ2h0OiAxLjU7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbn1cclxuIl19 */");
+=======
+/* harmony default export */ __webpack_exports__["default"] = (".imgLogin {\r\n    width: 10%;\r\n    height: 10%;\r\n    padding-right: 2%;\r\n}\r\n\r\n.menuTopo{\r\n    border-bottom: 1px solid #19548f;\r\n}\r\n\r\n.nameComp{\r\n    margin-right: 10%;\r\n}\r\n\r\n.cadastro{\r\n    padding-top: 5%;\r\n    margin-top: 5%;\r\n    float: right;\r\n}\r\n\r\n.cadBody{\r\n    display: flex;\r\n    justify-content: space-between;\r\n}\r\n\r\n.info{\r\n    margin-right: 0;\r\n    margin-top: 5%;\r\n    background-color: #3786bd;\r\n    padding-bottom:2%;\r\n    float: left;\r\n    border-radius: 2%;\r\n    font-family: 'Open Sans', sans-serif;\r\n    font-size: 15px;\r\n    font-weight: 300;\r\n    line-height: 1.5;\r\n    color: white;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FkYXN0cm8tbG9naW4vY2FkYXN0cm8tbG9naW4uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLFVBQVU7SUFDVixXQUFXO0lBQ1gsaUJBQWlCO0FBQ3JCOztBQUVBO0lBQ0ksZ0NBQWdDO0FBQ3BDOztBQUVBO0lBQ0ksaUJBQWlCO0FBQ3JCOztBQUVBO0lBQ0ksZUFBZTtJQUNmLGNBQWM7SUFDZCxZQUFZO0FBQ2hCOztBQUVBO0lBQ0ksYUFBYTtJQUNiLDhCQUE4QjtBQUNsQzs7QUFFQTtJQUNJLGVBQWU7SUFDZixjQUFjO0lBQ2QseUJBQXlCO0lBQ3pCLGlCQUFpQjtJQUNqQixXQUFXO0lBQ1gsaUJBQWlCO0lBQ2pCLG9DQUFvQztJQUNwQyxlQUFlO0lBQ2YsZ0JBQWdCO0lBQ2hCLGdCQUFnQjtJQUNoQixZQUFZO0FBQ2hCIiwiZmlsZSI6InNyYy9hcHAvY2FkYXN0cm8tbG9naW4vY2FkYXN0cm8tbG9naW4uY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5pbWdMb2dpbiB7XHJcbiAgICB3aWR0aDogMTAlO1xyXG4gICAgaGVpZ2h0OiAxMCU7XHJcbiAgICBwYWRkaW5nLXJpZ2h0OiAyJTtcclxufVxyXG5cclxuLm1lbnVUb3Bve1xyXG4gICAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICMxOTU0OGY7XHJcbn1cclxuXHJcbi5uYW1lQ29tcHtcclxuICAgIG1hcmdpbi1yaWdodDogMTAlO1xyXG59XHJcblxyXG4uY2FkYXN0cm97XHJcbiAgICBwYWRkaW5nLXRvcDogNSU7XHJcbiAgICBtYXJnaW4tdG9wOiA1JTtcclxuICAgIGZsb2F0OiByaWdodDtcclxufVxyXG5cclxuLmNhZEJvZHl7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG59XHJcblxyXG4uaW5mb3tcclxuICAgIG1hcmdpbi1yaWdodDogMDtcclxuICAgIG1hcmdpbi10b3A6IDUlO1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzM3ODZiZDtcclxuICAgIHBhZGRpbmctYm90dG9tOjIlO1xyXG4gICAgZmxvYXQ6IGxlZnQ7XHJcbiAgICBib3JkZXItcmFkaXVzOiAyJTtcclxuICAgIGZvbnQtZmFtaWx5OiAnT3BlbiBTYW5zJywgc2Fucy1zZXJpZjtcclxuICAgIGZvbnQtc2l6ZTogMTVweDtcclxuICAgIGZvbnQtd2VpZ2h0OiAzMDA7XHJcbiAgICBsaW5lLWhlaWdodDogMS41O1xyXG4gICAgY29sb3I6IHdoaXRlO1xyXG59XHJcbiJdfQ== */");
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
 
 /***/ }),
 
@@ -748,6 +807,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CadastroLoginComponent", function() { return CadastroLoginComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+<<<<<<< HEAD
 /* harmony import */ var _app_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../app.service */ "./src/app/app.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
@@ -802,6 +862,16 @@ let CadastroLoginComponent = class CadastroLoginComponent {
                 panelClass: ['error-snackbar']
             });
         });
+=======
+
+
+let CadastroLoginComponent = class CadastroLoginComponent {
+    constructor() {
+        this.isSubmitted = false;
+        this.criarConta = false;
+        this.contaPremium = false;
+        this.professional = {};
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
     }
     habilitaCadastro() {
         this.criarConta = !this.criarConta;
@@ -810,6 +880,7 @@ let CadastroLoginComponent = class CadastroLoginComponent {
         }
     }
 };
+<<<<<<< HEAD
 CadastroLoginComponent.ctorParameters = () => [
     { type: _app_service__WEBPACK_IMPORTED_MODULE_2__["AppService"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
@@ -822,6 +893,11 @@ tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
 ], CadastroLoginComponent.prototype, "outProfessionalId", void 0);
+=======
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], CadastroLoginComponent.prototype, "professional", void 0);
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
 CadastroLoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-cadastro-login',
@@ -834,6 +910,7 @@ CadastroLoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./src/app/postagens/postagens.component.css":
 /*!***************************************************!*\
   !*** ./src/app/postagens/postagens.component.css ***!
@@ -1006,6 +1083,8 @@ PostagensComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+=======
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
 /***/ "./src/app/shared/form-cadastro/form-cadastro.component.css":
 /*!******************************************************************!*\
   !*** ./src/app/shared/form-cadastro/form-cadastro.component.css ***!
@@ -1023,12 +1102,17 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************************************************!*\
   !*** ./src/app/shared/form-cadastro/form-cadastro.component.ts ***!
   \*****************************************************************/
+<<<<<<< HEAD
 /*! exports provided: FormCadastroComponent, InstructionLevel */
+=======
+/*! exports provided: FormCadastroComponent */
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FormCadastroComponent", function() { return FormCadastroComponent; });
+<<<<<<< HEAD
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InstructionLevel", function() { return InstructionLevel; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
@@ -1049,20 +1133,55 @@ let FormCadastroComponent = class FormCadastroComponent {
         this.professional.jobRole = this.jobRole;
         console.log(this.professional);
         this.outProfessional.emit(this.professional);
+=======
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _app_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../app.service */ "./src/app/app.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
+
+
+
+let FormCadastroComponent = class FormCadastroComponent {
+    constructor(appService, router) {
+        this.appService = appService;
+        this.router = router;
+        this.states = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'TO'];
+        this.contaPremium = false;
+        this.professional = {};
+        this.outPutProfessional = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+    }
+    onSubmit() {
+        console.log(this.professional);
+        this.appService.cadastrarProfessional(this.professional)
+            .subscribe(() => { this.router.navigateByUrl('/'); });
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
     }
     habilitaPagamento() {
         this.contaPremium = !this.contaPremium;
     }
 };
+<<<<<<< HEAD
+=======
+FormCadastroComponent.ctorParameters = () => [
+    { type: _app_service__WEBPACK_IMPORTED_MODULE_2__["AppService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
+];
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
 ], FormCadastroComponent.prototype, "professional", void 0);
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+<<<<<<< HEAD
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
 ], FormCadastroComponent.prototype, "jobRole", void 0);
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
 ], FormCadastroComponent.prototype, "outProfessional", void 0);
+=======
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
+], FormCadastroComponent.prototype, "outPutProfessional", void 0);
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
 FormCadastroComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-form-cadastro',
@@ -1071,6 +1190,7 @@ FormCadastroComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     })
 ], FormCadastroComponent);
 
+<<<<<<< HEAD
 var InstructionLevel;
 (function (InstructionLevel) {
     InstructionLevel["NENHUM"] = "Nenhum n\u00EDvel de instru\u00E7\u00E3o";
@@ -1406,6 +1526,8 @@ SessionService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
 ], SessionService);
 
+=======
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
 
 
 /***/ }),
@@ -1451,6 +1573,7 @@ const environment = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+<<<<<<< HEAD
 /* harmony import */ var hammerjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! hammerjs */ "./node_modules/hammerjs/hammer.js");
 /* harmony import */ var hammerjs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(hammerjs__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
@@ -1458,15 +1581,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app/app.module */ "./src/app/app.module.ts");
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
 
+=======
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/fesm2015/platform-browser-dynamic.js");
+/* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app/app.module */ "./src/app/app.module.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
 
 
 
 
 
+<<<<<<< HEAD
 if (_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].production) {
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["enableProdMode"])();
 }
 Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_3__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_4__["AppModule"])
+=======
+if (_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].production) {
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["enableProdMode"])();
+}
+Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_3__["AppModule"])
+>>>>>>> 37044d78544b60e3b9d84d88dca95551bc3bc992
     .catch(err => console.error(err));
 
 
