@@ -30,3 +30,12 @@
 .dropdownItens:hover {
   cursor: pointer;
 }
+
+.iconTopo {
+  position: relative;
+  top: 4px;
+}
+
+.perfil-amigos {
+  margin-right: 2%;
+}

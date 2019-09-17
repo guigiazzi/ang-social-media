@@ -6,6 +6,9 @@ import { ActivatedRoute } from '@angular/router';
 import { FormatDateService } from './../shared/formatDateService/format-date.service';
 import { SessionService } from './../shared/sessionService/session.service';
 import { Professional } from '../interfaces/professional';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { ModalDialogComponent } from './../shared/modal-dialog/modal-dialog.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-postagens',
@@ -26,7 +29,8 @@ export class PostagensComponent implements OnInit {
     private snackbar: MatSnackBar,
     private route: ActivatedRoute,
     private formatDateService: FormatDateService,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    public dialog: MatDialog
     ) { }
 
   ngOnInit() {
@@ -97,21 +101,27 @@ export class PostagensComponent implements OnInit {
   }
 
   deletePublication(publicationId: string) {
-    this.appservice.deletaPublication(publicationId)
-    .subscribe(res=>{
-        this.snackbar.open('Publicação deletada com sucesso!', 'Dismiss', {
-          duration: 4000,
-          panelClass: ['success-snackbar']
-        });
-        this.deleteFromPubList(publicationId);
-      }, err => {
-        console.log(err);
-        this.snackbar.open('Ocorreu um erro ao deletar a publicação!', 'Dismiss', {
-          duration: 4000,
-          panelClass: ['error-snackbar']
-        });
-      });
-    this.publication.text = '';
+    this.openDialog().subscribe(res=>{
+      if(res){
+        this.appservice.deletaPublication(publicationId)
+        .subscribe(res=>{
+            this.snackbar.open('Publicação deletada com sucesso!', 'Dismiss', {
+              duration: 4000,
+              panelClass: ['success-snackbar']
+            });
+            this.deleteFromPubList(publicationId);
+          }, err => {
+            console.log(err);
+            this.snackbar.open('Ocorreu um erro ao deletar a publicação!', 'Dismiss', {
+              duration: 4000,
+              panelClass: ['error-snackbar']
+            });
+          });
+        this.publication.text = '';
+      }else{
+        console.log('ta funfando')
+      }
+    })
   }
 
   deleteFromPubList(publicationId: string){
@@ -133,5 +143,18 @@ export class PostagensComponent implements OnInit {
         panelClass: ['error-snackbar']
       });
     });
+  }
+
+  openDialog(): Observable<any> {
+    return new Observable((observer) => {
+      const dialogRef = this.dialog.open(ModalDialogComponent, {
+        width: '290px'
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        observer.next(result)
+        observer.complete()
+      });
+    })
   }
 }
