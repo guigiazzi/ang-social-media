@@ -44,3 +44,7 @@ input{
 .topicos{
   padding: 2%;
 }
+.iconTopo {
+  position: relative;
+  top: 4px;
+}

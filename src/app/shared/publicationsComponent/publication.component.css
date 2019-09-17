@@ -10,3 +10,8 @@
 .delete {
   margin-left: 1%;
 }
+
+mat-icon {
+  position: relative;
+  bottom: 4px;
+}
