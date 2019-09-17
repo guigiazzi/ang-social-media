@@ -12,6 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
 import { CurrencyMaskModule } from "ng2-currency-mask";
+import {MatDialogModule} from '@angular/material/dialog';
 
 //Components
 import { AppComponent } from './app.component';
@@ -26,6 +27,7 @@ import { FormatDateService } from './shared/formatDateService/format-date.servic
 import { SessionService } from './shared/sessionService/session.service';
 import { AtualizarPerfilComponent } from './atualizar-perfil/atualizar-perfil.component';
 import { InterestTopicsComponent } from './shared/interest-topics/interest-topics.component';
+import { ModalDialogComponent } from './shared/modal-dialog/modal-dialog.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { InterestTopicsComponent } from './shared/interest-topics/interest-topic
     PublicationComponent,
     HeaderToolbarComponent,
     AtualizarPerfilComponent,
-    InterestTopicsComponent
+    InterestTopicsComponent,
+    ModalDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -51,13 +54,15 @@ import { InterestTopicsComponent } from './shared/interest-topics/interest-topic
     MatCardModule,
     MatProgressSpinnerModule,
     MatInputModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    MatDialogModule
   ],
   providers: [
     FormatDateService,
-    SessionService
+    SessionService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[ModalDialogComponent]
 })
 
 export class AppModule { }
