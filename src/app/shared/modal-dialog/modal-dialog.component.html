@@ -1,0 +1,8 @@
+<h1 mat-dialog-title class="text-center">Deletar Postagem</h1>
+<div mat-dialog-content>
+  <p class="text-center">Tem certeza que deseja deletar a postagem?</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" cdkFocusInitial class="btn btn-danger">Não deletar</button>
+  <button mat-button (click)="onYesClick()" class="btn btn-primary cancel">Deletar</button>
+</div>
