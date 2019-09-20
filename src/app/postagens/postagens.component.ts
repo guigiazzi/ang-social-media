@@ -23,6 +23,7 @@ export class PostagensComponent implements OnInit {
   public userPublications: Publication[] = [];
   public usuario: Professional = {} as Professional;
   public topics = [];
+  public alreadyRecommended = true;
 
   constructor(
     private appservice: AppService,
@@ -154,6 +155,23 @@ export class PostagensComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         observer.next(result)
         observer.complete()
+      });
+    })
+  }
+
+  recomendar() {
+    let myId = this.sessionService.getUserLogged();
+    this.appservice.recommend(myId, this.usuario.professionalID)
+    .subscribe(res=>{
+      this.snackbar.open('Recomendação feita com sucesso!', 'Dismiss', {
+        duration: 4000,
+        panelClass: ['success-snackbar']
+      });
+    },err =>{
+      console.log(err)
+      this.snackbar.open(`${err.error}`, 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
       });
     })
   }
