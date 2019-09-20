@@ -1,4 +1,4 @@
-//Modules
+// Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,23 +11,24 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
-import { CurrencyMaskModule } from "ng2-currency-mask";
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 import {MatDialogModule} from '@angular/material/dialog';
 
-//Components
+// Components
 import { AppComponent } from './app.component';
 import { CadastroLoginComponent } from './cadastro-login/cadastro-login.component';
 import { FormCadastroComponent } from './shared/form-cadastro/form-cadastro.component';
 import { PostagensComponent } from './postagens/postagens.component';
 import { PublicationComponent } from './shared/publicationsComponent/publication.component';
 import { HeaderToolbarComponent } from './shared/header-toolbar/header-toolbar.component';
-
-//Services
-import { FormatDateService } from './shared/formatDateService/format-date.service';
-import { SessionService } from './shared/sessionService/session.service';
 import { AtualizarPerfilComponent } from './atualizar-perfil/atualizar-perfil.component';
 import { InterestTopicsComponent } from './shared/interest-topics/interest-topics.component';
 import { ModalDialogComponent } from './shared/modal-dialog/modal-dialog.component';
+
+// Services
+import { FormatDateService } from './shared/formatDateService/format-date.service';
+import { SessionService } from './shared/sessionService/session.service';
+import { OpenModalService } from './shared/modal-dialog/open-modal-service.service';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { ModalDialogComponent } from './shared/modal-dialog/modal-dialog.compone
   providers: [
     FormatDateService,
     SessionService,
+    OpenModalService
   ],
   bootstrap: [AppComponent],
   entryComponents:[ModalDialogComponent]

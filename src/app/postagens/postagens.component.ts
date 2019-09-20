@@ -6,9 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormatDateService } from './../shared/formatDateService/format-date.service';
 import { SessionService } from './../shared/sessionService/session.service';
 import { Professional } from '../interfaces/professional';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { ModalDialogComponent } from './../shared/modal-dialog/modal-dialog.component';
-import { Observable } from 'rxjs';
+import { OpenModalService } from './../shared/modal-dialog/open-modal-service.service';
 
 @Component({
   selector: 'app-postagens',
@@ -31,7 +29,7 @@ export class PostagensComponent implements OnInit {
     private route: ActivatedRoute,
     private formatDateService: FormatDateService,
     private sessionService: SessionService,
-    public dialog: MatDialog
+    private openModalService: OpenModalService
     ) { }
 
   ngOnInit() {
@@ -102,7 +100,13 @@ export class PostagensComponent implements OnInit {
   }
 
   deletePublication(publicationId: string) {
-    this.openDialog().subscribe(res=>{
+    const data = {
+      text: 'Tem certeza que deseja deletar a postagem?',
+      title: 'Deletar Postagem',
+      buttonYes: 'Deletar',
+      buttonNo: 'Cancelar'
+    }
+    this.openModalService.openDialog(data).subscribe(res=>{
       if(res){
         this.appservice.deletaPublication(publicationId)
         .subscribe(res=>{
@@ -144,19 +148,6 @@ export class PostagensComponent implements OnInit {
         panelClass: ['error-snackbar']
       });
     });
-  }
-
-  openDialog(): Observable<any> {
-    return new Observable((observer) => {
-      const dialogRef = this.dialog.open(ModalDialogComponent, {
-        width: '290px'
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-        observer.next(result)
-        observer.complete()
-      });
-    })
   }
 
   recomendar() {
