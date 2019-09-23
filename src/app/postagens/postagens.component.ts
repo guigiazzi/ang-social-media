@@ -21,7 +21,7 @@ export class PostagensComponent implements OnInit {
   public userPublications: Publication[] = [];
   public usuario: Professional = {} as Professional;
   public topics = [];
-  public alreadyRecommended = true;
+  public alreadyRecommended = false;
 
   constructor(
     private appservice: AppService,
@@ -158,6 +158,7 @@ export class PostagensComponent implements OnInit {
         duration: 4000,
         panelClass: ['success-snackbar']
       });
+      this.alreadyRecommended = true;
     },err =>{
       console.log(err)
       this.snackbar.open(`${err.error}`, 'Dismiss', {
