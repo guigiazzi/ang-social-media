@@ -75,6 +75,13 @@
       <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
       <label class="custom-control-label" for="defaultUnchecked" (click)="habilitaPagamento()">Conta Premium</label>
     </div>
+    <div>
+      <label for="foto" class="btn btn-primary">Selecionar Foto de Perfil</label>
+      <input type='file' (change)="selecionarFoto($event)" id="foto" accept="image/*" class="d-none">
+      <div *ngIf='urlImage'>
+        <img [src]="urlImage" class="image">
+      </div>
+    </div>
   </div>
 
   <div *ngIf="contaPremium" class="form-row">

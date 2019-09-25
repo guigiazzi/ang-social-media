@@ -18,8 +18,9 @@ export class FormCadastroComponent {
   public professionalProfile: Professional[] = [];
   public cardMaster = false;
   public cardVisa = false;
+  public urlImage: any;
 
-  constructor() { }
+  constructor(private snackbar: MatSnackBar) { }
 
   @Input() professional: Professional = <Professional>{};
   @Input() jobRole: JobRole = <JobRole>{};
@@ -47,7 +48,28 @@ export class FormCadastroComponent {
       this.cardVisa = false;
     }
   }
+
+  selecionarFoto(event:any) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+
+      reader.onload = (event) => { 
+        if(reader.result.slice(5,10) === 'image'){
+          this.urlImage = reader.result;
+        } else {
+          this.snackbar.open('Formato do arquivo não aceito!', 'Dismiss', {
+            duration: 4000,
+            panelClass: ['error-snackbar']
+          });
+        }
+      }
+
+    }
+  }
+  
 }
+
 export enum InstructionLevel {
   NENHUM = "Nenhum nível de instrução",
   BACHAREL = "Bacharelado",
