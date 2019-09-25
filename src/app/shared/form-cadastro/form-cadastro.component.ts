@@ -39,32 +39,40 @@ export class FormCadastroComponent {
   displayCard(cardNum) {
     if (cardNum[0] === '5') {
       this.cardMaster = true;
-      this.cardVisa = false;
-    } else if (cardNum[0] == '4') {
-      this.cardMaster = false;
-      this.cardVisa = true;
     } else {
       this.cardMaster = false;
+    }
+    if (cardNum[0] == '4') {
+      this.cardVisa = true;
+    } else {
       this.cardVisa = false;
     }
   }
 
   selecionarFoto(event:any) {
     if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]);
+      uploadedImage = event.target.files[0];
+      
+      if (uploadedImage.type && uploadedImage.type.substring(0, 5) === 'image') {
+        if (uploadedImage.size > 0 && uploadedImage.size < 2097152) {
+          var reader = new FileReader();
+          reader.readAsDataURL(event.target.files[0]);
 
-      reader.onload = (event) => { 
-        if(reader.result.slice(5,10) === 'image'){
-          this.urlImage = reader.result;
+          reader.onload = (event) => { 
+            this.urlImage = reader.result;
+          }
         } else {
-          this.snackbar.open('Formato do arquivo não aceito!', 'Dismiss', {
+          this.snackbar.open('Tamanho da imagem muito grande! (maior que 2Mb)', 'Dismiss', {
             duration: 4000,
             panelClass: ['error-snackbar']
           });
         }
+      } else {
+        this.snackbar.open('Formato da imagem inválido!', 'Dismiss', {
+          duration: 4000,
+          panelClass: ['error-snackbar']
+        });
       }
-
     }
   }
   
