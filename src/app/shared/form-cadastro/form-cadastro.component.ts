@@ -51,7 +51,7 @@ export class FormCadastroComponent {
 
   selecionarFoto(event:any) {
     if (event.target.files && event.target.files[0]) {
-      uploadedImage = event.target.files[0];
+      let uploadedImage = event.target.files[0];
       
       if (uploadedImage.type && uploadedImage.type.substring(0, 5) === 'image') {
         if (uploadedImage.size > 0 && uploadedImage.size < 2097152) {
