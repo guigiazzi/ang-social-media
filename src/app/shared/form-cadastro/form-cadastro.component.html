@@ -73,12 +73,12 @@
   <div class="form-group">
     <div class="imageContainer">
       <div *ngIf='urlImage' class="d-flex justify-content-center">
-        <img [src]="urlImage">
+        <img [src]="urlImage" class="image">
       </div>
       <div *ngIf='!urlImage' class="d-flex justify-content-center">
         <img src="./../../../assets/images/file-drop.png">
       </div>
-      <div class="d-flex justify-content-center" *ngIf="!urlImage">
+      <div class="d-flex justify-content-center">
         <label for="foto" class="btn btn-primary d-flex botaoSelect">
           Selecionar Foto de Perfil <mat-icon class="iconeSelect">image</mat-icon>
         </label>

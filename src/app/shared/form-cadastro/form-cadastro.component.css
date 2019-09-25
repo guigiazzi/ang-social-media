@@ -20,10 +20,13 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-/*
+
 .image {
-  width: 30%;
-} */
+  width: 100%;
+  padding-left: 1%;
+  padding-right: 1%;
+  padding-bottom: 2%;
+}
 
 .imageContainer {
   padding-top: 5%;
