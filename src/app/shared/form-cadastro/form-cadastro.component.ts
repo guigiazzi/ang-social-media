@@ -16,6 +16,9 @@ export class FormCadastroComponent {
   public enums = InstructionLevel;
   public contaPremium = false;
   public professionalProfile: Professional[] = [];
+  public cardMaster = false;
+  public cardVisa = false;
+
   constructor() { }
 
   @Input() professional: Professional = <Professional>{};
@@ -30,6 +33,19 @@ export class FormCadastroComponent {
 
   habilitaPagamento() {
     this.contaPremium = !this.contaPremium;
+  }
+
+  displayCard(cardNum) {
+    if (cardNum[0] === '5') {
+      this.cardMaster = true;
+      this.cardVisa = false;
+    } else if (cardNum[0] == '4') {
+      this.cardMaster = false;
+      this.cardVisa = true;
+    } else {
+      this.cardMaster = false;
+      this.cardVisa = false;
+    }
   }
 }
 export enum InstructionLevel {
