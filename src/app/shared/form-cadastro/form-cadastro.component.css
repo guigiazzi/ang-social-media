@@ -20,7 +20,24 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-
+/*
 .image {
   width: 30%;
+} */
+
+.imageContainer {
+  padding-top: 5%;
+  padding-bottom: 5%;
+  border: 1px dashed #bbb;
+  border-radius: 0.5em;
+  width: 50%;
+  margin-left: 23%;
+}
+
+.botaoSelect {
+  width: 44%;
+}
+
+.iconeSelect {
+  margin-left: 5%;
 }

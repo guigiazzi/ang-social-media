@@ -71,16 +71,23 @@
         [(ngModel)]="jobRole.salary" placeholder="Salario" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
   </div>
   <div class="form-group">
+    <div class="imageContainer">
+      <div *ngIf='urlImage' class="d-flex justify-content-center">
+        <img [src]="urlImage">
+      </div>
+      <div *ngIf='!urlImage' class="d-flex justify-content-center">
+        <img src="./../../../assets/images/file-drop.png">
+      </div>
+      <div class="d-flex justify-content-center" *ngIf="!urlImage">
+        <label for="foto" class="btn btn-primary d-flex botaoSelect">
+          Selecionar Foto de Perfil <mat-icon class="iconeSelect">image</mat-icon>
+        </label>
+        <input type='file' (change)="selecionarFoto($event)" id="foto" accept="image/*" class="d-none">
+      </div>
+    </div>
     <div class="custom-control custom-checkbox">
       <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
       <label class="custom-control-label" for="defaultUnchecked" (click)="habilitaPagamento()">Conta Premium</label>
-    </div>
-    <div>
-      <label for="foto" class="btn btn-primary">Selecionar Foto de Perfil</label>
-      <input type='file' (change)="selecionarFoto($event)" id="foto" accept="image/*" class="d-none">
-      <div *ngIf='urlImage'>
-        <img [src]="urlImage" class="image">
-      </div>
     </div>
   </div>
 
