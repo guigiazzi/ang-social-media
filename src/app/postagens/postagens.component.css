@@ -48,3 +48,9 @@ input{
   position: relative;
   top: 4px;
 }
+
+.recomendar {
+  float: left;
+  margin-top: -4%;
+  margin-left: 1%;
+}

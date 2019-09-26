@@ -1,0 +1,8 @@
+<h1 mat-dialog-title class="text-center">{{ title }}</h1>
+<div mat-dialog-content>
+  <p class="text-center">{{ text }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" cdkFocusInitial class="btn btn-danger cancel">{{ buttonNo }}</button>
+  <button mat-button (click)="onYesClick()" class="btn btn-primary accept">{{ buttonYes }}</button>
+</div>

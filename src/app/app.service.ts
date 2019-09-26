@@ -43,7 +43,7 @@ export class AppService {
     const url = `${environment.dssmApiUrl}/login`;
     return this.http.post<Professional>(url, login);
   }
-  
+
   getInterestTopics(): Observable<any> {
     const url = `${environment.dssmApiUrl}/getInterestTopics`;
     return this.http.get(url);
@@ -53,7 +53,7 @@ export class AppService {
     const url = `${environment.dssmApiUrl}/getProfessionalInterestTopics/${userId}`;
     return this.http.get(url);
   }
-  
+
   updateProfessionalInterestTopics(topics: UserTopics[]): Observable<any> {
     const url = `${environment.dssmApiUrl}/setProfessionalInterestTopics`;
     return this.http.post<UserTopics>(url, topics);
@@ -67,5 +67,10 @@ export class AppService {
   updateProfessional(professional): Observable<any> {
     const url = `${environment.dssmApiUrl}/updateProfile`;
     return this.http.put(url, professional);
+  }
+
+  recommend(myId: string, profileId: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/recommend`;
+    return this.http.post(url, {professionalID1: myId, professionalID2: profileId});
   }
 }

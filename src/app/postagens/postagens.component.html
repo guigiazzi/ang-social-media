@@ -3,6 +3,11 @@
     <h1 class="text-center">Perfil</h1>
     <div class="profile-box border border-secondary">
         <h2 class="postTitle">Dados</h2>
+        <div *ngIf="!isMyProfile">
+          <button type="submit" (click)="recomendar()" class="btn btn-primary recomendar" [disabled]="alreadyRecommended">
+            <mat-icon class="iconTopo">thumb_up</mat-icon> Recomendar
+          </button>
+        </div>
         <hr>
         <div>
             <img src="http://agbrands.com.br/wp-content/uploads/2017/01/perfil.jpg" class="imgPerson" alt="...">
