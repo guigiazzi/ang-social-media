@@ -37,6 +37,8 @@ export class PostagensComponent implements OnInit {
     this.usuario.professionalID = this.route.snapshot.paramMap.get('id');
     if (userLoggedId === this.usuario.professionalID) {
       this.isMyProfile = true;
+    } else {
+      this.statusRecomendacao();
     }
     this.retornaDadosUsuarios(this.usuario.professionalID);
     this.listarPostagens(this.usuario.professionalID);
@@ -151,20 +153,38 @@ export class PostagensComponent implements OnInit {
   }
 
   recomendar() {
-    let myId = this.sessionService.getUserLogged();
+    const myId = this.sessionService.getUserLogged();
     this.appservice.recommend(myId, this.usuario.professionalID)
-    .subscribe(res=>{
+    .subscribe(res => {
       this.snackbar.open('Recomendação feita com sucesso!', 'Dismiss', {
         duration: 4000,
         panelClass: ['success-snackbar']
       });
       this.alreadyRecommended = true;
-    },err =>{
-      console.log(err)
+    }, err => {
+      console.log(err);
       this.snackbar.open(`${err.error}`, 'Dismiss', {
         duration: 4000,
         panelClass: ['error-snackbar']
       });
-    })
+    });
+  }
+
+  statusRecomendacao() {
+    const myId = this.sessionService.getUserLogged();
+    this.appservice.statusRecommendation(myId, this.usuario.professionalID)
+    .subscribe(status => {
+      if (status === 0) {
+        this.alreadyRecommended = false;
+      } else {
+        this.alreadyRecommended = true;
+      }
+    }, err => {
+      console.log(err);
+      this.snackbar.open(`Erro ao buscar a recomendação`, 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
+      });
+    });
   }
 }

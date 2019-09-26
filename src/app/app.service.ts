@@ -73,4 +73,9 @@ export class AppService {
     const url = `${environment.dssmApiUrl}/recommend`;
     return this.http.post(url, {professionalID1: myId, professionalID2: profileId});
   }
+
+  statusRecommendation(myId: string, profileId: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/getStatusRecommendation`;
+    return this.http.post(url, [{professionalID1: myId}, {professionalID2: profileId}]);
+  }
 }
