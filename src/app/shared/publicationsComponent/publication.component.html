@@ -10,7 +10,9 @@
             {{publication.text}}
           </p>
           <div *ngIf="publication.thumbnailUrl">
-            <img [src]="publication.thumbnailUrl">
+            <a [href]="publication.videoUrl">
+              <img [src]="publication.thumbnailUrl">
+            </a>
           </div>
           <div class="d-flex justify-content-end">
             <p>
