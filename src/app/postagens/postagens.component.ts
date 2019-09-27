@@ -52,7 +52,7 @@ export class PostagensComponent implements OnInit {
     this.publication.author = this.usuario.name;
     this.publication.professionalID = this.usuario.professionalID;
     if(this.publication.videoUrl){
-      this.publication.thumbnailUrl = this.getThumbnailImage(this.publication.thumbnailUrl)
+      this.publication.thumbnailUrl = this.getThumbnailImage(this.publication.videoUrl)
     }
     this.appservice.cadastrarPublication(this.publication)
       .subscribe(res => {
