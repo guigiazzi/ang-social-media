@@ -5,12 +5,12 @@
         <h2 class="postTitle">Dados</h2>
         <div *ngIf="!isMyProfile && !alreadyRecommended">
           <button type="submit" (click)="recomendar()" class="btn btn-primary recomendar">
-            <mat-icon class="iconTopo">thumb_up</mat-icon> Recomendar
+            <mat-icon>thumb_up</mat-icon> Recomendar
           </button>
         </div>
         <div *ngIf="!isMyProfile && alreadyRecommended">
             <button type="submit" (click)="recomendar()" class="btn btn-primary recomendar">
-              <mat-icon class="iconTopo">thumb_down</mat-icon> Retirar recomendação
+              <mat-icon>thumb_down</mat-icon> Retirar recomendação
             </button>
           </div>
         <hr>
@@ -32,7 +32,7 @@
             </div>
             <div *ngIf="isMyProfile">
                 <button type="submit" class="btn btn-primary" routerLink="/atualizarperfil">
-                <mat-icon class="iconTopo">person</mat-icon>
+                <mat-icon>person</mat-icon>
                 Atualizar Perfil</button>
             </div>
         </div>
@@ -53,12 +53,12 @@
         <h1 class="text-center">Postagens</h1>
         <div *ngIf="isMyProfile">
           <form #ngForm="ngForm" (ngSubmit)="onSubmit()">
-            <input type="text" class="form-control" id="text" #text="ngModel" name="text" [(ngModel)]="publication.text" placeholder="Digite aqui o que deseja postar!">
-            <div class="form-group mr-2">
-              <label for="videoUrl">Adiciona a Url do vídeo aqui (opcional):</label>
-              <input type="text" class="form-control" id="videoUrl" #videoUrl="ngModel" name="videoUrl" [(ngModel)]="publication.videoUrl" placeholder="Inserir a Url inteira - https://youtube.com.br/ex/2jiwij3">
+            <input type="text" class="form-control postagem" id="text" #text="ngModel" name="text" [(ngModel)]="publication.text" placeholder="Digite aqui o que deseja postar!">
+            <div class="form-group mr-2 form-inline">
+              <label for="videoUrl" class="mr-2">Adicione a Url do vídeo aqui (opcional):</label>
+              <input type="text" class="form-control video" id="videoUrl" #videoUrl="ngModel" name="videoUrl" [(ngModel)]="publication.videoUrl" placeholder="Inserir a Url inteira - https://youtube.com.br/ex/2jiwij3">
+              <button type="submit" class="btn btn-primary button-postar" mat-button>Postar</button>
             </div>
-            <button type="submit" class="btn btn-primary button-postar" mat-button>Postar</button>
           </form>
           <div *ngIf="showSpinner" class="d-flex justify-content-center loading">
             <mat-spinner></mat-spinner>

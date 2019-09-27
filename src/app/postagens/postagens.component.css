@@ -1,17 +1,21 @@
 .postagens{
     padding-top: 2%;
-    margin-bottom: 6%;
 }
 
-input{
+.button-postar {
+  margin-left: 17.5%;
+}
+
+.postagem{
     margin-top: 1%;
+    margin-bottom: 1%;
+    padding-top: 2%;
     padding-bottom: 5%;
     width: 100%;
 }
 
-.button-postar{
-    margin-top: 1%;
-    float: right;
+.video {
+  width: 50%;
 }
 
 .loading {
@@ -43,10 +47,6 @@ input{
 
 .topicos{
   padding: 2%;
-}
-.iconTopo {
-  position: relative;
-  top: 4px;
 }
 
 .recomendar {

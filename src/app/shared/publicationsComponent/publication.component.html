@@ -18,7 +18,7 @@
             <p>
               {{publication.publicationDate}}
             </p>
-            <div *ngIf="isMyProfile">
+            <div *ngIf="isMyProfile" class="iconDelete">
               <a (click)="deletePublication()" class="delete">
                   <mat-icon>delete</mat-icon>
               </a>
