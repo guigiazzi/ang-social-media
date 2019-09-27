@@ -9,6 +9,9 @@
           <p>
             {{publication.text}}
           </p>
+          <div *ngIf="publication.thumbnailUrl">
+            <img [src]="publication.thumbnailUrl">
+          </div>
           <div class="d-flex justify-content-end">
             <p>
               {{publication.publicationDate}}

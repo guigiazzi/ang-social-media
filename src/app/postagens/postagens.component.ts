@@ -7,6 +7,7 @@ import { FormatDateService } from './../shared/formatDateService/format-date.ser
 import { SessionService } from './../shared/sessionService/session.service';
 import { Professional } from '../interfaces/professional';
 import { OpenModalService } from './../shared/modal-dialog/open-modal-service.service';
+import { ExternalService } from 'src/config/externalServices.service';
 
 @Component({
   selector: 'app-postagens',
@@ -29,7 +30,8 @@ export class PostagensComponent implements OnInit {
     private route: ActivatedRoute,
     private formatDateService: FormatDateService,
     private sessionService: SessionService,
-    private openModalService: OpenModalService
+    private openModalService: OpenModalService,
+    private externalService: ExternalService
     ) { }
 
   ngOnInit() {
@@ -47,9 +49,11 @@ export class PostagensComponent implements OnInit {
 
   onSubmit() {
     this.showSpinner = true;
-    console.log(this.publication)
     this.publication.author = this.usuario.name;
     this.publication.professionalID = this.usuario.professionalID;
+    if(this.publication.videoUrl){
+      this.publication.thumbnailUrl = this.getThumbnailImage(this.publication.thumbnailUrl)
+    }
     this.appservice.cadastrarPublication(this.publication)
       .subscribe(res => {
         console.log(res);
@@ -69,6 +73,10 @@ export class PostagensComponent implements OnInit {
         this.showSpinner = false;
       });
     this.publication.text = '';
+  }
+
+  getThumbnailImage(videoUrl: string){
+    return this.externalService.getYoutubeTumbnail(`${videoUrl}`);
   }
 
   listarPostagens(userId: string) {
@@ -187,4 +195,5 @@ export class PostagensComponent implements OnInit {
       });
     });
   }
+
 }

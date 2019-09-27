@@ -4,4 +4,6 @@ export interface Publication {
     author: string;
     publicationDate: string;
     publicationID: string
+    thumbnailUrl: string;
+    videoUrl: string;
 }
