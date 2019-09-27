@@ -196,4 +196,22 @@ export class PostagensComponent implements OnInit {
     });
   }
 
+  deletarRecomendacao() {
+    const myId = this.sessionService.getUserLogged();
+    this.appservice.deleteRecommendation(myId, this.usuario.professionalID)
+    .subscribe(res => {
+      this.snackbar.open(`Recomendação deletada!`, 'Dismiss', {
+        duration: 4000,
+        panelClass: ['success-snackbar']
+      });
+      this.alreadyRecommended = false;
+    }, err => {
+      console.log(err);
+      this.snackbar.open(`Erro ao deletar recomendação!`, 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
+      });
+    });
+  }
+
 }
