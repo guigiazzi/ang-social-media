@@ -19,7 +19,6 @@ export class HeaderToolbarComponent {
 
   logout(){
     this.sessionService.logoutUser();
-    console.log(this.sessionService);
   }
 
   searchPosts(searchValue) {

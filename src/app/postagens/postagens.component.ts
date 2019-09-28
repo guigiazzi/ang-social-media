@@ -22,7 +22,8 @@ export class PostagensComponent implements OnInit {
   public userPublications: Publication[] = [];
   public usuario: Professional = {} as Professional;
   public topics = [];
-  public alreadyRecommended = false;
+  public alreadyRecommended;
+  public recommendationLength;
 
   constructor(
     private appservice: AppService,
@@ -41,6 +42,7 @@ export class PostagensComponent implements OnInit {
       this.isMyProfile = true;
     } else {
       this.statusRecomendacao();
+      this.getRecomendacoes();
     }
     this.retornaDadosUsuarios(this.usuario.professionalID);
     this.listarPostagens(this.usuario.professionalID);
@@ -56,7 +58,6 @@ export class PostagensComponent implements OnInit {
     }
     this.appservice.cadastrarPublication(this.publication)
       .subscribe(res => {
-        console.log(res);
         this.snackbar.open('Publicação feita com sucesso!', 'Dismiss', {
           duration: 4000,
           panelClass: ['success-snackbar']
@@ -86,7 +87,6 @@ export class PostagensComponent implements OnInit {
         publication.publicationDate = this.formatDateService.formatDate(publication.publicationDate);
         this.userPublications.push(publication);
       });
-      console.log(this.userPublications.length);
     }, err => {
       this.snackbar.open('Ocorreu um erro ao listar as publicações!', 'Dismiss', {
         duration: 4000,
@@ -134,7 +134,7 @@ export class PostagensComponent implements OnInit {
           });
         this.publication.text = '';
       }else{
-        console.log('ta funfando')
+        console.log('Publicação não excluida');
       }
     })
   }
@@ -208,6 +208,21 @@ export class PostagensComponent implements OnInit {
     }, err => {
       console.log(err);
       this.snackbar.open(`Erro ao deletar recomendação!`, 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
+      });
+    });
+  }
+
+  getRecomendacoes() {
+    this.appservice.getProfessionalsWhoRecommended(this.usuario.professionalID)
+    .subscribe(res => {
+      console.log(res)
+      this.recommendationLength = res.length;
+      console.log(this.recommendationLength)
+    }, err => {
+      console.log(err);
+      this.snackbar.open(`Erro buscar número de recomendações!`, 'Dismiss', {
         duration: 4000,
         panelClass: ['error-snackbar']
       });

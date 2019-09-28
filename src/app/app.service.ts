@@ -83,4 +83,9 @@ export class AppService {
     const url = `${environment.dssmApiUrl}/deleteRecommendation`;
     return this.http.post(url, [{professionalID: myId}, {professionalID: profileId}]);
   }
+
+  getProfessionalsWhoRecommended(professionalID: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/getProfessionalsWhoRecommended/${professionalID}`;
+    return this.http.get(url);
+  }
 }

@@ -28,7 +28,6 @@ export class FormCadastroComponent {
 
   onSubmit() {
     this.professional.jobRole = this.jobRole;
-    console.log(this.professional);
     this.outProfessional.emit(this.professional);
   }
 
