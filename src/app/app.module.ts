@@ -24,11 +24,13 @@ import { HeaderToolbarComponent } from './shared/header-toolbar/header-toolbar.c
 import { AtualizarPerfilComponent } from './atualizar-perfil/atualizar-perfil.component';
 import { InterestTopicsComponent } from './shared/interest-topics/interest-topics.component';
 import { ModalDialogComponent } from './shared/modal-dialog/modal-dialog.component';
+import { ModalPeopleComponent } from './shared/modal-people/modal-people.component';
 
 // Services
 import { FormatDateService } from './shared/formatDateService/format-date.service';
 import { SessionService } from './shared/sessionService/session.service';
 import { OpenModalService } from './shared/modal-dialog/open-modal-service.service';
+import { OpenModalPeopleService } from './shared/modal-people/open-modal-people-service.service';
 import { ExternalService } from './../config/externalServices.service';
 
 @NgModule({
@@ -41,7 +43,8 @@ import { ExternalService } from './../config/externalServices.service';
     HeaderToolbarComponent,
     AtualizarPerfilComponent,
     InterestTopicsComponent,
-    ModalDialogComponent
+    ModalDialogComponent,
+    ModalPeopleComponent
   ],
   imports: [
     BrowserModule,
@@ -63,10 +66,11 @@ import { ExternalService } from './../config/externalServices.service';
     FormatDateService,
     SessionService,
     OpenModalService,
-    ExternalService
+    ExternalService,
+    OpenModalPeopleService
   ],
   bootstrap: [AppComponent],
-  entryComponents:[ModalDialogComponent]
+  entryComponents:[ModalDialogComponent, ModalPeopleComponent]
 })
 
 export class AppModule { }

@@ -1,0 +1,28 @@
+.imgClose {
+    width: 55%;
+}
+
+.modalTitle {
+    position: relative;
+    bottom: 4px;
+}
+
+.header {
+    margin-bottom: -5%;
+}
+
+.example-header-image {
+    background-image: url('http://agbrands.com.br/wp-content/uploads/2017/01/perfil.jpg');
+    background-size: cover;
+    width: 10%;
+}
+
+.userName {
+    margin-left: 15%;
+    position: relative;
+    bottom: 35px;
+}
+
+.hrUser{
+    margin-top: -1%;
+}

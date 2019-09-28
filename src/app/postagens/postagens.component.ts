@@ -7,6 +7,7 @@ import { FormatDateService } from './../shared/formatDateService/format-date.ser
 import { SessionService } from './../shared/sessionService/session.service';
 import { Professional } from '../interfaces/professional';
 import { OpenModalService } from './../shared/modal-dialog/open-modal-service.service';
+import { OpenModalPeopleService } from './../shared/modal-people/open-modal-people-service.service';
 import { ExternalService } from 'src/config/externalServices.service';
 
 @Component({
@@ -22,8 +23,9 @@ export class PostagensComponent implements OnInit {
   public userPublications: Publication[] = [];
   public usuario: Professional = {} as Professional;
   public topics = [];
-  public alreadyRecommended;
-  public recommendationLength;
+  public alreadyRecommended: boolean;
+  public recommendationLength: number;
+  public recommendationList: Professional[] = [];
 
   constructor(
     private appservice: AppService,
@@ -32,6 +34,7 @@ export class PostagensComponent implements OnInit {
     private formatDateService: FormatDateService,
     private sessionService: SessionService,
     private openModalService: OpenModalService,
+    private openModalPeopleService: OpenModalPeopleService,
     private externalService: ExternalService
     ) { }
 
@@ -169,6 +172,7 @@ export class PostagensComponent implements OnInit {
         panelClass: ['success-snackbar']
       });
       this.alreadyRecommended = true;
+      this.getRecomendacoes()
     }, err => {
       console.log(err);
       this.snackbar.open(`${err.error}`, 'Dismiss', {
@@ -205,6 +209,7 @@ export class PostagensComponent implements OnInit {
         panelClass: ['success-snackbar']
       });
       this.alreadyRecommended = false;
+      this.getRecomendacoes();
     }, err => {
       console.log(err);
       this.snackbar.open(`Erro ao deletar recomendação!`, 'Dismiss', {
@@ -217,15 +222,22 @@ export class PostagensComponent implements OnInit {
   getRecomendacoes() {
     this.appservice.getProfessionalsWhoRecommended(this.usuario.professionalID)
     .subscribe(res => {
-      console.log(res)
       this.recommendationLength = res.length;
-      console.log(this.recommendationLength)
+      this.recommendationList = res;
     }, err => {
       console.log(err);
       this.snackbar.open(`Erro buscar número de recomendações!`, 'Dismiss', {
         duration: 4000,
         panelClass: ['error-snackbar']
       });
+    });
+  }
+
+  recomendacoesPessoas() {
+    const data = {title: 'Recomendações', users: this.recommendationList}
+    this.openModalPeopleService.openDialog(data)
+    .subscribe(res=>{
+      console.log('Modal de recomendacoes fechado');
     });
   }
 

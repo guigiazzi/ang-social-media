@@ -14,7 +14,7 @@
           </button>
         </div>
         <div *ngIf="!isMyProfile">
-          <button class="btn btn-primary recomendacoes">{{ recommendationLength }}</button>
+          <button class="btn btn-primary recomendacoes" (click)="recomendacoesPessoas()">{{ recommendationLength }}</button>
         </div>
         <hr>
         <div>
