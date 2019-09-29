@@ -100,7 +100,7 @@ export class AppService {
   }
 
   getNumbersOfLikePublication(publicationID: string): Observable<any> {
-    const url = `${environment.dssmApiUrl}/getNumberReactionsOfPublication/${publicationID}`;
+    const url = `${environment.dssmApiUrl}/getProfessionalsWhoRecommendedPublication/${publicationID}`;
     return this.http.get(url);
   }
 }

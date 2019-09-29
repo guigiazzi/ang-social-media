@@ -23,14 +23,12 @@ export class PublicationComponent implements OnInit{
   constructor(private snackbar: MatSnackBar, private appservice: AppService, private openModalPeopleService: OpenModalPeopleService) {}
 
   ngOnInit() {
-    // this.getLikes();
+    this.getLikes();
 
     //PARA TESTE
     // this.publication.videoUrl = "https://www.youtube.com/watch?v=zdYklPPFAZo";
     // this.publication.videoTitle = 'Zelda: Links Awakening'
     // this.publication.thumbnailUrl = 'https://img.youtube.com/vi/zdYklPPFAZo/hqdefault.jpg';
-    this.likeLength = 1;
-    this.likeList = [{professionalID:'asidsasiaisa', name:'aaaaa'}]
   }
 
   deletePublication() {
