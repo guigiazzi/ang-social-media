@@ -45,8 +45,8 @@ export class PostagensComponent implements OnInit {
       this.isMyProfile = true;
     } else {
       this.statusRecomendacao();
-      this.getRecomendacoes();
     }
+    this.getRecomendacoes();
     this.retornaDadosUsuarios(this.usuario.professionalID);
     this.listarPostagens(this.usuario.professionalID);
     this.getProfessionalTopics(this.usuario.professionalID);
