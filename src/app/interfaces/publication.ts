@@ -6,4 +6,5 @@ export interface Publication {
     publicationID: string
     thumbnailUrl: string;
     videoUrl: string;
+    videoTitle: string;
 }

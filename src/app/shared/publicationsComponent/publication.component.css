@@ -15,3 +15,7 @@
   position: relative;
   bottom: 7px;
 }
+
+.thumbnail {
+  max-width: 30%;
+}

@@ -9,10 +9,14 @@
           <p>
             {{publication.text}}
           </p>
+          <hr>
           <div *ngIf="publication.thumbnailUrl">
-            <a [href]="publication.videoUrl">
-              <img [src]="publication.thumbnailUrl">
-            </a>
+            <div class="d-flex justify-content-center">
+              <a [href]="publication.videoUrl" target="_blank" class="thumbnail">
+                <img [src]="publication.thumbnailUrl" class="w-100">
+              </a>
+            </div>
+            <p style="color: black;" class="d-flex justify-content-center"><b>{{publication.videoTitle}}</b></p>
           </div>
           <div class="d-flex justify-content-end">
             <p>
