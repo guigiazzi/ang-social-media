@@ -77,6 +77,7 @@ export class PostagensComponent implements OnInit {
         this.showSpinner = false;
       });
     this.publication.text = '';
+    this.publication.videoUrl = "";
   }
 
   getThumbnailImage(videoUrl: string){
