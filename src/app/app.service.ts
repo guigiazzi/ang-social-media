@@ -88,4 +88,9 @@ export class AppService {
     const url = `${environment.dssmApiUrl}/getProfessionalsWhoRecommended/${professionalID}`;
     return this.http.get(url);
   }
+
+  likePublication(professionalId: string, publicationId: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/reactToPublication`;
+    return this.http.post(url, {professionalID: professionalId, publicationID: publicationId});
+  }
 }

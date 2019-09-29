@@ -26,6 +26,7 @@ export class PostagensComponent implements OnInit {
   public alreadyRecommended: boolean;
   public recommendationLength: number;
   public recommendationList: Professional[] = [];
+  public userLoggedId: string;
 
   constructor(
     private appservice: AppService,
@@ -39,9 +40,9 @@ export class PostagensComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    const userLoggedId = this.sessionService.getUserLogged();
+    this.userLoggedId = this.sessionService.getUserLogged();
     this.usuario.professionalID = this.route.snapshot.paramMap.get('id');
-    if (userLoggedId === this.usuario.professionalID) {
+    if (this.userLoggedId === this.usuario.professionalID) {
       this.isMyProfile = true;
     } else {
       this.statusRecomendacao();
