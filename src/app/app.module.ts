@@ -31,7 +31,6 @@ import { FormatDateService } from './shared/formatDateService/format-date.servic
 import { SessionService } from './shared/sessionService/session.service';
 import { OpenModalService } from './shared/modal-dialog/open-modal-service.service';
 import { OpenModalPeopleService } from './shared/modal-people/open-modal-people-service.service';
-import { ExternalService } from './../config/externalServices.service';
 
 @NgModule({
   declarations: [
@@ -66,7 +65,6 @@ import { ExternalService } from './../config/externalServices.service';
     FormatDateService,
     SessionService,
     OpenModalService,
-    ExternalService,
     OpenModalPeopleService
   ],
   bootstrap: [AppComponent],

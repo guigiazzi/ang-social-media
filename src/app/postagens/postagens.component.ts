@@ -8,7 +8,6 @@ import { SessionService } from './../shared/sessionService/session.service';
 import { Professional } from '../interfaces/professional';
 import { OpenModalService } from './../shared/modal-dialog/open-modal-service.service';
 import { OpenModalPeopleService } from './../shared/modal-people/open-modal-people-service.service';
-import { ExternalService } from 'src/config/externalServices.service';
 
 @Component({
   selector: 'app-postagens',
@@ -35,8 +34,7 @@ export class PostagensComponent implements OnInit {
     private formatDateService: FormatDateService,
     private sessionService: SessionService,
     private openModalService: OpenModalService,
-    private openModalPeopleService: OpenModalPeopleService,
-    private externalService: ExternalService
+    private openModalPeopleService: OpenModalPeopleService
     ) { }
 
   ngOnInit() {
@@ -58,7 +56,7 @@ export class PostagensComponent implements OnInit {
     this.publication.author = this.usuario.name;
     this.publication.professionalID = this.usuario.professionalID;
     if(this.publication.videoUrl){
-      this.publication.thumbnailUrl = this.getThumbnailImage(this.publication.videoUrl)
+      // this.publication.thumbnailUrl = this.getThumbnailImage(this.publication.videoUrl)
     }
     this.appservice.cadastrarPublication(this.publication)
       .subscribe(res => {
@@ -79,10 +77,6 @@ export class PostagensComponent implements OnInit {
       });
     this.publication.text = '';
     this.publication.videoUrl = "";
-  }
-
-  getThumbnailImage(videoUrl: string){
-    return this.externalService.getYoutubeTumbnail(`${videoUrl}`);
   }
 
   listarPostagens(userId: string) {
