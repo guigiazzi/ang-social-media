@@ -19,17 +19,18 @@ export class HeaderToolbarComponent {
 
   logout(){
     this.sessionService.logoutUser();
-    console.log(this.sessionService);
   }
 
   searchPosts(searchValue) {
     this.searchUsers = [];
-    this.appservice.searchbar({name: searchValue})
-    .subscribe(res => {
-      res.forEach(pessoa => {
-        this.searchUsers.push(pessoa);
+    if(searchValue.length % 2 == 0){
+      this.appservice.searchbar({name: searchValue})
+      .subscribe(res => {
+        res.forEach(pessoa => {
+          this.searchUsers.push(pessoa);
+        });
       });
-    });
+    }
   }
 
   goToHome(){

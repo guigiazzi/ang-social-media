@@ -36,7 +36,6 @@ export class InterestTopicsComponent implements OnInit {
   }
 
   addTopic(topic: interestTopic) {
-    console.log(topic.interestTopicID);
     let ut:UserTopics = {professionalID: this.professionalId, interestTopicID: topic.interestTopicID}
     this.userTopic.push(ut);
     this.showedTopic.splice(this.showedTopic.indexOf(topic),1);
@@ -59,7 +58,6 @@ export class InterestTopicsComponent implements OnInit {
         }
       )
     }
-    console.log(this.userTopic);
   }
 
 }

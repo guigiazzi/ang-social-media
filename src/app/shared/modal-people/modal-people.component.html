@@ -1,0 +1,19 @@
+<div class="d-flex justify-content-between header">
+  <a mat-button (click)="onNoClick()">
+    <img src="./../../../assets/images/delete.png" class="imgClose">
+  </a>
+  <h1 mat-dialog-title class="modalTitle">{{ title }}</h1>
+  <div></div>
+</div>
+<hr>
+<div mat-dialog-content *ngFor="let user of users" class="align-self-start">
+  <div mat-card-avatar class="example-header-image"></div>
+  <a class="userName" (click)="goTo(user.professionalID)">
+    <b>{{ user.name }}</b>
+  </a>
+  <hr class="hrUser">
+</div>
+<div mat-dialog-content *ngIf="users.length === 0" class="text-center">
+  <p>Ninguém recomendou esse usuário!</p>
+</div>
+

@@ -6,6 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { FormatDateService } from './../shared/formatDateService/format-date.service';
 import { SessionService } from './../shared/sessionService/session.service';
 import { Professional } from '../interfaces/professional';
+import { OpenModalService } from './../shared/modal-dialog/open-modal-service.service';
+import { OpenModalPeopleService } from './../shared/modal-people/open-modal-people-service.service';
 
 @Component({
   selector: 'app-postagens',
@@ -18,24 +20,32 @@ export class PostagensComponent implements OnInit {
   public isMyProfile = false;
   public showSpinner = false;
   public userPublications: Publication[] = [];
-  public numPublications: number;
   public usuario: Professional = {} as Professional;
   public topics = [];
+  public alreadyRecommended: boolean;
+  public recommendationLength: number;
+  public recommendationList: Professional[] = [];
+  public userLoggedId: string;
 
   constructor(
     private appservice: AppService,
     private snackbar: MatSnackBar,
     private route: ActivatedRoute,
     private formatDateService: FormatDateService,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private openModalService: OpenModalService,
+    private openModalPeopleService: OpenModalPeopleService
     ) { }
 
   ngOnInit() {
-    const userLoggedId = this.sessionService.getUserLogged();
+    this.userLoggedId = this.sessionService.getUserLogged();
     this.usuario.professionalID = this.route.snapshot.paramMap.get('id');
-    if (userLoggedId === this.usuario.professionalID) {
+    if (this.userLoggedId === this.usuario.professionalID) {
       this.isMyProfile = true;
+    } else {
+      this.statusRecomendacao();
     }
+    this.getRecomendacoes();
     this.retornaDadosUsuarios(this.usuario.professionalID);
     this.listarPostagens(this.usuario.professionalID);
     this.getProfessionalTopics(this.usuario.professionalID);
@@ -43,12 +53,13 @@ export class PostagensComponent implements OnInit {
 
   onSubmit() {
     this.showSpinner = true;
-    console.log(this.publication)
     this.publication.author = this.usuario.name;
     this.publication.professionalID = this.usuario.professionalID;
+    if(this.publication.videoUrl){
+      // this.publication.thumbnailUrl = this.getThumbnailImage(this.publication.videoUrl)
+    }
     this.appservice.cadastrarPublication(this.publication)
       .subscribe(res => {
-        console.log(res);
         this.snackbar.open('Publicação feita com sucesso!', 'Dismiss', {
           duration: 4000,
           panelClass: ['success-snackbar']
@@ -65,6 +76,7 @@ export class PostagensComponent implements OnInit {
         this.showSpinner = false;
       });
     this.publication.text = '';
+    this.publication.videoUrl = "";
   }
 
   listarPostagens(userId: string) {
@@ -74,14 +86,11 @@ export class PostagensComponent implements OnInit {
         publication.publicationDate = this.formatDateService.formatDate(publication.publicationDate);
         this.userPublications.push(publication);
       });
-      this.numPublications = this.userPublications.length;
-      console.log(this.userPublications.length);
     }, err => {
       this.snackbar.open('Ocorreu um erro ao listar as publicações!', 'Dismiss', {
         duration: 4000,
         panelClass: ['error-snackbar']
       });
-      this.numPublications = this.userPublications.length;
       console.log(err);
     });
   }
@@ -100,21 +109,33 @@ export class PostagensComponent implements OnInit {
   }
 
   deletePublication(publicationId: string) {
-    this.appservice.deletaPublication(publicationId)
-    .subscribe(res=>{
-        this.snackbar.open('Publicação deletada com sucesso!', 'Dismiss', {
-          duration: 4000,
-          panelClass: ['success-snackbar']
-        });
-        this.deleteFromPubList(publicationId);
-      }, err => {
-        console.log(err);
-        this.snackbar.open('Ocorreu um erro ao deletar a publicação!', 'Dismiss', {
-          duration: 4000,
-          panelClass: ['error-snackbar']
-        });
-      });
-    this.publication.text = '';
+    const data = {
+      text: 'Tem certeza que deseja deletar a postagem?',
+      title: 'Deletar Postagem',
+      buttonYes: 'Deletar',
+      buttonNo: 'Cancelar'
+    }
+    this.openModalService.openDialog(data).subscribe(res=>{
+      if(res){
+        this.appservice.deletaPublication(publicationId)
+        .subscribe(res=>{
+            this.snackbar.open('Publicação deletada com sucesso!', 'Dismiss', {
+              duration: 4000,
+              panelClass: ['success-snackbar']
+            });
+            this.deleteFromPubList(publicationId);
+          }, err => {
+            console.log(err);
+            this.snackbar.open('Ocorreu um erro ao deletar a publicação!', 'Dismiss', {
+              duration: 4000,
+              panelClass: ['error-snackbar']
+            });
+          });
+        this.publication.text = '';
+      }else{
+        console.log('Publicação não excluida');
+      }
+    })
   }
 
   deleteFromPubList(publicationId: string){
@@ -137,4 +158,83 @@ export class PostagensComponent implements OnInit {
       });
     });
   }
+
+  recomendar() {
+    const myId = this.sessionService.getUserLogged();
+    this.appservice.recommend(myId, this.usuario.professionalID)
+    .subscribe(res => {
+      this.snackbar.open('Recomendação feita com sucesso!', 'Dismiss', {
+        duration: 4000,
+        panelClass: ['success-snackbar']
+      });
+      this.alreadyRecommended = true;
+      this.getRecomendacoes()
+    }, err => {
+      console.log(err);
+      this.snackbar.open(`${err.error}`, 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
+      });
+    });
+  }
+
+  statusRecomendacao() {
+    const myId = this.sessionService.getUserLogged();
+    this.appservice.statusRecommendation(myId, this.usuario.professionalID)
+    .subscribe(status => {
+      if (status === 0) {
+        this.alreadyRecommended = false;
+      } else {
+        this.alreadyRecommended = true;
+      }
+    }, err => {
+      console.log(err);
+      this.snackbar.open(`Erro ao buscar a recomendação`, 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
+      });
+    });
+  }
+
+  deletarRecomendacao() {
+    const myId = this.sessionService.getUserLogged();
+    this.appservice.deleteRecommendation(myId, this.usuario.professionalID)
+    .subscribe(res => {
+      this.snackbar.open(`Recomendação deletada!`, 'Dismiss', {
+        duration: 4000,
+        panelClass: ['success-snackbar']
+      });
+      this.alreadyRecommended = false;
+      this.getRecomendacoes();
+    }, err => {
+      console.log(err);
+      this.snackbar.open(`Erro ao deletar recomendação!`, 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
+      });
+    });
+  }
+
+  getRecomendacoes() {
+    this.appservice.getProfessionalsWhoRecommended(this.usuario.professionalID)
+    .subscribe(res => {
+      this.recommendationLength = res.length;
+      this.recommendationList = res;
+    }, err => {
+      console.log(err);
+      this.snackbar.open(`Erro buscar número de recomendações!`, 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
+      });
+    });
+  }
+
+  recomendacoesPessoas() {
+    const data = {title: 'Recomendações', users: this.recommendationList}
+    this.openModalPeopleService.openDialog(data)
+    .subscribe(res=>{
+      console.log('Modal de recomendacoes fechado');
+    });
+  }
+
 }

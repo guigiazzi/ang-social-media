@@ -7,6 +7,17 @@
   background-size: cover;
 }
 
-.delete {
-  margin-left: 1%;
+.iconDelete {
+  position: relative;
+  bottom: 7px;
+}
+
+.thumbnail {
+  max-width: 30%;
+}
+
+.dateDelete {
+  margin-left: 84%;
+  position: relative;
+  top: 5px;
 }
