@@ -4,6 +4,7 @@ import { AppService } from './../../app.service';
 import { MatSnackBar } from '@angular/material';
 import { Professional } from 'src/app/interfaces/professional';
 import { OpenModalPeopleService } from './../modal-people/open-modal-people-service.service';
+import { SessionService } from '../sessionService/session.service';
 
 @Component({
   selector: 'app-card-publication',
@@ -19,11 +20,16 @@ export class PublicationComponent implements OnInit{
   public alreadyLikePost: boolean = false;
   public likeLength: number;
   public likeList = [];
+  public userLogged: Professional;
 
-  constructor(private snackbar: MatSnackBar, private appservice: AppService, private openModalPeopleService: OpenModalPeopleService) {}
+  constructor(private snackbar: MatSnackBar, private appservice: AppService, private openModalPeopleService: OpenModalPeopleService, private sessionService: SessionService) {}
 
   ngOnInit() {
     this.getLikes();
+    this.appservice.retornarDadosUsuario(this.sessionService.getUserLogged())
+    .subscribe(res =>{
+      this.userLogged = res;
+    })
 
     //PARA TESTE
     // this.publication.videoUrl = "https://www.youtube.com/watch?v=zdYklPPFAZo";
@@ -44,6 +50,8 @@ export class PublicationComponent implements OnInit{
         panelClass: ['success-snackbar']
       });
       this.alreadyLikePost = true;
+      this.likeList.push(this.userLogged);
+      this.likeLength += 1;
     },err =>{
       console.log(err)
       this.snackbar.open(`${err.error}`, 'Dismiss', {
