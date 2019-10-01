@@ -93,4 +93,14 @@ export class AppService {
     const url = `${environment.dssmApiUrl}/reactToPublication`;
     return this.http.post(url, {professionalID: professionalId, publicationID: publicationId});
   }
+
+  dislikePublication(professionalId: string, publicationId: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/unreactToPublication`;
+    return this.http.post(url, {professionalID: professionalId, publicationID: publicationId});
+  }
+
+  getNumbersOfLikePublication(publicationID: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/getProfessionalsWhoRecommendedPublication/${publicationID}`;
+    return this.http.get(url);
+  }
 }
