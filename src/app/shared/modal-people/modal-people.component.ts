@@ -11,6 +11,7 @@ export class ModalPeopleComponent {
   public title: string;
   public users: string;
   public buttonNo: string;
+  public noneText: string;
 
   constructor(
     public dialogRef: MatDialogRef<ModalPeopleComponent>,
@@ -21,6 +22,7 @@ export class ModalPeopleComponent {
   ngOnInit() {
     this.title = this.data.title;
     this.users = this.data.users;
+    this.noneText = this.data.noneText;
   }
 
   onNoClick(): void {

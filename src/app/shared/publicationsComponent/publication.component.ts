@@ -29,7 +29,8 @@ export class PublicationComponent implements OnInit{
     this.appservice.retornarDadosUsuario(this.sessionService.getUserLogged())
     .subscribe(res =>{
       this.userLogged = res;
-    })
+    });
+    this.statusCurtida();
 
     //PARA TESTE
     // this.publication.videoUrl = "https://www.youtube.com/watch?v=zdYklPPFAZo";
@@ -93,10 +94,23 @@ export class PublicationComponent implements OnInit{
   }
 
   likesPessoas() {
-    const data = {title: 'Curtidas', users: this.likeList}
+    const data = {title: 'Curtidas',noneText: 'Ainda não há nenhuma curtida!', users: this.likeList}
     this.openModalPeopleService.openDialog(data)
     .subscribe(res=>{
       console.log('Modal de recomendacoes fechado');
+    });
+  }
+
+  statusCurtida() {
+    this.appservice.getStatusPublication(this.professionalLike, this.publication.publicationID)
+    .subscribe(res => {
+      if(res === 1){
+        this.alreadyLikePost = true;
+      } else {
+        this.alreadyLikePost = false;
+      }
+    }, err => {
+      console.log(err);
     });
   }
 }
