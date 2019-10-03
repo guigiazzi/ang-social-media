@@ -43,7 +43,6 @@ export class PublicationComponent implements OnInit{
   }
 
   curtirPublication() {
-    console.log('entrou')
     this.appservice.likePublication(this.professionalLike, this.publication.publicationID)
     .subscribe(res => {
       this.snackbar.open('Publicação curtida!', 'Dismiss', {
