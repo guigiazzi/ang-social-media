@@ -103,4 +103,14 @@ export class AppService {
     const url = `${environment.dssmApiUrl}/getProfessionalsWhoRecommendedPublication/${publicationID}`;
     return this.http.get(url);
   }
+
+  getStatusPublication(professionalID: string, publicationID: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/getStatusPublication/${professionalID}/${publicationID}`;
+    return this.http.get(url);
+  }
+
+  getFeedPublications(professionalID: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/retrieveFeedPublicationsList/${professionalID}`;
+    return this.http.get(url);
+  }
 }

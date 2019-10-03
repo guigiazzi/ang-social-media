@@ -20,14 +20,14 @@
             <hr>
           </div>
           <div style="display: flex;">
-            <div class="d-flex justify-content-start likes">
+            <div class="d-flex justify-content-start">
               <button class="btn btn-primary" (click)="likesPessoas()">{{ likeLength }}</button>
               <div *ngIf="!alreadyLikePost" class="ml-1">
                 <a (click)="curtirPublication()">
                   <mat-icon>thumb_up</mat-icon>
                 </a>
               </div>
-              <div *ngIf="alreadyLikePost">
+              <div *ngIf="alreadyLikePost" class="ml-1">
                 <a (click)="descurtirPublication()">
                   <mat-icon>thumb_down</mat-icon>
                 </a>
@@ -37,7 +37,7 @@
               <p>
                 {{publication.publicationDate}}
               </p>
-              <div  class="iconDelete ml-1">
+              <div *ngIf="isMyProfile" class="iconDelete ml-1">
                 <a (click)="deletePublication()">
                     <mat-icon>delete</mat-icon>
                 </a>

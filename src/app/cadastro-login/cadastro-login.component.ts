@@ -28,7 +28,7 @@ export class CadastroLoginComponent {
       .subscribe(
         res => {
           this.sessionService.saveUserLoggedId(res.professionalID)
-          this.router.navigate(['postagens', res.professionalID])
+          this.router.navigate(['feed'])
         },error => { 
           console.log(error);
           this.snackbar.open('Usuario ou senha incorreto!', 'Dismiss' , {

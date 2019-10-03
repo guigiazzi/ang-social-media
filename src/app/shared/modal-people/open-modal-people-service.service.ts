@@ -12,9 +12,10 @@ export class OpenModalPeopleService {
     return new Observable((observer) => {
       const title = data.title;
       const users = data.users
+      const noneText = data.noneText;
       const dialogRef = this.dialog.open(ModalPeopleComponent, {
         width: '500px',
-        data: { title, users }
+        data: { title, users, noneText }
       });
 
       dialogRef.afterClosed().subscribe(result => {
