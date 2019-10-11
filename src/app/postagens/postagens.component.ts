@@ -55,9 +55,6 @@ export class PostagensComponent implements OnInit {
     this.showSpinner = true;
     this.publication.author = this.usuario.name;
     this.publication.professionalID = this.usuario.professionalID;
-    if(this.publication.videoUrl){
-      // this.publication.thumbnailUrl = this.getThumbnailImage(this.publication.videoUrl)
-    }
     this.appservice.cadastrarPublication(this.publication)
       .subscribe(res => {
         this.snackbar.open('Publicação feita com sucesso!', 'Dismiss', {

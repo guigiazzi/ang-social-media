@@ -4,6 +4,8 @@ import { AppService } from '../../app.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { JobRole } from 'src/app/interfaces/job-role';
+import { PaymentInfo } from 'src/app/interfaces/payment-info';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-form-cadastro',
@@ -19,16 +21,32 @@ export class FormCadastroComponent {
   public cardMaster = false;
   public cardVisa = false;
   public urlImage: any;
+  public professionalForm: FormGroup;
+  public submitted = false;
 
-  constructor(private snackbar: MatSnackBar) { }
-
+  constructor(private snackbar: MatSnackBar, private formBuilder: FormBuilder) {
+    this.professionalForm = this.createProfessionalFormGroup();
+   }
+  
   @Input() professional: Professional = <Professional>{};
   @Input() jobRole: JobRole = <JobRole>{};
+  @Input() paymentInfo: PaymentInfo = <PaymentInfo>{};
   @Output() outProfessional: EventEmitter<Professional> = new EventEmitter();
 
   onSubmit() {
+    this.submitted = true;
+    if(this.professionalForm.invalid){
+      return;
+    }
+    console.log(this.professionalForm.value)
+    this.professional = this.professionalForm.value;
     this.professional.jobRole = this.jobRole;
-    this.outProfessional.emit(this.professional);
+    if(this.contaPremium){
+      this.professional.profileType = "PREMIUM";
+      this.professional.paymentInfo = this.paymentInfo;
+    }
+    console.log(this.professional, 'aqaaa');
+    // this.outProfessional.emit(this.professional);
   }
 
   habilitaPagamento() {
@@ -36,14 +54,18 @@ export class FormCadastroComponent {
   }
 
   displayCard(cardNum) {
-    if (cardNum[0] === '5') {
-      this.cardMaster = true;
-    } else {
+    if(cardNum.length >= 4){
+      if (cardNum[0] === '5') {
+        this.cardMaster = true;
+      }
+      if (cardNum[0] == '4') {
+        this.cardVisa = true;
+      }
+    }
+    if(cardNum[0] != '5') {
       this.cardMaster = false;
     }
-    if (cardNum[0] == '4') {
-      this.cardVisa = true;
-    } else {
+    if(cardNum[0] != '4') {
       this.cardVisa = false;
     }
   }
@@ -75,6 +97,62 @@ export class FormCadastroComponent {
     }
   }
 
+  createProfessionalFormGroup() {
+    return new FormGroup({
+       'name': new FormControl(this.professional.name, [Validators.required]),
+       'userLogin': new FormControl(this.professional.userLogin, [Validators.required]),
+       'email': new FormControl(this.professional.email, [Validators.required, Validators.email]),
+       'password': new FormControl(this.professional.password, [Validators.required, Validators.minLength(3)]),
+        'city': new FormControl(this.professional.email, [Validators.required]),
+        'state': new FormControl(this.professional.state, [Validators.required]),
+        'birthDate': new FormControl(this.professional.birthDate, [Validators.required]),
+        'careerDate': new FormControl(this.professional.careerDate, [Validators.required]),
+        'instructionLevel': new FormControl(this.professional.instructionLevel, [Validators.required])
+        // 'jobRole': this.professionalForm.group({
+        //   'companyName': new FormControl(this.jobRole.companyName, [Validators.required]),
+        //   'salary': new FormControl(this.jobRole.salary, [Validators.required]),
+      //  'jobTitle': new FormControl(this.jobRole.jobTitle, [Validators.required]),
+        // })
+        
+    })
+  }
+
+  get name() {
+    return this.professionalForm.get('name');
+  }
+  get userLogin() {
+    return this.professionalForm.get('userLogin');
+  }
+  get email() {
+    return this.professionalForm.get('email');
+  }
+  get password() {
+    return this.professionalForm.get('password');
+  }
+  get city() {
+    return this.professionalForm.get('city');
+  }
+  get state() {
+    return this.professionalForm.get('state');
+  }
+  get birthDate() {
+    return this.professionalForm.get('birthDate');
+  }
+  get careerDate() {
+    return this.professionalForm.get('careerDate');
+  }
+  get companyName() {
+    return this.professionalForm.get('jobRole.companyName');
+  }
+  get instructionLevel() {
+    return this.professionalForm.get('instructionLevel');
+  }
+  // get salary() {
+  //   return this.professionalForm.get('salary');
+  // }
+  // get jobTitle() {
+  //   return this.professionalForm.get('jobTitle');
+  // }
 }
 
 export enum InstructionLevel {
