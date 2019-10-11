@@ -69,6 +69,11 @@ export class PublicationComponent implements OnInit{
         panelClass: ['success-snackbar']
       });
       this.alreadyLikePost = false;
+      this.appservice.getProfessionalsWhoReactedToPublication(this.publication.publicationID)
+      .subscribe(res => {
+        this.likeList = res;
+        this.likeLength = res.length;
+      });
     },err =>{
       console.log(err)
       this.snackbar.open(`${err.error}`, 'Dismiss', {
@@ -79,7 +84,7 @@ export class PublicationComponent implements OnInit{
   }
 
   getLikes() {
-    this.appservice.getNumbersOfLikePublication(this.publication.publicationID)
+    this.appservice.getProfessionalsWhoReactedToPublication(this.publication.publicationID)
     .subscribe(res => {
       this.likeLength = res.length;
       this.likeList = res;
