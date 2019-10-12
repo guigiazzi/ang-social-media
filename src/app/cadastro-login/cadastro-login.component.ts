@@ -24,13 +24,11 @@ export class CadastroLoginComponent {
   constructor(private appService: AppService, private router: Router, private snackbar: MatSnackBar,  private sessionService: SessionService) { }
 
   onSubmit() {
-    console.log('login ' + this.professional.userLogin + ' e ' + this.professional.password);
     this.appService.login(this.professional)
       .subscribe(
         res => {
           this.sessionService.saveUserLoggedId(res.professionalID)
-          console.log(res.professionalID);
-          this.router.navigate(['postagens', res.professionalID])
+          this.router.navigate(['feed'])
         },error => { 
           console.log(error);
           this.snackbar.open('Usuario ou senha incorreto!', 'Dismiss' , {

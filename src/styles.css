@@ -6,6 +6,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 a:hover{ cursor: pointer; }
 
+.mat-icon{
+  position: relative;
+  top: 4px;
+}
+
 .error-snackbar {
     color: white;
     background-color: red;

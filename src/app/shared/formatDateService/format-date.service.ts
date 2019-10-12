@@ -6,14 +6,12 @@ export class FormatDateService {
   constructor() { }
 
   formatDate(date: string) {
-    console.log(date)
     return (this.formatHour(date) + ` - ` + this.formatDatewithoutHour(date));
   }
 
   formatHour(date: string) {
     const hour = new Date(date).getHours();
     const minutes = new Date(date).getMinutes();
-    console.log(hour, minutes);
     if (hour < 10 && minutes < 10) {
       date = (`0` + `${hour}` + ':' + `0` + `${minutes}`);
     } else if (minutes < 10) {
