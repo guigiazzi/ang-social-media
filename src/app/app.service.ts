@@ -25,7 +25,7 @@ export class AppService {
   }
 
   listrarPostagens(userId: string): Observable<any> {
-    const url = `${environment.dssmApiUrl}/retrievePublicationList/${userId}`;
+    const url = `${environment.dssmApiUrl}/retrievePublicationsList/${userId}`;
     return this.http.get<Publication>(url);
   }
 
@@ -80,8 +80,8 @@ export class AppService {
   }
 
   deleteRecommendation(myId: string, profileId: string): Observable<any> {
-    const url = `${environment.dssmApiUrl}/deleteRecommendation`;
-    return this.http.post(url, [{professionalID: myId}, {professionalID: profileId}]);
+    const url = `${environment.dssmApiUrl}/deleteRecommendation/${myId}/${profileId}`;
+    return this.http.delete(url);
   }
 
   getProfessionalsWhoRecommended(professionalID: string): Observable<any> {
@@ -99,13 +99,13 @@ export class AppService {
     return this.http.post(url, {professionalID: professionalId, publicationID: publicationId});
   }
 
-  getNumbersOfLikePublication(publicationID: string): Observable<any> {
-    const url = `${environment.dssmApiUrl}/getProfessionalsWhoRecommendedPublication/${publicationID}`;
+  getProfessionalsWhoReactedToPublication(publicationID: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/getProfessionalsWhoReactedToPublication/${publicationID}`;
     return this.http.get(url);
   }
 
   getStatusPublication(professionalID: string, publicationID: string): Observable<any> {
-    const url = `${environment.dssmApiUrl}/getStatusPublication/${professionalID}/${publicationID}`;
+    const url = `${environment.dssmApiUrl}/getPublicationStatus/${professionalID}/${publicationID}`;
     return this.http.get(url);
   }
 
