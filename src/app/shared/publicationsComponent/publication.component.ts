@@ -21,8 +21,13 @@ export class PublicationComponent implements OnInit{
   public likeLength: number;
   public likeList = [];
   public userLogged: Professional;
+  public author: Professional;
 
-  constructor(private snackbar: MatSnackBar, private appservice: AppService, private openModalPeopleService: OpenModalPeopleService, private sessionService: SessionService) {}
+  constructor(
+    private snackbar: MatSnackBar,
+    private appservice: AppService,
+    private openModalPeopleService: OpenModalPeopleService,
+    private sessionService: SessionService) {}
 
   ngOnInit() {
     this.getLikes();
@@ -30,6 +35,10 @@ export class PublicationComponent implements OnInit{
     .subscribe(res =>{
       this.userLogged = res;
     });
+    this.appservice.retornarDadosUsuario(this.publication.professionalID)
+    .subscribe(res=>{
+      this.author = res;
+    })
     this.statusCurtida();
 
     //PARA TESTE
