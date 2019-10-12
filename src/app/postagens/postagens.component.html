@@ -3,6 +3,19 @@
     <h1 class="text-center">Perfil</h1>
     <div class="profile-box border border-secondary">
         <h2 class="postTitle">Dados</h2>
+        <div *ngIf="!isMyProfile && !alreadyRecommended">
+          <button type="submit" (click)="recomendar()" class="btn btn-primary recomendar">
+            <mat-icon>thumb_up</mat-icon> Recomendar
+          </button>
+        </div>
+        <div *ngIf="!isMyProfile && alreadyRecommended">
+          <button type="submit" (click)="deletarRecomendacao()" class="btn btn-primary recomendar">
+            <mat-icon>thumb_down</mat-icon> Retirar recomendação
+          </button>
+        </div>
+        <div>
+          <button class="btn btn-primary recomendacoes" (click)="recomendacoesPessoas()">{{ recommendationLength }}</button>
+        </div>
         <hr>
         <div>
             <img src="http://agbrands.com.br/wp-content/uploads/2017/01/perfil.jpg" class="imgPerson" alt="...">
@@ -22,7 +35,7 @@
             </div>
             <div *ngIf="isMyProfile">
                 <button type="submit" class="btn btn-primary" routerLink="/atualizarperfil">
-                <mat-icon class="iconTopo">person</mat-icon>
+                <mat-icon>person</mat-icon>
                 Atualizar Perfil</button>
             </div>
         </div>
@@ -39,19 +52,25 @@
             </div>
         </div>
     </div>
-    <div class="postagens">
+    <div class="pt-2">
         <h1 class="text-center">Postagens</h1>
         <div *ngIf="isMyProfile">
-          <input type="text" id="post" #text [(ngModel)]="publication.text" placeholder="Digite aqui o que deseja postar!">
-          <button type="submit" class="btn btn-primary button-postar" mat-button (click)="onSubmit()">Postar</button>
-          <div *ngIf="showSpinner" class="d-flex justify-content-center loading">
+          <form #ngForm="ngForm" (ngSubmit)="onSubmit()">
+            <input type="text" class="form-control postagem" id="text" #text="ngModel" name="text" [(ngModel)]="publication.text" placeholder="Digite aqui o que deseja postar!">
+            <div class="form-group mr-2 form-inline">
+              <label for="videoUrl" class="mr-2">Adicione a Url do vídeo aqui (opcional):</label>
+              <input type="text" class="form-control video" id="videoUrl" #videoUrl="ngModel" name="videoUrl" [(ngModel)]="publication.videoUrl" placeholder="Inserir a Url inteira - https://youtube.com.br/ex/2jiwij3">
+              <button type="submit" class="btn btn-primary button-postar" mat-button>Postar</button>
+            </div>
+          </form>
+          <div *ngIf="showSpinner" class="d-flex justify-content-center mt-2">
             <mat-spinner></mat-spinner>
           </div>
         </div>
     </div>
     <hr>
     <div *ngFor='let publication of userPublications'>
-      <app-card-publication [publication]="publication" (clickedDeletPublication)='deletePublication($event)' [isMyProfile]="isMyProfile"></app-card-publication>
+      <app-card-publication [publication]="publication" (clickedDeletPublication)='deletePublication($event)' [isMyProfile]="isMyProfile" [professionalLike]="userLoggedId"></app-card-publication>
     </div>
     <div *ngIf="userPublications.length == 0" class="text-center">
       <p>Ainda não há postagens!</p>

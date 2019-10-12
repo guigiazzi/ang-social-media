@@ -12,8 +12,6 @@ export class SessionService {
   }
 
   saveUserLoggedId(userId: string) {
-    console.log('param: '+userId);
-    console.log('Inner '+this.userId);
     this.userId = userId;
   }
 
