@@ -13,6 +13,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import {MatDialogModule} from '@angular/material/dialog';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 
 // Components
 import { AppComponent } from './app.component';
@@ -61,7 +62,8 @@ import { FeedComponent } from './feed-component/feed-component.component';
     MatProgressSpinnerModule,
     MatInputModule,
     CurrencyMaskModule,
-    MatDialogModule
+    MatDialogModule,
+    RxReactiveFormsModule
   ],
   providers: [
     FormatDateService,

@@ -215,6 +215,7 @@ export class PostagensComponent implements OnInit {
   getRecomendacoes() {
     this.appservice.getProfessionalsWhoRecommended(this.usuario.professionalID)
     .subscribe(res => {
+      console.log(res)
       this.recommendationLength = res.length;
       this.recommendationList = res;
     }, err => {

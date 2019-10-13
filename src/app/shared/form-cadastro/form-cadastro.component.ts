@@ -7,6 +7,7 @@ import { JobRole } from 'src/app/interfaces/job-role';
 import { PaymentInfo } from 'src/app/interfaces/payment-info';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
 
 @Component({
   selector: 'app-form-cadastro',
@@ -57,7 +58,6 @@ export class FormCadastroComponent {
     }
     console.log(this.professional)
     this.outProfessional.emit(this.professional);
-    console.log('eeeee ')
   }
 
   habilitaPagamento() {
@@ -117,8 +117,8 @@ export class FormCadastroComponent {
        'password': new FormControl(this.professional.password, [Validators.required, Validators.minLength(3)]),
         'city': new FormControl(this.professional.email, [Validators.required]),
         'state': new FormControl(this.professional.state, [Validators.required]),
-        'birthDate': new FormControl(this.professional.birthDate, [Validators.required]),
-        'careerDate': new FormControl(this.professional.careerDate, [Validators.required]),
+        'birthDate': new FormControl(this.professional.birthDate, [Validators.required, RxwebValidators.maxDate({value: new Date()})]),
+        'careerDate': new FormControl(this.professional.careerDate, [Validators.required, RxwebValidators.maxDate({value: new Date()})]),
         'instructionLevel': new FormControl(this.professional.instructionLevel, [Validators.required])        
     })
   }
@@ -134,8 +134,8 @@ export class FormCadastroComponent {
   createPaymentInfoFormGroup(){
     return new FormGroup({
       'cardName': new FormControl(this.paymentInfo.cardName, [Validators.required]),
-      'cardNumber': new FormControl(this.paymentInfo.cardNumber, [Validators.required, Validators.minLength(16)]),
-      'cardValidationDate': new FormControl(this.paymentInfo.cardValidationDate, [Validators.required]),
+      'cardNumber': new FormControl(this.paymentInfo.cardNumber, [Validators.required, Validators.minLength(19)]),
+      'cardValidationDate': new FormControl(this.paymentInfo.cardValidationDate, [Validators.required, RxwebValidators.minDate({value: new Date()})]),
       'cardSecurityCode': new FormControl(this.paymentInfo.cardSecurityCode, [Validators.required, Validators.minLength(3)])
     })
   }

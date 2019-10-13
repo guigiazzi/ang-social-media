@@ -2,7 +2,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="name">Nome</label>
-      <input type="text" class="form-control" id="name" placeholder="Nome" formControlName="name">
+      <input type="text" class="form-control" id="name" placeholder="Nome" formControlName="name" onkeypress='return event.charCode<=48 || event.charCode>=57'>
       <div *ngIf="submitted && name.invalid">
         <span *ngIf="name.errors.required">
             *Nome é necessário.
@@ -42,7 +42,7 @@
    <div class="form-row">
     <div class="form-group col-md-6">
       <label for="city">Cidade onde trabalha</label>
-      <input type="text" class="form-control" id="city" placeholder="Cidade"  formControlName="city">
+      <input type="text" class="form-control" id="city" placeholder="Cidade"  formControlName="city" onkeypress='return event.charCode<=48 || event.charCode>=57'>
       <div *ngIf="submitted && city.invalid">
         <span *ngIf="city.errors.required">
           *Cidade é necessária.
@@ -69,18 +69,16 @@
       <label for="birthDate">Data de aniversário</label>
       <input type="date" data-provide="datepicker" class="form-control" id="birthDate" formControlName="birthDate" placeholder="10/10/1990">
       <div *ngIf="submitted && birthDate.invalid">
-          <span *ngIf="birthDate.errors.required">
-            *Data de nascimento incorreta.
-          </span>
+          <span *ngIf="birthDate.errors.required"> *Data de nascimento incorreta. </span>
+          <span *ngIf="birthDate.errors.maxDate"> *Data de nascimento inválida. </span>
         </div>
     </div>
     <div class="form-group col-md-6">
       <label for="careerDate">Data de início na carreira de Cientista de Dados</label>
       <input type="date" data-provide="datepicker" class="form-control" id="careerDate" formControlName="careerDate" placeholder="10/10/1990">
       <div *ngIf="submitted && careerDate.invalid">
-        <span *ngIf="careerDate.errors.required">
-          *Data de ínicio da carreira incorreta.
-        </span>
+        <span *ngIf="careerDate.errors.required"> *Data de ínicio da carreira incorreta. </span>
+        <span *ngIf="careerDate.errors.maxDate"> *Data de início de carreira inválida. </span>
       </div>
     </div>
   </div>
@@ -154,7 +152,7 @@
         <div  class="form-row">
           <div class="form-group col-md-6">
             <label for="cardName">Nome do cartão</label>
-            <input type="text" class="form-control" id="cardName" formControlName="cardName">
+            <input type="text" class="form-control" id="cardName" formControlName="cardName" onkeypress='return event.charCode<=48 || event.charCode>=57'>
             <div *ngIf="submitted && cardName.invalid">
                 <span *ngIf="cardName.errors.required">
                 *Nome do cartão é necessário.
@@ -164,10 +162,10 @@
           <div class="form-group col-md-6">
             <label for="cardNumber">Número do cartão</label>
             <input type="text" class="form-control" id="cardNumber" formControlName="cardNumber" (input)="displayCard($event.target.value)"
-              [ngClass]="{'visaCard': cardMaster, 'masterCard': cardVisa}" maxlength="16" onkeypress='return event.charCode>=48 && event.charCode<=57'>
+              [ngClass]="{'visaCard': cardMaster, 'masterCard': cardVisa}" maxlength="19" onkeypress='return event.charCode>=48 && event.charCode<=57'>
             <div *ngIf="submitted && cardNumber.invalid">
               <span *ngIf="cardNumber.errors.required"> *Número do cartão é necessário.</span>
-              <span *ngIf="cardNumber.errors.minlength"> *Número do cartão precisa ter pelo menos 16 valores.</span>
+              <span *ngIf="cardNumber.errors.minlength"> *Número do cartão precisa ter pelo menos 10 valores.</span>
             </div>
           </div>
         </div>
@@ -175,12 +173,11 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="cardValidationDate">Data de validade</label>
-            <input type="date" data-provide="datepicker" class="form-control" id="cardValidationDate" formControlName="cardValidationDate" placeholder="10/10/1990">
+            <input type="month" data-provide="datepicker" class="form-control" id="cardValidationDate" formControlName="cardValidationDate" placeholder="10/1990">
             <div *ngIf="submitted && cardValidationDate.invalid">
-                <span *ngIf="cardValidationDate.errors.required">
-                  *Data de validade do cartão é necessária.
-                </span>
-              </div>
+              <span *ngIf="cardValidationDate.errors.required"> *Data de validade do cartão é necessária. </span>
+              <span *ngIf="cardValidationDate.errors.minDate"> *Data de validade do cartão inválida. </span>
+            </div>
           </div>
           <div class="form-group col-md-2">
             <label for="cardSecurityCode">CCV</label>
