@@ -95,8 +95,8 @@ export class AppService {
   }
 
   dislikePublication(professionalId: string, publicationId: string): Observable<any> {
-    const url = `${environment.dssmApiUrl}/unreactToPublication`;
-    return this.http.post(url, {professionalID: professionalId, publicationID: publicationId});
+    const url = `${environment.dssmApiUrl}/unreactToPublication/${professionalId}/${publicationId}`;
+    return this.http.delete(url);
   }
 
   getProfessionalsWhoReactedToPublication(publicationID: string): Observable<any> {
