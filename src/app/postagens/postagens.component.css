@@ -1,21 +1,17 @@
-.postagens{
-    padding-top: 2%;
-    margin-bottom: 6%;
+.button-postar {
+  margin-left: 17.5%;
 }
 
-input{
+.postagem{
     margin-top: 1%;
+    margin-bottom: 1%;
+    padding-top: 2%;
     padding-bottom: 5%;
     width: 100%;
 }
 
-.button-postar{
-    margin-top: 1%;
-    float: right;
-}
-
-.loading {
-  margin-top: 1%;
+.video {
+  width: 50%;
 }
 
 .container {
@@ -44,13 +40,17 @@ input{
 .topicos{
   padding: 2%;
 }
-.iconTopo {
-  position: relative;
-  top: 4px;
-}
 
 .recomendar {
   float: left;
   margin-top: -4%;
   margin-left: 1%;
+}
+
+.recomendacoes {
+  float: left;
+  margin-top: -4%;
+  margin-left: 1%;
+  padding-bottom: 0.8%;
+  padding-top: 0.98%;
 }

@@ -24,11 +24,14 @@ import { HeaderToolbarComponent } from './shared/header-toolbar/header-toolbar.c
 import { AtualizarPerfilComponent } from './atualizar-perfil/atualizar-perfil.component';
 import { InterestTopicsComponent } from './shared/interest-topics/interest-topics.component';
 import { ModalDialogComponent } from './shared/modal-dialog/modal-dialog.component';
+import { ModalPeopleComponent } from './shared/modal-people/modal-people.component';
 
 // Services
 import { FormatDateService } from './shared/formatDateService/format-date.service';
 import { SessionService } from './shared/sessionService/session.service';
 import { OpenModalService } from './shared/modal-dialog/open-modal-service.service';
+import { OpenModalPeopleService } from './shared/modal-people/open-modal-people-service.service';
+import { FeedComponent } from './feed-component/feed-component.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,9 @@ import { OpenModalService } from './shared/modal-dialog/open-modal-service.servi
     HeaderToolbarComponent,
     AtualizarPerfilComponent,
     InterestTopicsComponent,
-    ModalDialogComponent
+    ModalDialogComponent,
+    ModalPeopleComponent,
+    FeedComponent
   ],
   imports: [
     BrowserModule,
@@ -61,10 +66,11 @@ import { OpenModalService } from './shared/modal-dialog/open-modal-service.servi
   providers: [
     FormatDateService,
     SessionService,
-    OpenModalService
+    OpenModalService,
+    OpenModalPeopleService
   ],
   bootstrap: [AppComponent],
-  entryComponents:[ModalDialogComponent]
+  entryComponents:[ModalDialogComponent, ModalPeopleComponent]
 })
 
 export class AppModule { }

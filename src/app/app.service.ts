@@ -25,7 +25,7 @@ export class AppService {
   }
 
   listrarPostagens(userId: string): Observable<any> {
-    const url = `${environment.dssmApiUrl}/retrievePublicationList/${userId}`;
+    const url = `${environment.dssmApiUrl}/retrievePublicationsList/${userId}`;
     return this.http.get<Publication>(url);
   }
 
@@ -35,8 +35,8 @@ export class AppService {
   }
 
   searchbar(searchitem): Observable<any>{
-    const url = `${environment.dssmApiUrl}/search`;
-    return this.http.post(url,searchitem);
+    const url = `${environment.dssmApiUrl}/search/${searchitem}`;
+    return this.http.get(url);
   }
 
   login(login: Professional): Observable<any> {
@@ -71,6 +71,46 @@ export class AppService {
 
   recommend(myId: string, profileId: string): Observable<any> {
     const url = `${environment.dssmApiUrl}/recommend`;
-    return this.http.post(url, {professionalID1: myId, professionalID2: profileId});
+    return this.http.post(url, {recommenderID: myId, recommendedID: profileId});
+  }
+
+  statusRecommendation(myId: string, profileId: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/getRecommendationStatus/${myId}/${profileId}`;
+    return this.http.get(url);
+  }
+
+  deleteRecommendation(myId: string, profileId: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/deleteRecommendation/${myId}/${profileId}`;
+    return this.http.delete(url);
+  }
+
+  getProfessionalsWhoRecommended(professionalID: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/getProfessionalsWhoRecommended/${professionalID}`;
+    return this.http.get(url);
+  }
+
+  likePublication(professionalId: string, publicationId: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/reactToPublication`;
+    return this.http.post(url, {professionalID: professionalId, publicationID: publicationId});
+  }
+
+  dislikePublication(professionalId: string, publicationId: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/unreactToPublication/${professionalId}/${publicationId}`;
+    return this.http.delete(url);
+  }
+
+  getProfessionalsWhoReactedToPublication(publicationID: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/getProfessionalsWhoReactedToPublication/${publicationID}`;
+    return this.http.get(url);
+  }
+
+  getStatusPublication(professionalID: string, publicationID: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/getPublicationStatus/${professionalID}/${publicationID}`;
+    return this.http.get(url);
+  }
+
+  getFeedPublications(professionalID: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/retrieveFeedPublicationsList/${professionalID}`;
+    return this.http.get(url);
   }
 }

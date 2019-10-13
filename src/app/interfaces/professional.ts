@@ -1,12 +1,14 @@
 import { JobRole } from './job-role';
 import { EmailValidator } from '@angular/forms';
 import { InstructionLevel } from '../shared/form-cadastro/form-cadastro.component';
+import { PaymentInfo } from './payment-info';
 
 export interface Professional {
   professionalID: string;
   name: string;
   userLogin: string;
   password: string;
+  email: string;
   profileImage: File;
   profileType: string;
   instructionLevel: InstructionLevel;
@@ -15,6 +17,5 @@ export interface Professional {
   birthDate: Date;
   careerDate: Date;
   jobRole: JobRole;
-  listOfFriends: Array<Professional>;
-  listOfFriendRequests: Array<Professional>;
+  paymentInfo: PaymentInfo;
 }
