@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material';
 import { JobRole } from 'src/app/interfaces/job-role';
 import { PaymentInfo } from 'src/app/interfaces/payment-info';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-form-cadastro',
@@ -23,9 +24,13 @@ export class FormCadastroComponent {
   public urlImage: any;
   public professionalForm: FormGroup;
   public submitted = false;
+  public jobRoleForm: FormGroup;
+  public paymentInfoForm: FormGroup;
 
   constructor(private snackbar: MatSnackBar, private formBuilder: FormBuilder) {
     this.professionalForm = this.createProfessionalFormGroup();
+    this.jobRoleForm = this.createJobRoleFormGroup();
+    this.paymentInfoForm = this.createPaymentInfoFormGroup();
    }
   
   @Input() professional: Professional = <Professional>{};
@@ -35,18 +40,24 @@ export class FormCadastroComponent {
 
   onSubmit() {
     this.submitted = true;
-    if(this.professionalForm.invalid){
+    if(this.professionalForm.invalid || this.jobRoleForm.invalid){
       return;
     }
-    console.log(this.professionalForm.value)
+    if(this.contaPremium && this.paymentInfoForm.invalid){
+      return;
+    }
+
     this.professional = this.professionalForm.value;
-    this.professional.jobRole = this.jobRole;
+    this.professional.jobRole = this.jobRoleForm.value;
+    this.professional.profileImage = this.urlImage;
+
     if(this.contaPremium){
       this.professional.profileType = "PREMIUM";
-      this.professional.paymentInfo = this.paymentInfo;
+      this.professional.paymentInfo = this.paymentInfoForm.value;
     }
-    console.log(this.professional, 'aqaaa');
-    // this.outProfessional.emit(this.professional);
+    console.log(this.professional)
+    this.outProfessional.emit(this.professional);
+    console.log('eeeee ')
   }
 
   habilitaPagamento() {
@@ -81,6 +92,7 @@ export class FormCadastroComponent {
 
           reader.onload = (event) => {
             this.urlImage = reader.result;
+            console.log(this.urlImage);
           }
         } else {
           this.snackbar.open('Tamanho da imagem muito grande! (maior que 2Mb)', 'Dismiss', {
@@ -107,13 +119,24 @@ export class FormCadastroComponent {
         'state': new FormControl(this.professional.state, [Validators.required]),
         'birthDate': new FormControl(this.professional.birthDate, [Validators.required]),
         'careerDate': new FormControl(this.professional.careerDate, [Validators.required]),
-        'instructionLevel': new FormControl(this.professional.instructionLevel, [Validators.required])
-        // 'jobRole': this.professionalForm.group({
-        //   'companyName': new FormControl(this.jobRole.companyName, [Validators.required]),
-        //   'salary': new FormControl(this.jobRole.salary, [Validators.required]),
-      //  'jobTitle': new FormControl(this.jobRole.jobTitle, [Validators.required]),
-        // })
-        
+        'instructionLevel': new FormControl(this.professional.instructionLevel, [Validators.required])        
+    })
+  }
+
+  createJobRoleFormGroup(){
+    return new FormGroup({
+      'companyName': new FormControl(this.jobRole.companyName, [Validators.required]),
+      'salary': new FormControl(this.jobRole.salary, [Validators.required]),
+      'jobTitle': new FormControl(this.jobRole.jobTitle, [Validators.required]),
+    })
+  }
+
+  createPaymentInfoFormGroup(){
+    return new FormGroup({
+      'cardName': new FormControl(this.paymentInfo.cardName, [Validators.required]),
+      'cardNumber': new FormControl(this.paymentInfo.cardNumber, [Validators.required, Validators.minLength(16)]),
+      'cardValidationDate': new FormControl(this.paymentInfo.cardValidationDate, [Validators.required]),
+      'cardSecurityCode': new FormControl(this.paymentInfo.cardSecurityCode, [Validators.required, Validators.minLength(3)])
     })
   }
 
@@ -141,18 +164,32 @@ export class FormCadastroComponent {
   get careerDate() {
     return this.professionalForm.get('careerDate');
   }
-  get companyName() {
-    return this.professionalForm.get('jobRole.companyName');
-  }
   get instructionLevel() {
     return this.professionalForm.get('instructionLevel');
   }
-  // get salary() {
-  //   return this.professionalForm.get('salary');
-  // }
-  // get jobTitle() {
-  //   return this.professionalForm.get('jobTitle');
-  // }
+
+  get companyName() {
+    return this.jobRoleForm.get('companyName');
+  }
+  get salary() {
+    return this.jobRoleForm.get('salary');
+  }
+  get jobTitle() {
+    return this.jobRoleForm.get('jobTitle');
+  }
+
+  get cardName() {
+    return this.paymentInfoForm.get('cardName');
+  }
+  get cardNumber() {
+    return this.paymentInfoForm.get('cardNumber');
+  }
+  get cardValidationDate() {
+    return this.paymentInfoForm.get('cardValidationDate');
+  }
+  get cardSecurityCode() {
+    return this.paymentInfoForm.get('cardSecurityCode');
+  }
 }
 
 export enum InstructionLevel {
