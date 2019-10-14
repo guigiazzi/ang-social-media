@@ -1,3 +1,4 @@
+<p><b>Dados Pessoais</b></p>
 <form [formGroup]="professionalForm" (ngSubmit)="onSubmit()">
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -84,7 +85,7 @@
   </div>
 
   <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-6 mr-1">
       <label for="instructionLevel">Nível de instrução</label>
       <select class="custom-select"  id="instructionLevel" formControlName="instructionLevel">
         <option *ngFor="let enum of keys(enums)" [ngValue]="enum">{{enums[enum]}}</option>
@@ -95,8 +96,28 @@
         </span>
       </div>
     </div>
+    <div [ngClass]="{'imageContainer': !urlImage, 'borderDiv': urlImage}">
+      <div *ngIf='urlImage' class="d-flex justify-content-center">
+        <img [src]="urlImage" class="image">
+      </div>
+      <div *ngIf='!urlImage' class="d-flex justify-content-center borderDiv">
+        <img src="./../../../assets/images/file-drop.png" class="imageNull pr-1">
+        <label for="foto" class="btn btn-primary d-flex botaoSelect">
+          Selecionar Foto de Perfil <mat-icon class="iconeSelect">image</mat-icon>
+        </label>
+      </div>
+      <div class="d-flex justify-content-center">
+        <input type='file' (change)="selecionarFoto($event)" id="foto" accept="image/*" class="d-none">
+        <div *ngIf="urlImage">
+          <label for="foto" class="btn btn-primary d-flex botaoPosFoto">
+            Selecionar Foto de Perfil <mat-icon class="iconeSelect">image</mat-icon>
+          </label>
+        </div>
+      </div>
+    </div>
   </div>
-
+  <br>
+  <p><b>Dados Profissionais</b></p>
   <form [formGroup]="jobRoleForm" (ngSubmit)="onSubmit()">
     <div class=" form-row">
       <div class="form-group col-md-6">
@@ -128,20 +149,6 @@
     </div>
     </div>
     <div class="form-group">
-      <div class="imageContainer">
-        <div *ngIf='urlImage' class="d-flex justify-content-center">
-          <img [src]="urlImage" class="image">
-        </div>
-        <div *ngIf='!urlImage' class="d-flex justify-content-center">
-          <img src="./../../../assets/images/file-drop.png">
-        </div>
-        <div class="d-flex justify-content-center">
-          <label for="foto" class="btn btn-primary d-flex botaoSelect">
-            Selecionar Foto de Perfil <mat-icon class="iconeSelect">image</mat-icon>
-          </label>
-          <input type='file' (change)="selecionarFoto($event)" id="foto" accept="image/*" class="d-none">
-        </div>
-      </div>
       <div class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
         <label class="custom-control-label" for="defaultUnchecked" (click)="habilitaPagamento()">Conta Premium</label>
