@@ -103,6 +103,7 @@ export class PublicationComponent implements OnInit {
         duration: 4000,
         panelClass: ['error-snackbar']
       });
+    });
   }
 
   likesPessoas() {
