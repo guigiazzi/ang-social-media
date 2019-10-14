@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./publication.component.css']
 })
 
-export class PublicationComponent implements OnInit{
+export class PublicationComponent implements OnInit {
   @Input() publication;
   @Output() clickedDeletPublication = new EventEmitter();
   @Input() isMyProfile;
@@ -55,21 +55,21 @@ export class PublicationComponent implements OnInit{
 
   curtirPublication() {
     this.appservice.likePublication(this.professionalLike, this.publication.publicationID)
-    .subscribe(res => {
-      this.snackbar.open('Publicação curtida!', 'Dismiss', {
-        duration: 4000,
-        panelClass: ['success-snackbar']
-      });
-      this.alreadyLikePost = true;
-      this.likeList.push(this.userLogged);
-      this.likeLength += 1;
-    },err =>{
-      console.log(err)
-      this.snackbar.open(`${err.error}`, 'Dismiss', {
-        duration: 4000,
-        panelClass: ['error-snackbar']
-      });
-    })
+      .subscribe(res => {
+        this.snackbar.open('Publicação curtida!', 'Dismiss', {
+          duration: 4000,
+          panelClass: ['success-snackbar']
+        });
+        this.alreadyLikePost = true;
+        this.likeList.push(this.userLogged);
+        this.likeLength += 1;
+      }, err => {
+        console.log(err)
+        this.snackbar.open(`${err.error}`, 'Dismiss', {
+          duration: 4000,
+          panelClass: ['error-snackbar']
+        });
+      })
   }
 
   descurtirPublication() {
@@ -105,28 +105,27 @@ export class PublicationComponent implements OnInit{
         duration: 4000,
         panelClass: ['error-snackbar']
       });
-    });
   }
 
   likesPessoas() {
-    const data = {title: 'Curtidas',noneText: 'Ainda não há nenhuma curtida!', users: this.likeList}
+    const data = { title: 'Curtidas', noneText: 'Ainda não há nenhuma curtida!', users: this.likeList }
     this.openModalPeopleService.openDialog(data)
-    .subscribe(res=>{
-      console.log('Modal de recomendacoes fechado');
-    });
+      .subscribe(res => {
+        console.log('Modal de recomendacoes fechado');
+      });
   }
 
   statusCurtida() {
     this.appservice.getStatusPublication(this.professionalLike, this.publication.publicationID)
-    .subscribe(res => {
-      if(res === 1){
-        this.alreadyLikePost = true;
-      } else {
-        this.alreadyLikePost = false;
-      }
-    }, err => {
-      console.log(err);
-    });
+      .subscribe(res => {
+        if (res === 1) {
+          this.alreadyLikePost = true;
+        } else {
+          this.alreadyLikePost = false;
+        }
+      }, err => {
+        console.log(err);
+      });
   }
 
   goTo() {
