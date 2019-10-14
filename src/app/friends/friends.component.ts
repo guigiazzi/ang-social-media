@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Professional } from '../interfaces/professional';
 import { AppService } from '../app.service';
 import { SessionService } from '../shared/sessionService/session.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
@@ -19,6 +19,7 @@ export class FriendsComponent implements OnInit {
   public imageFile;
 
   constructor(
+    private router: Router,
     private appservice: AppService,
     private snackbar: MatSnackBar,
     private sessionService: SessionService,
@@ -64,4 +65,9 @@ export class FriendsComponent implements OnInit {
     const blob = new Blob([int8Array], { type: 'image/jpeg' });    
     return blob;
  }
+ goToUserProfile(id:String){
+   console.log(id);
+   this.router.navigate([`friends`, id]);
+ }
+ 
 }

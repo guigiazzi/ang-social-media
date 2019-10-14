@@ -1,14 +1,13 @@
 .container {
   padding-top: 6%;
 }
-
-.basic-container {
-  width: 30%;
+.basic-container{
+  width: 65%;
 }
-
 .friendCard {
   position: absolute;
   left: 1px;
+  width: 35%;
 }
 
 .friendsCardTitle {
@@ -20,5 +19,6 @@
   overflow-y: auto;
 }
 .img {
-  width:30%;
+  padding-right: 5%;
+  width:15%;
 }

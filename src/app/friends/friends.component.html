@@ -5,13 +5,13 @@
   </div>
   <mat-card class="basic-container scroll">
     <p class="friendsCardTitle">Amigos</p>
-    <mat-grid-list cols="1" rowHeight="100px" gutterSize="1px" [style.height]="'200px'">
+    <mat-grid-list cols="1" rowHeight="100px" gutterSize="1px" [style.height]="'300px'">
       <mat-grid-tile *ngFor="let friend of friends">
-        <mat-card [style.width]="'100%'" class="friendCard">
+        <mat-card [style.width]="'35%'" class="friendCard">
           <div fxLayout="row">
             <div fxFlex fxFlexAlign="center">
               <div fxLayout="row">
-                <a>
+                <a (click)="goToUserProfile(friend.professionalID)">
                   <img src="https://www.pena.com.br/wp-content/uploads/2017/05/user-icon.jpg" class="img"> 
                   {{friend.name}}
                 </a>
