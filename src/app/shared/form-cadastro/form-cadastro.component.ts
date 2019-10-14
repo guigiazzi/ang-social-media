@@ -1,12 +1,9 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Professional } from '../../interfaces/professional';
-import { AppService } from '../../app.service';
-import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { JobRole } from 'src/app/interfaces/job-role';
 import { PaymentInfo } from 'src/app/interfaces/payment-info';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 
 @Component({
@@ -27,6 +24,8 @@ export class FormCadastroComponent {
   public submitted = false;
   public jobRoleForm: FormGroup;
   public paymentInfoForm: FormGroup;
+  public minDate = new Date().getFullYear() + '-' +((new Date().getMonth() < 10) ? '0' + new Date().getMonth() : new Date().getMonth());
+  public maxDate = new Date().getFullYear() + '-' +((new Date().getMonth() < 10) ? '0' + new Date().getMonth() : new Date().getMonth()) + '-' + ((new Date().getDate() < 10) ? '0' + new Date().getDate() : new Date().getDate());
 
   constructor(private snackbar: MatSnackBar, private formBuilder: FormBuilder) {
     this.professionalForm = this.createProfessionalFormGroup();
@@ -135,7 +134,7 @@ export class FormCadastroComponent {
     return new FormGroup({
       'cardName': new FormControl(this.paymentInfo.cardName, [Validators.required]),
       'cardNumber': new FormControl(this.paymentInfo.cardNumber, [Validators.required, Validators.minLength(19)]),
-      'cardValidationDate': new FormControl(this.paymentInfo.cardValidationDate, [Validators.required, RxwebValidators.minDate({value: new Date()})]),
+      'cardValidationDate': new FormControl(this.paymentInfo.cardValidationDate, [Validators.required]),
       'cardSecurityCode': new FormControl(this.paymentInfo.cardSecurityCode, [Validators.required, Validators.minLength(3)])
     })
   }

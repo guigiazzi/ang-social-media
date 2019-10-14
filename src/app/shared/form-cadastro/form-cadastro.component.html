@@ -67,7 +67,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="birthDate">Data de aniversário</label>
-      <input type="date" data-provide="datepicker" class="form-control" id="birthDate" formControlName="birthDate" placeholder="10/10/1990">
+      <input type="date" data-provide="datepicker" class="form-control" id="birthDate" formControlName="birthDate" max="{{maxDate}}" placeholder="10/10/1990">
       <div *ngIf="submitted && birthDate.invalid">
           <span *ngIf="birthDate.errors.required"> *Data de nascimento incorreta. </span>
           <span *ngIf="birthDate.errors.maxDate"> *Data de nascimento inválida. </span>
@@ -75,7 +75,7 @@
     </div>
     <div class="form-group col-md-6">
       <label for="careerDate">Data de início na carreira de Cientista de Dados</label>
-      <input type="date" data-provide="datepicker" class="form-control" id="careerDate" formControlName="careerDate" placeholder="10/10/1990">
+      <input type="date" data-provide="datepicker" class="form-control" id="careerDate" formControlName="careerDate" max="{{maxDate}}" placeholder="10/10/1990">
       <div *ngIf="submitted && careerDate.invalid">
         <span *ngIf="careerDate.errors.required"> *Data de ínicio da carreira incorreta. </span>
         <span *ngIf="careerDate.errors.maxDate"> *Data de início de carreira inválida. </span>
@@ -173,10 +173,9 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="cardValidationDate">Data de validade</label>
-            <input type="month" data-provide="datepicker" class="form-control" id="cardValidationDate" formControlName="cardValidationDate" placeholder="10/1990">
+            <input type="month" data-provide="datepicker" class="form-control" id="cardValidationDate" formControlName="cardValidationDate" placeholder="10/1990" min="{{minDate}}" max="2999-12">
             <div *ngIf="submitted && cardValidationDate.invalid">
               <span *ngIf="cardValidationDate.errors.required"> *Data de validade do cartão é necessária. </span>
-              <span *ngIf="cardValidationDate.errors.minDate"> *Data de validade do cartão inválida. </span>
             </div>
           </div>
           <div class="form-group col-md-2">
