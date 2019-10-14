@@ -21,15 +21,24 @@ export class PublicationComponent implements OnInit {
   public likeLength: number;
   public likeList = [];
   public userLogged: Professional;
+  public author: Professional;
 
-  constructor(private snackbar: MatSnackBar, private appservice: AppService, private openModalPeopleService: OpenModalPeopleService, private sessionService: SessionService) { }
+  constructor(
+    private snackbar: MatSnackBar,
+    private appservice: AppService,
+    private openModalPeopleService: OpenModalPeopleService,
+    private sessionService: SessionService) {}
 
   ngOnInit() {
     this.getLikes();
     this.appservice.retornarDadosUsuario(this.sessionService.getUserLogged())
-      .subscribe(res => {
-        this.userLogged = res;
-      });
+    .subscribe(res =>{
+      this.userLogged = res;
+    });
+    this.appservice.retornarDadosUsuario(this.publication.professionalID)
+    .subscribe(res=>{
+      this.author = res;
+    })
     this.statusCurtida();
 
     //PARA TESTE
@@ -63,38 +72,36 @@ export class PublicationComponent implements OnInit {
 
   descurtirPublication() {
     this.appservice.dislikePublication(this.professionalLike, this.publication.publicationID)
+    .subscribe(res => {
+      this.snackbar.open('Publicação descurtida!', 'Dismiss', {
+        duration: 4000,
+        panelClass: ['success-snackbar']
+      });
+      this.alreadyLikePost = false;
+      this.appservice.getProfessionalsWhoReactedToPublication(this.publication.publicationID)
       .subscribe(res => {
-        this.snackbar.open('Publicação descurtida!', 'Dismiss', {
-          duration: 4000,
-          panelClass: ['success-snackbar']
-        });
-        this.alreadyLikePost = false;
-        this.appservice.getProfessionalsWhoReactedToPublication(this.publication.publicationID)
-          .subscribe(res => {
-            this.likeList = res;
-            this.likeLength = res.length;
-          });
-      }, err => {
-        console.log(err)
-        this.snackbar.open(`${err.error}`, 'Dismiss', {
-          duration: 4000,
-          panelClass: ['error-snackbar']
-        });
-      })
+        this.likeList = res;
+        this.likeLength = res.length;
+      });
+    },err =>{
+      console.log(err)
+      this.snackbar.open(`${err.error}`, 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
+      });
+    })
   }
 
   getLikes() {
     this.appservice.getProfessionalsWhoReactedToPublication(this.publication.publicationID)
-
-      .subscribe(res => {
-        this.likeLength = res.length;
-        this.likeList = res;
-      }, err => {
-        console.log(err);
-        this.snackbar.open(`Erro buscar número de recomendações!`, 'Dismiss', {
-          duration: 4000,
-          panelClass: ['error-snackbar']
-        });
+    .subscribe(res => {
+      this.likeLength = res.length;
+      this.likeList = res;
+    }, err => {
+      console.log(err);
+      this.snackbar.open(`Erro buscar número de recomendações!`, 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
       });
   }
 

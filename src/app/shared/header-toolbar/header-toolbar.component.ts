@@ -24,7 +24,7 @@ export class HeaderToolbarComponent {
   searchPosts(searchValue) {
     this.searchUsers = [];
     if(searchValue.length % 2 == 0){
-      this.appservice.searchbar({name: searchValue})
+      this.appservice.searchbar(searchValue)
       .subscribe(res => {
         res.forEach(pessoa => {
           this.searchUsers.push(pessoa);
