@@ -12,7 +12,7 @@
             <div fxFlex fxFlexAlign="center">
               <div fxLayout="row">
                 <a (click)="goToUserProfile(friend.professionalID)">
-                  <img src="https://www.pena.com.br/wp-content/uploads/2017/05/user-icon.jpg" class="img"> 
+                  <img [src]="userDefault" class="img"> 
                   {{friend.name}}
                 </a>
               </div>
