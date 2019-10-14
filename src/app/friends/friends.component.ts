@@ -16,8 +16,7 @@ export class FriendsComponent implements OnInit {
   public userLoggedId: string;
   public usuario: Professional = {} as Professional;
   public showSpinner = false;
-  public haveUserImg = false;
-  public imageFile: File;
+  public imageFile;
   public userDefault = '../../assets/images/user-icon.jpg';
 
   constructor(
@@ -53,10 +52,9 @@ export class FriendsComponent implements OnInit {
   loadImage(friends: Professional[]) {
     friends.forEach(friend => {
       if (friend.profileImage !== null) {
-        this.haveUserImg = true;
-        this.imageFile = friend.profileImage;
+        this.imageFile = this.sanitizer.bypassSecurityTrustUrl(btoa(friend.profileImage));
+        console.log(this.imageFile);
       }
-      this.haveUserImg = false;
     });
   }
 

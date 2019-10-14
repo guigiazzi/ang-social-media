@@ -12,7 +12,8 @@
             <div fxFlex fxFlexAlign="center">
               <div fxLayout="row">
                 <a (click)="goToUserProfile(friend.professionalID)">
-                  <img [src]="userDefault" class="img"> 
+                  <img *ngIf="friend.profileImage !== null" [src]="imageFile" class="img">
+                  <img *ngIf="friend.profileImage === null" [src]="userDefault" class="img"> 
                   {{friend.name}}
                 </a>
               </div>

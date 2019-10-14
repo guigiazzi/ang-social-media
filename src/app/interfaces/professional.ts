@@ -9,7 +9,7 @@ export interface Professional {
   userLogin: string;
   password: string;
   email: string;
-  profileImage: File;
+  profileImage: string;
   profileType: string;
   instructionLevel: InstructionLevel;
   state: string;
