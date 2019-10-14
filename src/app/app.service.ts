@@ -113,4 +113,9 @@ export class AppService {
     const url = `${environment.dssmApiUrl}/retrieveFeedPublicationsList/${professionalID}`;
     return this.http.get(url);
   }
+
+  getListFriends(professionalID: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/returnFriendsList/${professionalID}`;
+    return this.http.get<Professional>(url);
+  }
 }

@@ -1,0 +1,24 @@
+.container {
+  padding-top: 6%;
+}
+
+.basic-container {
+  width: 30%;
+}
+
+.friendCard {
+  position: absolute;
+  left: 1px;
+}
+
+.friendsCardTitle {
+  padding-left: 40%;
+  font-weight: bold;
+}
+.scroll {
+  max-height: 500px;
+  overflow-y: auto;
+}
+.img {
+  width:30%;
+}
