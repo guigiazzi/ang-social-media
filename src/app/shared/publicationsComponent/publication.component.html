@@ -1,8 +1,8 @@
 <div>
     <mat-card class="card">
       <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>{{author?.name}}</mat-card-title>
+          <div mat-card-avatar class="example-header-image" (click)="goTo()"></div>
+          <mat-card-title (click)="goTo()" class="hover">{{author?.name}}</mat-card-title>
         </mat-card-header>
         <hr>
         <mat-card-content>

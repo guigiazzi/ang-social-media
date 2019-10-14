@@ -22,3 +22,11 @@
   top: 5px;
   width: 20%;
 }
+
+.example-header-image:hover{
+  cursor: pointer;
+}
+
+.hover:hover{
+  cursor: pointer;
+}
