@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Professional } from '../../interfaces/professional';
 import { MatSnackBar } from '@angular/material';
 import { JobRole } from 'src/app/interfaces/job-role';
@@ -54,6 +54,8 @@ export class FormCadastroComponent {
     if(this.contaPremium){
       this.professional.profileType = "PREMIUM";
       this.professional.paymentInfo = this.paymentInfoForm.value;
+    } else {
+      this.professional.profileType = 'STANDARD';
     }
     console.log(this.professional)
     this.outProfessional.emit(this.professional);
@@ -133,7 +135,7 @@ export class FormCadastroComponent {
   createPaymentInfoFormGroup(){
     return new FormGroup({
       'cardName': new FormControl(this.paymentInfo.cardName, [Validators.required]),
-      'cardNumber': new FormControl(this.paymentInfo.cardNumber, [Validators.required, Validators.minLength(19)]),
+      'cardNumber': new FormControl(this.paymentInfo.cardNumber, [Validators.required, Validators.minLength(16)]),
       'cardValidationDate': new FormControl(this.paymentInfo.cardValidationDate, [Validators.required]),
       'cardSecurityCode': new FormControl(this.paymentInfo.cardSecurityCode, [Validators.required, Validators.minLength(3)])
     })

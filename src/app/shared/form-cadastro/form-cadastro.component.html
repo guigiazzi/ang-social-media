@@ -169,10 +169,10 @@
           <div class="form-group col-md-6">
             <label for="cardNumber">Número do cartão</label>
             <input type="text" class="form-control" id="cardNumber" formControlName="cardNumber" (input)="displayCard($event.target.value)"
-              [ngClass]="{'visaCard': cardMaster, 'masterCard': cardVisa}" maxlength="19" onkeypress='return event.charCode>=48 && event.charCode<=57'>
+              [ngClass]="{'visaCard': cardMaster, 'masterCard': cardVisa}" maxlength="19" onkeypress='return event.charCode>=48 && event.charCode<=57' mask="0000-0000-0000-0000">
             <div *ngIf="submitted && cardNumber.invalid">
               <span *ngIf="cardNumber.errors.required"> *Número do cartão é necessário.</span>
-              <span *ngIf="cardNumber.errors.minlength"> *Número do cartão precisa ter pelo menos 10 valores.</span>
+              <span *ngIf="cardNumber.errors.minlength"> *Número do cartão precisa ter 16 valores.</span>
             </div>
           </div>
         </div>
