@@ -36,7 +36,7 @@ import { OpenModalPeopleService } from './shared/modal-people/open-modal-people-
 import { FeedComponent } from './feed-component/feed-component.component';
 import { FriendsComponent } from './friends/friends.component';
 
-export let options: Partial<IConfig> | (() => Partial<IConfig>);
+//export var options: Partial<IConfig> | (() => Partial<IConfig>);
 
 @NgModule({
   declarations: [
@@ -69,7 +69,7 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     CurrencyMaskModule,
     MatDialogModule,
     RxReactiveFormsModule,
-    NgxMaskModule.forRoot(options)
+    NgxMaskModule,
     MatGridListModule
 
   ],
