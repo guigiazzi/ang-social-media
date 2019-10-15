@@ -56,6 +56,7 @@ export class FormCadastroComponent {
       this.professional.paymentInfo = this.paymentInfoForm.value;
     } else {
       this.professional.profileType = 'STANDARD';
+      delete this.professional.paymentInfo;
     }
     console.log(this.professional)
     this.outProfessional.emit(this.professional);
