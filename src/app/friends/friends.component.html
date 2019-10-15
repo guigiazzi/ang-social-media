@@ -3,11 +3,11 @@
   <div *ngIf="showSpinner" class="d-flex justify-content-center mt-2">
     <mat-spinner></mat-spinner>
   </div>
-  <mat-card class="basic-container scroll">
+  <mat-card class="basic-container scroll col-md-5 mb-5 amigos">
     <p class="friendsCardTitle">Amigos</p>
     <mat-grid-list cols="1" rowHeight="100px" gutterSize="1px" [style.height]="'300px'">
       <mat-grid-tile *ngFor="let friend of friends">
-        <mat-card [style.width]="'35%'" class="friendCard">
+        <mat-card [style.width]="'75%'" class="friendCard">
           <div fxLayout="row">
             <div fxFlex fxFlexAlign="center">
               <div fxLayout="row">
@@ -16,6 +16,29 @@
                   <img *ngIf="friend.profileImage === null" [src]="userDefault" class="img"> 
                   {{friend.name}}
                 </a>
+              </div>
+            </div>
+
+          </div>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card>
+  <mat-card class="basic-container scroll col-md-5 sugestao">
+    <p class="SuggestionCardTitle">Sugestão de amizade</p>
+    <mat-grid-list cols="1" rowHeight="100px" gutterSize="1px" [style.height]="'300px'">
+      <mat-grid-tile *ngFor="let friend of friends">
+        <mat-card [style.width]="'80%'" class="friendCard suggestionCard">
+          <div fxLayout="row">
+            <div fxFlex fxFlexAlign="center">
+              <div fxLayout="row">
+                <a (click)="goToUserProfile(friend.professionalID)">
+                  <img *ngIf="friend.profileImage !== null" [src]="imageFile" class="img">
+                  <img *ngIf="friend.profileImage === null" [src]="userDefault" class="img"> 
+                  {{friend.name}}
+                </a>
+                <br>
+                <button class="btn btn-primary mt-2 col-sm-3 btnConnect">Conectar</button>
               </div>
             </div>
 
