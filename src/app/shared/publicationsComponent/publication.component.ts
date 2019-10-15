@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material';
 import { Professional } from 'src/app/interfaces/professional';
 import { OpenModalPeopleService } from './../modal-people/open-modal-people-service.service';
 import { SessionService } from '../sessionService/session.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-publication',
@@ -27,7 +28,8 @@ export class PublicationComponent implements OnInit {
     private snackbar: MatSnackBar,
     private appservice: AppService,
     private openModalPeopleService: OpenModalPeopleService,
-    private sessionService: SessionService) {}
+    private sessionService: SessionService,
+    private router: Router) {}
 
   ngOnInit() {
     this.getLikes();
@@ -103,7 +105,7 @@ export class PublicationComponent implements OnInit {
         duration: 4000,
         panelClass: ['error-snackbar']
       });
-    });
+    })
   }
 
   likesPessoas() {
@@ -125,5 +127,10 @@ export class PublicationComponent implements OnInit {
       }, err => {
         console.log(err);
       });
+  }
+
+  goTo() {
+    const userId = this.author.professionalID;
+    this.router.navigate([`postagens`, userId]);
   }
 }

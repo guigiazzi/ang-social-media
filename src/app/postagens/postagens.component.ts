@@ -227,12 +227,4 @@ export class PostagensComponent implements OnInit {
     });
   }
 
-  recomendacoesPessoas() {
-    const data = {title: 'Recomendações', noneText: 'Ninguém recomendou esse usuário ainda!', users: this.recommendationList}
-    this.openModalPeopleService.openDialog(data)
-    .subscribe(res=>{
-      console.log('Modal de recomendacoes fechado');
-    });
-  }
-
 }
