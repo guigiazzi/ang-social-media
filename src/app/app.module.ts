@@ -65,7 +65,7 @@ import { FeedComponent } from './feed-component/feed-component.component';
     CurrencyMaskModule,
     MatDialogModule,
     RxReactiveFormsModule,
-    NgxMaskModule
+    NgxMaskModule.forRoot()
   ],
   providers: [
     FormatDateService,
