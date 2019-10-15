@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSnackBarModule } from '@angular/material';
+import { MatSnackBarModule, MatGridListModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
@@ -34,6 +34,7 @@ import { SessionService } from './shared/sessionService/session.service';
 import { OpenModalService } from './shared/modal-dialog/open-modal-service.service';
 import { OpenModalPeopleService } from './shared/modal-people/open-modal-people-service.service';
 import { FeedComponent } from './feed-component/feed-component.component';
+import { FriendsComponent } from './friends/friends.component';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -49,7 +50,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     InterestTopicsComponent,
     ModalDialogComponent,
     ModalPeopleComponent,
-    FeedComponent
+    FeedComponent,
+    FriendsComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +70,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     MatDialogModule,
     RxReactiveFormsModule,
     NgxMaskModule.forRoot(options)
+    MatGridListModule
+
   ],
   providers: [
     FormatDateService,

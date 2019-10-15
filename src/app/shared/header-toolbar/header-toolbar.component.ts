@@ -45,4 +45,8 @@ export class HeaderToolbarComponent {
   goTo(userId: string) {
     this.router.navigate([`postagens`, userId]);
   }
+
+  goToFriends() {
+    this.router.navigate([`friends`,this.sessionService.getUserLogged()]);
+  }
 }
