@@ -1,8 +1,9 @@
+<p><b>Dados Pessoais</b></p>
 <form [formGroup]="professionalForm" (ngSubmit)="onSubmit()">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="name">Nome</label>
-      <input type="text" class="form-control" id="name" placeholder="Nome" formControlName="name">
+      <input type="text" class="form-control" id="name" placeholder="Nome" formControlName="name" onkeypress='return event.charCode<=48 || event.charCode>=57'>
       <div *ngIf="submitted && name.invalid">
         <span *ngIf="name.errors.required">
             *Nome é necessário.
@@ -42,7 +43,7 @@
    <div class="form-row">
     <div class="form-group col-md-6">
       <label for="city">Cidade onde trabalha</label>
-      <input type="text" class="form-control" id="city" placeholder="Cidade"  formControlName="city">
+      <input type="text" class="form-control" id="city" placeholder="Cidade"  formControlName="city" onkeypress='return event.charCode<=48 || event.charCode>=57'>
       <div *ngIf="submitted && city.invalid">
         <span *ngIf="city.errors.required">
           *Cidade é necessária.
@@ -67,26 +68,24 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="birthDate">Data de aniversário</label>
-      <input type="date" data-provide="datepicker" class="form-control" id="birthDate" formControlName="birthDate" placeholder="10/10/1990">
+      <input type="date" data-provide="datepicker" class="form-control" id="birthDate" formControlName="birthDate" max="{{maxDate}}" placeholder="10/10/1990">
       <div *ngIf="submitted && birthDate.invalid">
-          <span *ngIf="birthDate.errors.required">
-            *Data de nascimento incorreta.
-          </span>
+          <span *ngIf="birthDate.errors.required"> *Data de nascimento incorreta. </span>
+          <span *ngIf="birthDate.errors.maxDate"> *Data de nascimento inválida. </span>
         </div>
     </div>
     <div class="form-group col-md-6">
       <label for="careerDate">Data de início na carreira de Cientista de Dados</label>
-      <input type="date" data-provide="datepicker" class="form-control" id="careerDate" formControlName="careerDate" placeholder="10/10/1990">
+      <input type="date" data-provide="datepicker" class="form-control" id="careerDate" formControlName="careerDate" max="{{maxDate}}" placeholder="10/10/1990">
       <div *ngIf="submitted && careerDate.invalid">
-        <span *ngIf="careerDate.errors.required">
-          *Data de ínicio da carreira incorreta.
-        </span>
+        <span *ngIf="careerDate.errors.required"> *Data de ínicio da carreira incorreta. </span>
+        <span *ngIf="careerDate.errors.maxDate"> *Data de início de carreira inválida. </span>
       </div>
     </div>
   </div>
 
   <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-6 mr-1">
       <label for="instructionLevel">Nível de instrução</label>
       <select class="custom-select"  id="instructionLevel" formControlName="instructionLevel">
         <option *ngFor="let enum of keys(enums)" [ngValue]="enum">{{enums[enum]}}</option>
@@ -97,8 +96,28 @@
         </span>
       </div>
     </div>
+    <div [ngClass]="{'imageContainer': !urlImage, 'borderDiv': urlImage}">
+      <div *ngIf='urlImage' class="d-flex justify-content-center">
+        <img [src]="urlImage" class="image">
+      </div>
+      <div *ngIf='!urlImage' class="d-flex justify-content-center borderDiv">
+        <img src="./../../../assets/images/file-drop.png" class="imageNull pr-1">
+        <label for="foto" class="btn btn-primary d-flex botaoSelect">
+          Selecionar Foto de Perfil <mat-icon class="iconeSelect">image</mat-icon>
+        </label>
+      </div>
+      <div class="d-flex justify-content-center">
+        <input type='file' (change)="selecionarFoto($event)" id="foto" accept="image/*" class="d-none">
+        <div *ngIf="urlImage">
+          <label for="foto" class="btn btn-primary d-flex botaoPosFoto">
+            Selecionar Foto de Perfil <mat-icon class="iconeSelect">image</mat-icon>
+          </label>
+        </div>
+      </div>
+    </div>
   </div>
-
+  <br>
+  <p><b>Dados Profissionais</b></p>
   <form [formGroup]="jobRoleForm" (ngSubmit)="onSubmit()">
     <div class=" form-row">
       <div class="form-group col-md-6">
@@ -130,20 +149,6 @@
     </div>
     </div>
     <div class="form-group">
-      <div class="imageContainer">
-        <div *ngIf='urlImage' class="d-flex justify-content-center">
-          <img [src]="urlImage" class="image">
-        </div>
-        <div *ngIf='!urlImage' class="d-flex justify-content-center">
-          <img src="./../../../assets/images/file-drop.png">
-        </div>
-        <div class="d-flex justify-content-center">
-          <label for="foto" class="btn btn-primary d-flex botaoSelect">
-            Selecionar Foto de Perfil <mat-icon class="iconeSelect">image</mat-icon>
-          </label>
-          <input type='file' (change)="selecionarFoto($event)" id="foto" accept="image/*" class="d-none">
-        </div>
-      </div>
       <div class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
         <label class="custom-control-label" for="defaultUnchecked" (click)="habilitaPagamento()">Conta Premium</label>
@@ -154,7 +159,7 @@
         <div  class="form-row">
           <div class="form-group col-md-6">
             <label for="cardName">Nome do cartão</label>
-            <input type="text" class="form-control" id="cardName" formControlName="cardName">
+            <input type="text" class="form-control" id="cardName" formControlName="cardName" onkeypress='return event.charCode<=48 || event.charCode>=57'>
             <div *ngIf="submitted && cardName.invalid">
                 <span *ngIf="cardName.errors.required">
                 *Nome do cartão é necessário.
@@ -164,10 +169,10 @@
           <div class="form-group col-md-6">
             <label for="cardNumber">Número do cartão</label>
             <input type="text" class="form-control" id="cardNumber" formControlName="cardNumber" (input)="displayCard($event.target.value)"
-              [ngClass]="{'visaCard': cardMaster, 'masterCard': cardVisa}" maxlength="16" onkeypress='return event.charCode>=48 && event.charCode<=57'>
+              [ngClass]="{'visaCard': cardMaster, 'masterCard': cardVisa}" maxlength="19" onkeypress='return event.charCode>=48 && event.charCode<=57' mask="0000-0000-0000-0000">
             <div *ngIf="submitted && cardNumber.invalid">
               <span *ngIf="cardNumber.errors.required"> *Número do cartão é necessário.</span>
-              <span *ngIf="cardNumber.errors.minlength"> *Número do cartão precisa ter pelo menos 16 valores.</span>
+              <span *ngIf="cardNumber.errors.minlength"> *Número do cartão precisa ter 16 valores.</span>
             </div>
           </div>
         </div>
@@ -175,12 +180,10 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="cardValidationDate">Data de validade</label>
-            <input type="date" data-provide="datepicker" class="form-control" id="cardValidationDate" formControlName="cardValidationDate" placeholder="10/10/1990">
+            <input type="month" data-provide="datepicker" class="form-control" id="cardValidationDate" formControlName="cardValidationDate" placeholder="10/1990" min="{{minDate}}" max="2999-12">
             <div *ngIf="submitted && cardValidationDate.invalid">
-                <span *ngIf="cardValidationDate.errors.required">
-                  *Data de validade do cartão é necessária.
-                </span>
-              </div>
+              <span *ngIf="cardValidationDate.errors.required"> *Data de validade do cartão é necessária. </span>
+            </div>
           </div>
           <div class="form-group col-md-2">
             <label for="cardSecurityCode">CCV</label>

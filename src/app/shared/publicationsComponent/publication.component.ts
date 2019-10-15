@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material';
 import { Professional } from 'src/app/interfaces/professional';
 import { OpenModalPeopleService } from './../modal-people/open-modal-people-service.service';
 import { SessionService } from '../sessionService/session.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-publication',
@@ -12,7 +13,7 @@ import { SessionService } from '../sessionService/session.service';
   styleUrls: ['./publication.component.css']
 })
 
-export class PublicationComponent implements OnInit{
+export class PublicationComponent implements OnInit {
   @Input() publication;
   @Output() clickedDeletPublication = new EventEmitter();
   @Input() isMyProfile;
@@ -27,7 +28,8 @@ export class PublicationComponent implements OnInit{
     private snackbar: MatSnackBar,
     private appservice: AppService,
     private openModalPeopleService: OpenModalPeopleService,
-    private sessionService: SessionService) {}
+    private sessionService: SessionService,
+    private router: Router) {}
 
   ngOnInit() {
     this.getLikes();
@@ -53,21 +55,21 @@ export class PublicationComponent implements OnInit{
 
   curtirPublication() {
     this.appservice.likePublication(this.professionalLike, this.publication.publicationID)
-    .subscribe(res => {
-      this.snackbar.open('Publicação curtida!', 'Dismiss', {
-        duration: 4000,
-        panelClass: ['success-snackbar']
-      });
-      this.alreadyLikePost = true;
-      this.likeList.push(this.userLogged);
-      this.likeLength += 1;
-    },err =>{
-      console.log(err)
-      this.snackbar.open(`${err.error}`, 'Dismiss', {
-        duration: 4000,
-        panelClass: ['error-snackbar']
-      });
-    })
+      .subscribe(res => {
+        this.snackbar.open('Publicação curtida!', 'Dismiss', {
+          duration: 4000,
+          panelClass: ['success-snackbar']
+        });
+        this.alreadyLikePost = true;
+        this.likeList.push(this.userLogged);
+        this.likeLength += 1;
+      }, err => {
+        console.log(err)
+        this.snackbar.open(`${err.error}`, 'Dismiss', {
+          duration: 4000,
+          panelClass: ['error-snackbar']
+        });
+      })
   }
 
   descurtirPublication() {
@@ -103,27 +105,32 @@ export class PublicationComponent implements OnInit{
         duration: 4000,
         panelClass: ['error-snackbar']
       });
-    });
+    })
   }
 
   likesPessoas() {
-    const data = {title: 'Curtidas',noneText: 'Ainda não há nenhuma curtida!', users: this.likeList}
+    const data = { title: 'Curtidas', noneText: 'Ainda não há nenhuma curtida!', users: this.likeList }
     this.openModalPeopleService.openDialog(data)
-    .subscribe(res=>{
-      console.log('Modal de recomendacoes fechado');
-    });
+      .subscribe(res => {
+        console.log('Modal de recomendacoes fechado');
+      });
   }
 
   statusCurtida() {
     this.appservice.getStatusPublication(this.professionalLike, this.publication.publicationID)
-    .subscribe(res => {
-      if(res === 1){
-        this.alreadyLikePost = true;
-      } else {
-        this.alreadyLikePost = false;
-      }
-    }, err => {
-      console.log(err);
-    });
+      .subscribe(res => {
+        if (res === 1) {
+          this.alreadyLikePost = true;
+        } else {
+          this.alreadyLikePost = false;
+        }
+      }, err => {
+        console.log(err);
+      });
+  }
+
+  goTo() {
+    const userId = this.author.professionalID;
+    this.router.navigate([`postagens`, userId]);
   }
 }

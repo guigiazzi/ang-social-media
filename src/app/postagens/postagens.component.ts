@@ -215,6 +215,7 @@ export class PostagensComponent implements OnInit {
   getRecomendacoes() {
     this.appservice.getProfessionalsWhoRecommended(this.usuario.professionalID)
     .subscribe(res => {
+      console.log(res)
       this.recommendationLength = res.length;
       this.recommendationList = res;
     }, err => {
@@ -223,14 +224,6 @@ export class PostagensComponent implements OnInit {
         duration: 4000,
         panelClass: ['error-snackbar']
       });
-    });
-  }
-
-  recomendacoesPessoas() {
-    const data = {title: 'Recomendações', noneText: 'Ninguém recomendou esse usuário ainda!', users: this.recommendationList}
-    this.openModalPeopleService.openDialog(data)
-    .subscribe(res=>{
-      console.log('Modal de recomendacoes fechado');
     });
   }
 

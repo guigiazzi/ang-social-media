@@ -1,12 +1,10 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Professional } from '../../interfaces/professional';
-import { AppService } from '../../app.service';
-import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { JobRole } from 'src/app/interfaces/job-role';
 import { PaymentInfo } from 'src/app/interfaces/payment-info';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
 
 @Component({
   selector: 'app-form-cadastro',
@@ -26,6 +24,8 @@ export class FormCadastroComponent {
   public submitted = false;
   public jobRoleForm: FormGroup;
   public paymentInfoForm: FormGroup;
+  public minDate = new Date().getFullYear() + '-' +((new Date().getMonth() < 10) ? '0' + new Date().getMonth() : new Date().getMonth());
+  public maxDate = new Date().getFullYear() + '-' +((new Date().getMonth() < 10) ? '0' + new Date().getMonth() : new Date().getMonth()) + '-' + ((new Date().getDate() < 10) ? '0' + new Date().getDate() : new Date().getDate());
 
   constructor(private snackbar: MatSnackBar, private formBuilder: FormBuilder) {
     this.professionalForm = this.createProfessionalFormGroup();
@@ -54,10 +54,11 @@ export class FormCadastroComponent {
     if(this.contaPremium){
       this.professional.profileType = "PREMIUM";
       this.professional.paymentInfo = this.paymentInfoForm.value;
+    } else {
+      this.professional.profileType = 'STANDARD';
     }
     console.log(this.professional)
     this.outProfessional.emit(this.professional);
-    console.log('eeeee ')
   }
 
   habilitaPagamento() {
@@ -117,8 +118,8 @@ export class FormCadastroComponent {
        'password': new FormControl(this.professional.password, [Validators.required, Validators.minLength(3)]),
         'city': new FormControl(this.professional.email, [Validators.required]),
         'state': new FormControl(this.professional.state, [Validators.required]),
-        'birthDate': new FormControl(this.professional.birthDate, [Validators.required]),
-        'careerDate': new FormControl(this.professional.careerDate, [Validators.required]),
+        'birthDate': new FormControl(this.professional.birthDate, [Validators.required, RxwebValidators.maxDate({value: new Date()})]),
+        'careerDate': new FormControl(this.professional.careerDate, [Validators.required, RxwebValidators.maxDate({value: new Date()})]),
         'instructionLevel': new FormControl(this.professional.instructionLevel, [Validators.required])        
     })
   }

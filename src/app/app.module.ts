@@ -13,6 +13,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import {MatDialogModule} from '@angular/material/dialog';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import {NgxMaskModule, IConfig} from 'ngx-mask'
 
 // Components
 import { AppComponent } from './app.component';
@@ -33,6 +35,8 @@ import { OpenModalService } from './shared/modal-dialog/open-modal-service.servi
 import { OpenModalPeopleService } from './shared/modal-people/open-modal-people-service.service';
 import { FeedComponent } from './feed-component/feed-component.component';
 import { FriendsComponent } from './friends/friends.component';
+
+export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
 @NgModule({
   declarations: [
@@ -64,7 +68,10 @@ import { FriendsComponent } from './friends/friends.component';
     MatInputModule,
     CurrencyMaskModule,
     MatDialogModule,
+    RxReactiveFormsModule,
+    NgxMaskModule.forRoot(options)
     MatGridListModule
+
   ],
   providers: [
     FormatDateService,
