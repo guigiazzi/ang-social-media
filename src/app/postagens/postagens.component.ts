@@ -55,9 +55,6 @@ export class PostagensComponent implements OnInit {
     this.showSpinner = true;
     this.publication.author = this.usuario.name;
     this.publication.professionalID = this.usuario.professionalID;
-    if(this.publication.videoUrl){
-      // this.publication.thumbnailUrl = this.getThumbnailImage(this.publication.videoUrl)
-    }
     this.appservice.cadastrarPublication(this.publication)
       .subscribe(res => {
         this.snackbar.open('Publicação feita com sucesso!', 'Dismiss', {
@@ -218,6 +215,7 @@ export class PostagensComponent implements OnInit {
   getRecomendacoes() {
     this.appservice.getProfessionalsWhoRecommended(this.usuario.professionalID)
     .subscribe(res => {
+      console.log(res)
       this.recommendationLength = res.length;
       this.recommendationList = res;
     }, err => {
@@ -226,14 +224,6 @@ export class PostagensComponent implements OnInit {
         duration: 4000,
         panelClass: ['error-snackbar']
       });
-    });
-  }
-
-  recomendacoesPessoas() {
-    const data = {title: 'Recomendações', noneText: 'Ninguém recomendou esse usuário ainda!', users: this.recommendationList}
-    this.openModalPeopleService.openDialog(data)
-    .subscribe(res=>{
-      console.log('Modal de recomendacoes fechado');
     });
   }
 

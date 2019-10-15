@@ -13,6 +13,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import {MatDialogModule} from '@angular/material/dialog';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import {NgxMaskModule, IConfig} from 'ngx-mask'
 
 // Components
 import { AppComponent } from './app.component';
@@ -32,6 +34,8 @@ import { SessionService } from './shared/sessionService/session.service';
 import { OpenModalService } from './shared/modal-dialog/open-modal-service.service';
 import { OpenModalPeopleService } from './shared/modal-people/open-modal-people-service.service';
 import { FeedComponent } from './feed-component/feed-component.component';
+
+export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
 @NgModule({
   declarations: [
@@ -61,7 +65,9 @@ import { FeedComponent } from './feed-component/feed-component.component';
     MatProgressSpinnerModule,
     MatInputModule,
     CurrencyMaskModule,
-    MatDialogModule
+    MatDialogModule,
+    RxReactiveFormsModule,
+    NgxMaskModule.forRoot(options)
   ],
   providers: [
     FormatDateService,
