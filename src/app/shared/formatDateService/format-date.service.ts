@@ -6,7 +6,7 @@ export class FormatDateService {
   constructor() { }
 
   formatDate(date: string) {
-    return (this.formatHour(date) + ` - ` + this.formatDatewithoutHour(date));
+    return (this.formatHour(date) + ` - ` + this.formatDatewithoutHour(date.toString()));
   }
 
   formatHour(date: string) {
@@ -31,6 +31,19 @@ export class FormatDateService {
     + ('0' + (dayMonthYearNBR.getMonth() + 1)).substr(-2) + '/' + dayMonthYearNBR.getFullYear();
 
     return dayMonthYearSTR;
+  }
+
+  formatMonth(date: Date) {
+    return new Date(date).getFullYear() + '-' +((new Date(date).getMonth() < 10) ? '0' + new Date(date).getMonth() : new Date(date).getMonth());
+  }
+
+  formatDateAmerican(date: string){
+    let YearMonthDaySTR = date.substr(0, 10);
+    let YearMonthDay = new Date(YearMonthDaySTR.replace(/-/g, '\/'));
+    YearMonthDaySTR =  YearMonthDay.getFullYear() + '-'
+    + ('0' + (YearMonthDay.getMonth() + 1)).substr(-2) + '-' +  ('0' + YearMonthDay.getDate()).substr(-2);
+    
+    return YearMonthDaySTR;
   }
 
 }
