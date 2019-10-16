@@ -13,8 +13,11 @@
             <mat-icon>thumb_down</mat-icon> Retirar recomendação
           </button>
         </div>
-        <div>
-          <p class="btn btn-primary recomendacoes">{{ recommendationLength }} Recomendação</p>
+        <div *ngIf="recommendationLength === 1">
+          <p class="btn btn-primary recomendacoes" >{{ recommendationLength }} Recomendação</p>
+        </div>
+        <div *ngIf="recommendationLength === 0 || recommendationLength > 1">
+          <p class="btn btn-primary recomendacoes" >{{ recommendationLength }} Recomendações</p>
         </div>
         <hr>
         <div>
