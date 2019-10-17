@@ -22,6 +22,7 @@ export class SessionService {
   }
 
   logoutUser() {
+    localStorage.removeItem('user');
     this.userId = '';
   }
 }
