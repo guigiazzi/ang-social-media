@@ -35,8 +35,6 @@ import { OpenModalService } from './shared/modal-dialog/open-modal-service.servi
 import { OpenModalPeopleService } from './shared/modal-people/open-modal-people-service.service';
 import { FeedComponent } from './feed-component/feed-component.component';
 
-export let options: Partial<IConfig> | (() => Partial<IConfig>);
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +65,7 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     CurrencyMaskModule,
     MatDialogModule,
     RxReactiveFormsModule,
-    NgxMaskModule.forRoot(options)
+    NgxMaskModule.forRoot()
   ],
   providers: [
     FormatDateService,
