@@ -33,7 +33,7 @@ export class FormCadastroComponent implements OnInit{
     this.jobRoleForm = this.createJobRoleFormGroup();
     this.paymentInfoForm = this.createPaymentInfoFormGroup();
    }
-  
+
   @Input() professional: Professional = <Professional>{};
   @Input() jobRole: JobRole = <JobRole>{};
   @Input() paymentInfo: PaymentInfo = <PaymentInfo>{};
@@ -44,7 +44,7 @@ export class FormCadastroComponent implements OnInit{
       const birthDateString = this.formatDateService.formatDateAmerican(this.professional.birthDate.toString())
       const careerDateString = this.formatDateService.formatDateAmerican(this.professional.careerDate.toString());
       this.professionalForm.setValue({
-        'name': this.professional.name, 
+        'name': this.professional.name,
         'userLogin': this.professional.userLogin,
         'email': this.professional.email,
         'password': this.professional.password,
@@ -55,19 +55,18 @@ export class FormCadastroComponent implements OnInit{
         'instructionLevel': this.professional.instructionLevel
       })
     }
-    
+
     if(this.professional.jobRole){
       this.jobRoleForm.setValue({
         'companyName': this.professional.jobRole.companyName,
         'salary': this.professional.jobRole.salary,
         'jobTitle': this.professional.jobRole.jobTitle
       })
-    } 
-    
-    
+    }
+
     if(this.professional.paymentInfo){
       this.contaPremium = true;
-      const cardValidationString = this.formatDateService.formatMonth(this.professional.paymentInfo.cardValidationDate);
+      const cardValidationString = this.formatDateService.formatMonth(this.professional.paymentInfo.cardValidationDate.toString());
       this.paymentInfoForm.setValue({
         'cardName': this.professional.paymentInfo.cardName,
         'cardNumber': this.professional.paymentInfo.cardNumber,
@@ -164,7 +163,7 @@ export class FormCadastroComponent implements OnInit{
         'state': new FormControl(this.professional.state, [Validators.required]),
         'birthDate': new FormControl(this.professional.birthDate, [Validators.required, RxwebValidators.maxDate({value: new Date()})]),
         'careerDate': new FormControl(this.professional.careerDate, [Validators.required, RxwebValidators.maxDate({value: new Date()})]),
-        'instructionLevel': new FormControl(this.professional.instructionLevel, [Validators.required])        
+        'instructionLevel': new FormControl(this.professional.instructionLevel, [Validators.required])
     })
   }
 

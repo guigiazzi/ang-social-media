@@ -33,8 +33,11 @@ export class FormatDateService {
     return dayMonthYearSTR;
   }
 
-  formatMonth(date: Date) {
-    return new Date(date).getFullYear() + '-' +((new Date(date).getMonth() < 10) ? '0' + new Date(date).getMonth() : new Date(date).getMonth());
+  formatMonth(date: string) {
+    let YearMonthSTR = date.substr(0, 10);
+    let YearMonth = new Date(YearMonthSTR.replace(/-/g, '\/'));
+    YearMonthSTR =  YearMonth.getFullYear() + '-'+ ('0' + (YearMonth.getMonth() + 1)).substr(-2);
+    return YearMonthSTR;
   }
 
   formatDateAmerican(date: string){
@@ -42,7 +45,7 @@ export class FormatDateService {
     let YearMonthDay = new Date(YearMonthDaySTR.replace(/-/g, '\/'));
     YearMonthDaySTR =  YearMonthDay.getFullYear() + '-'
     + ('0' + (YearMonthDay.getMonth() + 1)).substr(-2) + '-' +  ('0' + YearMonthDay.getDate()).substr(-2);
-    
+
     return YearMonthDaySTR;
   }
 
