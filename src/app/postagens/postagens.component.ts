@@ -226,4 +226,7 @@ export class PostagensComponent implements OnInit {
     });
   }
 
+  adicionarAmizade() {
+
+  }
 }
