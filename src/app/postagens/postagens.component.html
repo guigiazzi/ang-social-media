@@ -20,8 +20,17 @@
           <p class="btn btn-primary recomendacoes" >{{ recommendationLength }} Recomendações</p>
         </div>
         <div *ngIf="!isMyProfile">
-          <button type="submit" (click)="adicionarAmizade()" class="btn btn-primary conectar">
+          <button *ngIf="amizade === 4" type="submit" (click)="adicionarAmizade()" class="btn btn-primary conectar">
             <mat-icon>person_add</mat-icon> Conectar
+          </button>
+          <button *ngIf="amizade === 3" type="submit" (click)="adicionarAmizade()" class="btn btn-primary conectar">
+            <mat-icon>person_add</mat-icon> Aceitar Amizade
+          </button>
+          <button *ngIf="amizade === 2" type="submit" (click)="adicionarAmizade()" class="btn btn-primary conectar">
+            <mat-icon>person_add</mat-icon> Solicitação Enviada
+          </button>
+          <button *ngIf="amizade === 1" type="submit" (click)="adicionarAmizade()" class="btn btn-primary conectar">
+            Desfazer amizade
           </button>
         </div>
         <hr>

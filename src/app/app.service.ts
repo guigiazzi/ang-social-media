@@ -113,4 +113,14 @@ export class AppService {
     const url = `${environment.dssmApiUrl}/retrieveFeedPublicationsList/${professionalID}`;
     return this.http.get(url);
   }
+
+  sendFriendshipRequest(requesterID, responserID): Observable<any> {
+    const url = `${environment.dssmApiUrl}/sendFriendshipRequest`;
+    return this.http.post(url, {senderID: requesterID, receiverID: responserID});
+  }
+
+  getFriendshipStatus(professionalID1,professionalID2): Observable<any> {
+    const url = `${environment.dssmApiUrl}/getFriendshipStatus/${professionalID1}/${professionalID2}`;
+    return this.http.get(url);
+  }
 }

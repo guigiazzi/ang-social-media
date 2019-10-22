@@ -26,6 +26,7 @@ export class PostagensComponent implements OnInit {
   public recommendationLength: number;
   public recommendationList: Professional[] = [];
   public userLoggedId: string;
+  public amizade: number;
 
   constructor(
     private appservice: AppService,
@@ -44,6 +45,7 @@ export class PostagensComponent implements OnInit {
       this.isMyProfile = true;
     } else {
       this.statusRecomendacao();
+      this.statusAmizade();
     }
     this.getRecomendacoes();
     this.retornaDadosUsuarios(this.usuario.professionalID);
@@ -227,6 +229,30 @@ export class PostagensComponent implements OnInit {
   }
 
   adicionarAmizade() {
+    this.appservice.sendFriendshipRequest(this.userLoggedId, this.usuario.professionalID)
+    .subscribe(res => {
+      this.snackbar.open(`Solicitação enviada!`, 'Dismiss', {
+        duration: 4000,
+        panelClass: ['success-snackbar']
+      });
+    }, err => {
+      console.log(err);
+      this.snackbar.open(`Erro enviar solicitação de amizade!`, 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
+      });
+    });
+  }
 
+  statusAmizade() {
+    this.appservice.getFriendshipStatus(this.userLoggedId, this.usuario.professionalID)
+    .subscribe(res =>{
+      console.log(res)
+      this.amizade = res;
+      // 1 - Amigos
+      // 2 - Solicitacao enviada
+      // 3 - Solicitacao pendente de aceitacao
+      // 4 - Nao amigos
+    })
   }
 }
