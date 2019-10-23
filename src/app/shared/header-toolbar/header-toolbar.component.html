@@ -12,8 +12,8 @@
       </div>
       <div class="perfil-amigos">
         <a class="menuItens" (click)="goToHome()">
-            <mat-icon>home</mat-icon>
-            Home |
+          <mat-icon>home</mat-icon>
+          Home |
         </a>
         <a class='menuItens' (click)="goToProfile()">
           <mat-icon>person</mat-icon>
@@ -28,6 +28,7 @@
     </mat-toolbar-row>
   </mat-toolbar>
   <div *ngFor="let person of searchUsers" class="d-flex justify-content-center persons">
-      <a class="border border-secondary rounded dropdownItens" color="white" (click)="goTo(person.professionalID)">{{person.name}}</a>
+      <a class="border border-secondary rounded dropdownItens" color="white"
+      (click)="goTo(person.professionalID)">{{person.name}}</a>
   </div>
 </div>

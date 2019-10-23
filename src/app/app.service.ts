@@ -143,4 +143,8 @@ export class AppService {
      return;
    } //Alterar qnd back end estiver pronto
 
+  getListFriends(professionalID: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/returnFriendsList/${professionalID}`;
+    return this.http.get<Professional>(url);
+  }
 }
