@@ -40,7 +40,7 @@ export class FormCadastroComponent implements OnInit{
   @Output() outProfessional: EventEmitter<Professional> = new EventEmitter();
 
   ngOnInit(){
-    if(this.professional.name){
+    if(Object.keys(this.professional).length > 0){
       const birthDateString = this.formatDateService.formatDateAmerican(this.professional.birthDate.toString())
       const careerDateString = this.formatDateService.formatDateAmerican(this.professional.careerDate.toString());
       this.professionalForm.setValue({
@@ -56,7 +56,7 @@ export class FormCadastroComponent implements OnInit{
       })
     }
 
-    if(this.professional.jobRole){
+    if(Object.keys(this.professional.jobRole).length > 0){
       this.jobRoleForm.setValue({
         'companyName': this.professional.jobRole.companyName,
         'salary': this.professional.jobRole.salary,
