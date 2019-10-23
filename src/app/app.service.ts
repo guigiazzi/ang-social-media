@@ -114,13 +114,33 @@ export class AppService {
     return this.http.get(url);
   }
 
-  sendFriendshipRequest(requesterID, responserID): Observable<any> {
+  sendFriendshipRequest(requesterID: string, responserID: string): Observable<any> {
     const url = `${environment.dssmApiUrl}/sendFriendshipRequest`;
     return this.http.post(url, {senderID: requesterID, receiverID: responserID});
   }
 
-  getFriendshipStatus(professionalID1,professionalID2): Observable<any> {
+  getFriendshipStatus(professionalID1: string,professionalID2: string): Observable<any> {
     const url = `${environment.dssmApiUrl}/getFriendshipStatus/${professionalID1}/${professionalID2}`;
     return this.http.get(url);
   }
+
+  acceptFriendShipRequest(professionalID1: string, professionalID2: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/acceptFriendShipRequest`;
+    return this.http.post(url, {senderID: professionalID1,  receiverID: professionalID2});
+  }
+  
+   rejectFriendshipRequest(professionalID1: string, professionalID2: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/rejectFriendshipRequest`;
+    return this.http.post(url, {senderID: professionalID1,  receiverID: professionalID2});
+   }
+  
+   unfriend(professionalID1: string, professionalID2: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/unfriend/${professionalID1}/${professionalID2}`;
+    return this.http.delete(url);
+   }
+
+   cancelarSolicitacao(professionalID1: string, professionalID2: string): Observable<any> {
+     return;
+   } //Alterar qnd back end estiver pronto
+  
 }

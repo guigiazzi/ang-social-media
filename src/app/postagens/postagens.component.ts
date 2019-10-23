@@ -231,6 +231,7 @@ export class PostagensComponent implements OnInit {
   adicionarAmizade() {
     this.appservice.sendFriendshipRequest(this.userLoggedId, this.usuario.professionalID)
     .subscribe(res => {
+      this.statusAmizade();
       this.snackbar.open(`Solicitação enviada!`, 'Dismiss', {
         duration: 4000,
         panelClass: ['success-snackbar']
@@ -243,6 +244,77 @@ export class PostagensComponent implements OnInit {
       });
     });
   }
+
+  aceitarAmizade() {
+    this.appservice.acceptFriendShipRequest(this.userLoggedId, this.usuario.professionalID)
+    .subscribe(res => {
+      this.statusAmizade()
+      this.snackbar.open('Solicitação de amizade aceita!', 'Dismiss', {
+        duration: 4000,
+        panelClass: ['success-snackbar']
+      })
+    },err => {
+      console.log(err)
+      this.snackbar.open('Erro ao aceitar solicitação de amizade!', 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
+      });
+    });
+  }
+  
+  rejeitarPedidoAmizade() {
+    this.appservice.rejectFriendshipRequest(this.userLoggedId, this.usuario.professionalID)
+    .subscribe(res => {
+      this.statusAmizade()
+      this.snackbar.open(`Amizade Recusada com sucesso!`, 'Dismiss', {
+        duration: 4000,
+        panelClass: ['success-snackbar']
+      })
+    },err => {
+      console.log(err)
+      this.snackbar.open(`Erro ao recusar solicitação de amizade!`, 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
+      })
+    })
+  }
+
+  desfazerAmizade() {
+    this.appservice.unfriend(this.userLoggedId, this.usuario.professionalID)
+    .subscribe(res => {
+      this.statusAmizade()
+      this.snackbar.open('Amizade desfeita com sucesso!', 'Dismiss', {
+        duration: 4000,
+        panelClass: ['success-snackbar']
+      })
+    },err => {
+      console.log(err)
+      this.snackbar.open('Erro ao desfazer amizade!', 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
+      })
+    })
+  }
+
+  cancelarSolicitacaoAmizade() {
+    this.appservice.cancelarSolicitacao(this.userLoggedId, this.usuario.professionalID)
+    .subscribe(res => {
+      this.statusAmizade()
+      this.snackbar.open('Solicitação de amizade cancelada com sucesso!', 'Dismiss', {
+        duration: 4000,
+        panelClass: ['success-snackbar']
+      })
+    }, err => {
+      console.log(err)
+      this.snackbar.open('Erro ao cancelar pedido de amizade!', 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
+      })
+    })
+  }
+  
+  
+  
 
   statusAmizade() {
     this.appservice.getFriendshipStatus(this.userLoggedId, this.usuario.professionalID)

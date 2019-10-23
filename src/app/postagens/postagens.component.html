@@ -23,16 +23,19 @@
           <button *ngIf="amizade === 4" type="submit" (click)="adicionarAmizade()" class="btn btn-primary conectar">
             <mat-icon>person_add</mat-icon> Conectar
           </button>
-          <button *ngIf="amizade === 3" type="submit" (click)="adicionarAmizade()" class="btn btn-primary conectar">
+          <button *ngIf="amizade === 3" type="submit" (click)="aceitarAmizade()" class="btn btn-primary conectar">
             <mat-icon>person_add</mat-icon> Aceitar Amizade
           </button>
-          <button *ngIf="amizade === 2" type="submit" (click)="adicionarAmizade()" class="btn btn-primary conectar">
-            <mat-icon>person_add</mat-icon> Solicitação Enviada
+          <button *ngIf="amizade === 3" type="submit" (click)="rejeitarPedidoAmizade()" class="btn btn-primary conectar">
+            Recusar Solicitação
           </button>
-          <button *ngIf="amizade === 1" type="submit" (click)="adicionarAmizade()" class="btn btn-primary conectar">
-            Desfazer amizade
+          <button *ngIf="amizade === 2" type="submit" (click)="cancelarSolicitacaoAmizade()" class="btn btn-primary conectar">
+            Cancelar Solicitação
           </button>
-        </div>
+          <button *ngIf="amizade === 1" type="submit" (click)="desfazerAmizade()" class="btn btn-primary conectar">
+            Desfazer Amizade
+          </button>
+        </div>        
         <hr>
         <div>
             <img src="http://agbrands.com.br/wp-content/uploads/2017/01/perfil.jpg" class="imgPerson" alt="...">
