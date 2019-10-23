@@ -261,7 +261,7 @@ export class PostagensComponent implements OnInit {
       });
     });
   }
-  
+
   rejeitarPedidoAmizade() {
     this.appservice.rejectFriendshipRequest(this.userLoggedId, this.usuario.professionalID)
     .subscribe(res => {
@@ -312,9 +312,9 @@ export class PostagensComponent implements OnInit {
       })
     })
   }
-  
-  
-  
+
+
+
 
   statusAmizade() {
     this.appservice.getFriendshipStatus(this.userLoggedId, this.usuario.professionalID)

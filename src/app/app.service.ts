@@ -125,15 +125,15 @@ export class AppService {
   }
 
   acceptFriendShipRequest(professionalID1: string, professionalID2: string): Observable<any> {
-    const url = `${environment.dssmApiUrl}/acceptFriendShipRequest`;
+    const url = `${environment.dssmApiUrl}/acceptFriendshipRequest`;
     return this.http.post(url, {senderID: professionalID1,  receiverID: professionalID2});
   }
-  
+
    rejectFriendshipRequest(professionalID1: string, professionalID2: string): Observable<any> {
     const url = `${environment.dssmApiUrl}/rejectFriendshipRequest`;
     return this.http.post(url, {senderID: professionalID1,  receiverID: professionalID2});
    }
-  
+
    unfriend(professionalID1: string, professionalID2: string): Observable<any> {
     const url = `${environment.dssmApiUrl}/unfriend/${professionalID1}/${professionalID2}`;
     return this.http.delete(url);
@@ -142,5 +142,5 @@ export class AppService {
    cancelarSolicitacao(professionalID1: string, professionalID2: string): Observable<any> {
      return;
    } //Alterar qnd back end estiver pronto
-  
+
 }

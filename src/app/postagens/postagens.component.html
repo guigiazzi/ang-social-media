@@ -26,19 +26,20 @@
           <button *ngIf="amizade === 3" type="submit" (click)="aceitarAmizade()" class="btn btn-primary conectar">
             <mat-icon>person_add</mat-icon> Aceitar Amizade
           </button>
-          <button *ngIf="amizade === 3" type="submit" (click)="rejeitarPedidoAmizade()" class="btn btn-primary conectar">
+          <button *ngIf="amizade === 3" type="submit" (click)="rejeitarPedidoAmizade()" class="btn btn-primary buttonsNoIcons">
             Recusar Solicitação
           </button>
-          <button *ngIf="amizade === 2" type="submit" (click)="cancelarSolicitacaoAmizade()" class="btn btn-primary conectar">
+          <button *ngIf="amizade === 2" type="submit" (click)="cancelarSolicitacaoAmizade()" class="btn btn-primary buttonsNoIcons">
             Cancelar Solicitação
           </button>
-          <button *ngIf="amizade === 1" type="submit" (click)="desfazerAmizade()" class="btn btn-primary conectar">
+          <button *ngIf="amizade === 1" type="submit" (click)="desfazerAmizade()" class="btn btn-primary buttonsNoIcons">
             Desfazer Amizade
           </button>
-        </div>        
+        </div>
         <hr>
         <div>
-            <img src="http://agbrands.com.br/wp-content/uploads/2017/01/perfil.jpg" class="imgPerson" alt="...">
+            <img *ngIf="usuario.profileImage" [src]="usuario.profileImage" class="imgPerson rounded" alt="...">
+            <img *ngIf="!usuario.profileImage" src="http://agbrands.com.br/wp-content/uploads/2017/01/perfil.jpg" class="imgPerson rounded" alt="...">
             <div class="row">
                 <div class="info1">
                     <p>Nome: {{usuario?.name}}</p>
