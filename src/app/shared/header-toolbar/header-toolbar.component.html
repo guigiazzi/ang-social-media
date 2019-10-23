@@ -19,16 +19,16 @@
           <mat-icon>person</mat-icon>
           Perfil |
         </a>
-        <a class='menuItens' (click)="goToFriends()">
-          <mat-icon>person_add</mat-icon>
-          Amigos |
-        </a>
+          <a class='menuItens'>
+            <mat-icon>people</mat-icon>
+            Amigos |
+          </a>
         <a class="menuItens" (click)="logout()" routerLink="/">Logout</a>
       </div>
     </mat-toolbar-row>
   </mat-toolbar>
-  <div *ngFor="let person of searchUsers" class="d-flex justify-content-center">
-    <a class="border border-secondary rounded dropdownItens" color="white"
+  <div *ngFor="let person of searchUsers" class="d-flex justify-content-center persons">
+      <a class="border border-secondary rounded dropdownItens" color="white"
       (click)="goTo(person.professionalID)">{{person.name}}</a>
   </div>
 </div>

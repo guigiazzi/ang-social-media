@@ -36,8 +36,6 @@ import { OpenModalPeopleService } from './shared/modal-people/open-modal-people-
 import { FeedComponent } from './feed-component/feed-component.component';
 import { FriendsComponent } from './friends/friends.component';
 
-//export var options: Partial<IConfig> | (() => Partial<IConfig>);
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,9 +67,8 @@ import { FriendsComponent } from './friends/friends.component';
     CurrencyMaskModule,
     MatDialogModule,
     RxReactiveFormsModule,
-    NgxMaskModule,
+    NgxMaskModule.forRoot(),
     MatGridListModule
-
   ],
   providers: [
     FormatDateService,
