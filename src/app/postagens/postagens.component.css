@@ -16,6 +16,12 @@
 
 .container {
   padding-top: 6%;
+  padding-bottom: 3%;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 4px -2px #989898;
+  -moz-box-shadow: 0 4px 4px -2px #989898;
+  -webkit-box-shadow: 0 4px 4px -2px #989898;
 }
 
 .imgPerson {
@@ -23,10 +29,10 @@
   height: 10rem;
   float: left;
   object-fit:scale-down;
+  border-radius: 100%;
 }
 
 .profile-box {
-  border-radius: 5%;
   text-align: center;
   padding: 1% 2% 1% 2%;
 }
@@ -49,14 +55,6 @@
   
 }
 
-.recomendacoes {
-  float: left;
-  margin-top: -4%;
-  margin-left: 1%;
-  padding-bottom: 0.8%;
-  padding-top: 0.98%;
-}
-
 .conectar {
   float: right;
   margin-top: -4%;
@@ -70,4 +68,20 @@
   padding-bottom: 0.8%;
   padding-top: 0.98%;
 
+}
+
+.pNome {
+  float: left;
+  font-size: 1.7rem;
+  color:#6b6b6b
+}
+
+.pEstado {
+  float: left;
+  font-size: 1rem;
+  color:#6b6b6b
+}
+.editarPerfil {
+  float: right;
+  cursor: pointer;
 }
