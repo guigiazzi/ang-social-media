@@ -54,14 +54,14 @@ export class FormCadastroComponent implements OnInit{
         'careerDate': careerDateString,
         'instructionLevel': this.professional.instructionLevel
       })
-    }
 
-    if(Object.keys(this.professional.jobRole).length > 0){
-      this.jobRoleForm.setValue({
-        'companyName': this.professional.jobRole.companyName,
-        'salary': this.professional.jobRole.salary,
-        'jobTitle': this.professional.jobRole.jobTitle
-      })
+      if(Object.keys(this.professional.jobRole).length > 0){
+        this.jobRoleForm.setValue({
+          'companyName': this.professional.jobRole.companyName,
+          'salary': this.professional.jobRole.salary,
+          'jobTitle': this.professional.jobRole.jobTitle
+        })
+      }
     }
 
     if(this.professional.paymentInfo){
