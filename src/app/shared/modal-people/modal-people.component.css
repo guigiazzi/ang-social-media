@@ -11,7 +11,19 @@
     margin-bottom: -5%;
 }
 
-.example-header-image {
+.image {
+  background-size: cover;
+}
+
+.image:hover{
+  cursor: pointer;
+}
+
+.imageNone:hover{
+  cursor: pointer;
+}
+
+.imageNone {
     background-image: url('http://agbrands.com.br/wp-content/uploads/2017/01/perfil.jpg');
     background-size: cover;
     width: 10%;

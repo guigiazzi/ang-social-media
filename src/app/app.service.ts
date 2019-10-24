@@ -140,8 +140,9 @@ export class AppService {
    }
 
    cancelarSolicitacao(professionalID1: string, professionalID2: string): Observable<any> {
-     return;
-   } //Alterar qnd back end estiver pronto
+    const url = `${environment.dssmApiUrl}/revokeFriendshipRequest/${professionalID1}/${professionalID2}`;
+    return this.http.delete(url);
+   }
 
   getListFriends(professionalID: string): Observable<any> {
     const url = `${environment.dssmApiUrl}/returnFriendsList/${professionalID}`;
