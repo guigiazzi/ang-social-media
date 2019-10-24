@@ -34,8 +34,7 @@ export class PostagensComponent implements OnInit {
     private route: ActivatedRoute,
     private formatDateService: FormatDateService,
     private sessionService: SessionService,
-    private openModalService: OpenModalService,
-    private openModalPeopleService: OpenModalPeopleService
+    private openModalService: OpenModalService
     ) { }
 
   ngOnInit() {
