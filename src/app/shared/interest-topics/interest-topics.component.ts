@@ -16,6 +16,7 @@ export class InterestTopicsComponent implements OnInit {
   public topics: UserTopics[];
   public showedTopic: any[];
   public userTopic = new Array<UserTopics>();
+  public savedTopics: UserTopics[];
   @Input() professionalId: string;
   constructor(private appService: AppService, private router: Router, private snackbar: MatSnackBar,  private sessionService: SessionService) { }
 
@@ -33,10 +34,17 @@ export class InterestTopicsComponent implements OnInit {
         );
       }
     )
+
+    if(this.sessionService.getUserLogged()) {
+      this.appService.getProfessionalTopics(this.professionalId)
+      .subscribe(res => {
+        this.savedTopics = res;
+      })
+    }
   }
 
   addTopic(topic: interestTopic) {
-    let ut:UserTopics = {professionalID: this.professionalId, interestTopicID: topic.interestTopicID}
+    let ut:UserTopics = {professionalID: this.professionalId, interestTopicID: topic.interestTopicID, description: topic.description}
     this.userTopic.push(ut);
     this.showedTopic.splice(this.showedTopic.indexOf(topic),1);
     if (this.userTopic.length === 5) {
@@ -47,6 +55,8 @@ export class InterestTopicsComponent implements OnInit {
             duration: 2000,
             panelClass: ['success-snackbar']
           });
+          this.savedTopics = [];
+          this.savedTopics = this.userTopic;
           this.fimCad = true;
         }, err => {
           console.log(err)
@@ -65,4 +75,5 @@ export class InterestTopicsComponent implements OnInit {
 export interface UserTopics {
   professionalID: string;
   interestTopicID: string;
+  description: string;
 }
