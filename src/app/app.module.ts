@@ -35,6 +35,7 @@ import { OpenModalService } from './shared/modal-dialog/open-modal-service.servi
 import { OpenModalPeopleService } from './shared/modal-people/open-modal-people-service.service';
 import { FeedComponent } from './feed-component/feed-component.component';
 import { FriendsComponent } from './friends/friends.component';
+import { GerenteComponent } from './gerente/gerente.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { FriendsComponent } from './friends/friends.component';
     ModalDialogComponent,
     ModalPeopleComponent,
     FeedComponent,
-    FriendsComponent
+    FriendsComponent,
+    GerenteComponent
   ],
   imports: [
     BrowserModule,
