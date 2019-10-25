@@ -9,17 +9,13 @@ import { AppService } from '../app.service';
 })
 export class GerenteComponent implements OnInit {
   public top10Users = [];
+  public avgOfFriends: number;
 
   constructor(private appService: AppService) { }
 
   ngOnInit() {
-    this.appService.getTop10ProfessionalsWithMostFriends()
-    .subscribe(res => {
-        res.forEach(user => {
-          this.top10Users.push({y: user.numberOfFriends, label: user.professional.name});
-        });
-        this.createChart();
-    });
+    this.getProfessionals();
+    this.getAvgOfFriends();
   }
 
   createChart() {
@@ -36,6 +32,23 @@ export class GerenteComponent implements OnInit {
         }]
     });
     chart.render();
+  }
+
+  getProfessionals() {
+    this.appService.getTop10ProfessionalsWithMostFriends()
+    .subscribe(res => {
+        res.forEach(user => {
+          this.top10Users.push({y: user.numberOfFriends, label: user.professional.name});
+        });
+        this.createChart();
+    });
+  }
+
+  getAvgOfFriends() {
+    this.appService.getAvgNumberOfFriends()
+    .subscribe(res => {
+      this.avgOfFriends = res;
+    })
   }
 
 }
