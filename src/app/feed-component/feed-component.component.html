@@ -1,0 +1,11 @@
+<app-header-toolbar></app-header-toolbar>
+<div class="container">
+    <h1 class="text-center">Feed</h1>
+    <div *ngFor='let publication of usersPublications'>
+        <app-card-publication [publication]="publication" [isMyProfile]="isMyProfile" [professionalLike]="userLoggedId"></app-card-publication>
+    </div>
+    <div *ngIf="usersPublications.length == 0" class="text-center">
+        <p>Ainda não há postagens no seu Feed!</p>
+    </div>
+</div>
+      

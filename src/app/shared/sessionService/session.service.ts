@@ -5,19 +5,24 @@ import { Professional } from 'src/app/interfaces/professional';
 export class SessionService {
   public userId: string;
 
+
   constructor() { }
 
   getUserLogged() {
+    const userId = localStorage.getItem('user');
+    if (!this.userId) {
+      this.userId = userId;
+    }
     return this.userId;
   }
 
   saveUserLoggedId(userId: string) {
-    console.log('param: '+userId);
-    console.log('Inner '+this.userId);
+    localStorage.setItem('user', userId);
     this.userId = userId;
   }
 
   logoutUser() {
+    localStorage.removeItem('user');
     this.userId = '';
   }
 }

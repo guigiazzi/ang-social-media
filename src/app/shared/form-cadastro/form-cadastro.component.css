@@ -1,0 +1,53 @@
+.visaCard {
+    background-image: url(./../../../assets/images/mastercard.png);
+    background-position:right;
+    background-repeat:no-repeat;
+    padding-left:17px;
+    background-size:10%;
+}
+
+.masterCard {
+  background-image: url(./../../../assets/images/visa.jpg);
+  background-position:right;
+  background-repeat:no-repeat;
+  padding-left:17px;
+  background-size:10%;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.image {
+  padding-bottom: 2%;
+  width: 100%;
+}
+
+p{
+  font-size: 1.3rem;
+}
+
+.imageNull {
+  width: 40%;
+  border: 1px dashed #bbb;
+  border-radius: 0.5rem;
+  padding: 3%;
+}
+
+.borderDiv{
+  border: 1px dashed #bbb;
+  border-radius: 0.5rem;
+  padding: 2%;
+  width: 40%;
+}
+
+.botaoSelect {
+  margin-left: 19%;
+}
+
+span{
+  color: red;
+}

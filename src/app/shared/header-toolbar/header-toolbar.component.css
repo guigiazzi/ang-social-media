@@ -31,11 +31,10 @@
   cursor: pointer;
 }
 
-.iconTopo {
-  position: relative;
-  top: 4px;
-}
-
 .perfil-amigos {
   margin-right: 2%;
+}
+
+.persons {
+  margin-right: 9%;
 }

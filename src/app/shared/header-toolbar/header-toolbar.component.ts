@@ -19,13 +19,15 @@ export class HeaderToolbarComponent {
 
   logout(){
     this.sessionService.logoutUser();
-    console.log(this.sessionService);
   }
 
   searchPosts(searchValue) {
     this.searchUsers = [];
+    if(!searchValue){
+      return
+    }
     if(searchValue.length % 2 == 0){
-      this.appservice.searchbar({name: searchValue})
+      this.appservice.searchbar(searchValue)
       .subscribe(res => {
         res.forEach(pessoa => {
           this.searchUsers.push(pessoa);
@@ -34,12 +36,20 @@ export class HeaderToolbarComponent {
     }
   }
 
-  goToHome(){
+  goToProfile(){
     let user = this.sessionService.getUserLogged();
     this.router.navigate([`postagens`, user]);
   }
 
+  goToHome(){
+    this.router.navigate(['feed']);
+  }
+
   goTo(userId: string) {
     this.router.navigate([`postagens`, userId]);
+  }
+
+  goToFriends() {
+    this.router.navigate([`friends`,this.sessionService.getUserLogged()]);
   }
 }
