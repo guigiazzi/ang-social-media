@@ -10,12 +10,14 @@ import { AppService } from '../app.service';
 export class GerenteComponent implements OnInit {
   public top10Users = [];
   public avgOfFriends: number;
+  public professionalNumbs: number;
 
   constructor(private appService: AppService) { }
 
   ngOnInit() {
     this.getProfessionals();
     this.getAvgOfFriends();
+    this.getNumberOfProfessionals();
   }
 
   createChart() {
@@ -48,6 +50,13 @@ export class GerenteComponent implements OnInit {
     this.appService.getAvgNumberOfFriends()
     .subscribe(res => {
       this.avgOfFriends = res;
+    })
+  }
+
+  getNumberOfProfessionals () {
+    this.appService.getNumberOfProfessionals()
+    .subscribe(res => {
+      this.professionalNumbs = res;
     })
   }
 

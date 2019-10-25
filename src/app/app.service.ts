@@ -158,4 +158,9 @@ export class AppService {
     const url = `${environment.dssmApiUrl}/getAvgNumberOfFriends`;
     return this.http.get(url);
   }
+
+  getNumberOfProfessionals(): Observable<any> {
+    const url = `${environment.dssmApiUrl}/getNumberOfProfessionals`;
+    return this.http.get(url);
+  }
 }
