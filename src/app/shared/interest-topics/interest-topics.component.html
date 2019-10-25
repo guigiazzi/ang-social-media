@@ -9,4 +9,10 @@
     <div [ngStyle]="{'display' :fimCad === true ? 'block' : 'none' }">
         <span> Tópicos cadastrados com sucesso!</span>
     </div>
+    <h4 class="d-flex justify-content-center pt-3" *ngIf="savedTopics">Tópicos cadastrados</h4>
+    <div *ngIf="savedTopics" class="d-flex justify-content-around pt-2 pb-1">
+      <div  *ngFor="let topic of savedTopics">
+        <span>{{ topic.description }}</span>
+      </div>
+    </div>
 </div>

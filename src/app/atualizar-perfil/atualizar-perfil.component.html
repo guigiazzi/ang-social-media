@@ -7,11 +7,14 @@
     <div *ngIf="showTopics" class="text-center">
         <p>Seleciones os tópicos ou clique no botão em baixo para voltar ao perfil!</p>
     </div>
-    <div [ngStyle]="{'display' :showTopics === true ? 'none' : 'block' }" class="shadow-sm p-3 bg-white rounded cadastro">
-        <app-form-cadastro (outProfessional)="atualizarUsuario($event)"></app-form-cadastro>
+    <div *ngIf="!professional" class="d-flex justify-content-center mt-2">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div [ngStyle]="{'display' :showTopics === true ? 'none' : 'block' }" class="shadow-sm p-3 bg-white rounded cadastro" *ngIf="professional">
+        <app-form-cadastro (outProfessional)="atualizarUsuario($event)" [professional]="professional"></app-form-cadastro>
     </div>
     <div *ngIf="!showTopics">
-        <button (click)="changeTopics()" class="btn btn-primary botaoTopicos">Alterar os Tópicos</button>
+        <button (click)="changeTopics()" class="btn btn-primary botaoTopicos">Pular para alterar os tópicos</button>
     </div>
     <div *ngIf="showTopics" class="shadow-sm p-3 bg-white rounded">
         <app-interest-topics [professionalId]="idP"></app-interest-topics>

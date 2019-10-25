@@ -1,14 +1,14 @@
 <div>
     <mat-card class="card">
       <mat-card-header>
-          <div mat-card-avatar class="example-header-image" (click)="goTo()"></div>
+          <div *ngIf="author" mat-card-avatar class="example-header-image"
+          (click)="goTo()" [ngStyle]="{ 'background-image': 'url('+ author.profileImage +')'}"></div>
           <mat-card-title (click)="goTo()" class="hover">{{author?.name}}</mat-card-title>
         </mat-card-header>
         <hr>
         <mat-card-content>
-          <p>
-            {{publication.text}}
-          </p>
+          <pre style="white-space: pre-wrap;">{{publication.text}}
+          </pre>
           <hr>
           <div *ngIf="publication.thumbnailUrl">
             <div class="d-flex justify-content-center">

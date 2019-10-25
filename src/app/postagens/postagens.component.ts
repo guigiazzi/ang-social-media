@@ -26,6 +26,7 @@ export class PostagensComponent implements OnInit {
   public recommendationLength: number;
   public recommendationList: Professional[] = [];
   public userLoggedId: string;
+  public amizade: number;
 
   constructor(
     private appservice: AppService,
@@ -33,8 +34,7 @@ export class PostagensComponent implements OnInit {
     private route: ActivatedRoute,
     private formatDateService: FormatDateService,
     private sessionService: SessionService,
-    private openModalService: OpenModalService,
-    private openModalPeopleService: OpenModalPeopleService
+    private openModalService: OpenModalService
     ) { }
 
   ngOnInit() {
@@ -44,6 +44,7 @@ export class PostagensComponent implements OnInit {
       this.isMyProfile = true;
     } else {
       this.statusRecomendacao();
+      this.statusAmizade();
     }
     this.getRecomendacoes();
     this.retornaDadosUsuarios(this.usuario.professionalID);
@@ -226,4 +227,103 @@ export class PostagensComponent implements OnInit {
     });
   }
 
+  adicionarAmizade() {
+    this.appservice.sendFriendshipRequest(this.userLoggedId, this.usuario.professionalID)
+    .subscribe(res => {
+      this.statusAmizade();
+      this.snackbar.open(`Solicitação enviada!`, 'Dismiss', {
+        duration: 4000,
+        panelClass: ['success-snackbar']
+      });
+    }, err => {
+      console.log(err);
+      this.snackbar.open(`Erro enviar solicitação de amizade!`, 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
+      });
+    });
+  }
+
+  aceitarAmizade() {
+    this.appservice.acceptFriendShipRequest(this.userLoggedId, this.usuario.professionalID)
+    .subscribe(res => {
+      this.statusAmizade()
+      this.snackbar.open('Solicitação de amizade aceita!', 'Dismiss', {
+        duration: 4000,
+        panelClass: ['success-snackbar']
+      })
+    },err => {
+      console.log(err)
+      this.snackbar.open('Erro ao aceitar solicitação de amizade!', 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
+      });
+    });
+  }
+
+  rejeitarPedidoAmizade() {
+    this.appservice.rejectFriendshipRequest(this.userLoggedId, this.usuario.professionalID)
+    .subscribe(res => {
+      this.statusAmizade()
+      this.snackbar.open(`Amizade Recusada com sucesso!`, 'Dismiss', {
+        duration: 4000,
+        panelClass: ['success-snackbar']
+      })
+    },err => {
+      console.log(err)
+      this.snackbar.open(`Erro ao recusar solicitação de amizade!`, 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
+      })
+    })
+  }
+
+  desfazerAmizade() {
+    this.appservice.unfriend(this.userLoggedId, this.usuario.professionalID)
+    .subscribe(res => {
+      this.statusAmizade()
+      this.snackbar.open('Amizade desfeita com sucesso!', 'Dismiss', {
+        duration: 4000,
+        panelClass: ['success-snackbar']
+      })
+    },err => {
+      console.log(err)
+      this.snackbar.open('Erro ao desfazer amizade!', 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
+      })
+    })
+  }
+
+  cancelarSolicitacaoAmizade() {
+    this.appservice.cancelarSolicitacao(this.userLoggedId, this.usuario.professionalID)
+    .subscribe(res => {
+      this.statusAmizade()
+      this.snackbar.open('Solicitação de amizade cancelada com sucesso!', 'Dismiss', {
+        duration: 4000,
+        panelClass: ['success-snackbar']
+      })
+    }, err => {
+      console.log(err)
+      this.snackbar.open('Erro ao cancelar pedido de amizade!', 'Dismiss', {
+        duration: 4000,
+        panelClass: ['error-snackbar']
+      })
+    })
+  }
+
+
+
+
+  statusAmizade() {
+    this.appservice.getFriendshipStatus(this.userLoggedId, this.usuario.professionalID)
+    .subscribe(res =>{
+      console.log(res)
+      this.amizade = res;
+      // 1 - Amigos
+      // 2 - Solicitacao enviada
+      // 3 - Solicitacao pendente de aceitacao
+      // 4 - Nao amigos
+    })
+  }
 }

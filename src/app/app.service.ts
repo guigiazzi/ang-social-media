@@ -113,4 +113,54 @@ export class AppService {
     const url = `${environment.dssmApiUrl}/retrieveFeedPublicationsList/${professionalID}`;
     return this.http.get(url);
   }
+
+  sendFriendshipRequest(requesterID: string, responserID: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/sendFriendshipRequest`;
+    return this.http.post(url, {senderID: requesterID, receiverID: responserID});
+  }
+
+  getFriendshipStatus(professionalID1: string,professionalID2: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/getFriendshipStatus/${professionalID1}/${professionalID2}`;
+    return this.http.get(url);
+  }
+
+  acceptFriendShipRequest(professionalID1: string, professionalID2: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/acceptFriendshipRequest`;
+    return this.http.post(url, {senderID: professionalID1,  receiverID: professionalID2});
+  }
+
+   rejectFriendshipRequest(professionalID1: string, professionalID2: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/rejectFriendshipRequest`;
+    return this.http.post(url, {senderID: professionalID1,  receiverID: professionalID2});
+   }
+
+   unfriend(professionalID1: string, professionalID2: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/unfriend/${professionalID1}/${professionalID2}`;
+    return this.http.delete(url);
+   }
+
+   cancelarSolicitacao(professionalID1: string, professionalID2: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/revokeFriendshipRequest/${professionalID1}/${professionalID2}`;
+    return this.http.delete(url);
+   }
+
+  getListFriends(professionalID: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/returnFriendsList/${professionalID}`;
+    return this.http.get<Professional>(url);
+  }
+
+  getTop10ProfessionalsWithMostFriends(): Observable<any> {
+    const url = `${environment.dssmApiUrl}/getTop10ProfessionalsWithMostFriends`;
+    return this.http.get(url);
+  }
+
+  getAvgNumberOfFriends(): Observable<any> {
+    const url = `${environment.dssmApiUrl}/getAvgNumberOfFriends`;
+    return this.http.get(url);
+  }
+
+  getNumberOfProfessionals(): Observable<any> {
+    const url = `${environment.dssmApiUrl}/getNumberOfProfessionals`;
+    return this.http.get(url);
+  }
 }

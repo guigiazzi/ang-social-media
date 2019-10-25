@@ -19,9 +19,27 @@
         <div *ngIf="recommendationLength === 0 || recommendationLength > 1">
           <p class="btn btn-primary recomendacoes" >{{ recommendationLength }} Recomendações</p>
         </div>
+        <div *ngIf="!isMyProfile">
+          <button *ngIf="amizade === 4" type="submit" (click)="adicionarAmizade()" class="btn btn-primary conectar">
+            <mat-icon>person_add</mat-icon> Conectar
+          </button>
+          <button *ngIf="amizade === 3" type="submit" (click)="aceitarAmizade()" class="btn btn-primary conectar">
+            <mat-icon>person_add</mat-icon> Aceitar Amizade
+          </button>
+          <button *ngIf="amizade === 3" type="submit" (click)="rejeitarPedidoAmizade()" class="btn btn-primary buttonsNoIcons">
+            Recusar Solicitação
+          </button>
+          <button *ngIf="amizade === 2" type="submit" (click)="cancelarSolicitacaoAmizade()" class="btn btn-primary buttonsNoIcons">
+            Cancelar Solicitação
+          </button>
+          <button *ngIf="amizade === 1" type="submit" (click)="desfazerAmizade()" class="btn btn-primary buttonsNoIcons">
+            Desfazer Amizade
+          </button>
+        </div>
         <hr>
         <div>
-            <img src="http://agbrands.com.br/wp-content/uploads/2017/01/perfil.jpg" class="imgPerson" alt="...">
+            <img *ngIf="usuario.profileImage" [src]="usuario.profileImage" class="imgPerson rounded" alt="...">
+            <img *ngIf="!usuario.profileImage" src="http://agbrands.com.br/wp-content/uploads/2017/01/perfil.jpg" class="imgPerson rounded" alt="...">
             <div class="row">
                 <div class="info1">
                     <p>Nome: {{usuario?.name}}</p>
@@ -42,6 +60,22 @@
                 Atualizar Perfil</button>
             </div>
         </div>
+      
+        <div class="pt-5">
+        <div *ngIf="!isMyProfile && !alreadyRecommended">
+          <button type="submit" (click)="recomendar()" class="btn btn-primary recomendar">
+            <mat-icon>thumb_up</mat-icon> Recomendar
+          </button>
+        </div>
+        <div *ngIf="!isMyProfile && alreadyRecommended">
+          <button type="submit" (click)="deletarRecomendacao()" class="btn btn-primary recomendar">
+            <mat-icon>thumb_down</mat-icon> Retirar recomendação
+          </button>
+        </div>
+        <div>
+          <p class="btn btn-primary recomendacoes">{{ recommendationLength }} Recomendação</p>
+        </div>
+        </div>
         <hr>
         <div class="Topic">
             <p class="d-flex justify-content-center"><b>Tópicos de Interesse</b></p>
@@ -59,7 +93,7 @@
         <h1 class="text-center">Postagens</h1>
         <div *ngIf="isMyProfile">
           <form #ngForm="ngForm" (ngSubmit)="onSubmit()">
-            <input type="text" class="form-control postagem" id="text" #text="ngModel" name="text" [(ngModel)]="publication.text" placeholder="Digite aqui o que deseja postar!">
+            <textarea class="form-control postagem" id="text" #text="ngModel" name="text" [(ngModel)]="publication.text" placeholder="Digite aqui o que deseja postar!"></textarea>
             <div class="form-group mr-2 form-inline">
               <label for="videoUrl" class="mr-2">Adicione a Url do vídeo aqui (opcional):</label>
               <input type="text" class="form-control video" id="videoUrl" #videoUrl="ngModel" name="videoUrl" [(ngModel)]="publication.videoUrl" placeholder="Inserir a Url inteira - https://youtube.com.br/ex/2jiwij3">

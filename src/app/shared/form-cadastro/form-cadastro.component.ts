@@ -5,13 +5,14 @@ import { JobRole } from 'src/app/interfaces/job-role';
 import { PaymentInfo } from 'src/app/interfaces/payment-info';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
+import { FormatDateService } from '../formatDateService/format-date.service';
 
 @Component({
   selector: 'app-form-cadastro',
   templateUrl: './form-cadastro.component.html',
   styleUrls: ['./form-cadastro.component.css']
 })
-export class FormCadastroComponent {
+export class FormCadastroComponent implements OnInit{
   states: any = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'TO'];
   keys = Object.keys;
   public enums = InstructionLevel;
@@ -27,16 +28,57 @@ export class FormCadastroComponent {
   public minDate = new Date().getFullYear() + '-' +((new Date().getMonth() < 10) ? '0' + new Date().getMonth() : new Date().getMonth());
   public maxDate = new Date().getFullYear() + '-' +((new Date().getMonth() < 10) ? '0' + new Date().getMonth() : new Date().getMonth()) + '-' + ((new Date().getDate() < 10) ? '0' + new Date().getDate() : new Date().getDate());
 
-  constructor(private snackbar: MatSnackBar, private formBuilder: FormBuilder) {
+  constructor(private snackbar: MatSnackBar, private formBuilder: FormBuilder, private formatDateService: FormatDateService) {
     this.professionalForm = this.createProfessionalFormGroup();
     this.jobRoleForm = this.createJobRoleFormGroup();
     this.paymentInfoForm = this.createPaymentInfoFormGroup();
    }
-  
+
   @Input() professional: Professional = <Professional>{};
   @Input() jobRole: JobRole = <JobRole>{};
   @Input() paymentInfo: PaymentInfo = <PaymentInfo>{};
   @Output() outProfessional: EventEmitter<Professional> = new EventEmitter();
+
+  ngOnInit(){
+    if(Object.keys(this.professional).length > 0){
+      const birthDateString = this.formatDateService.formatDateAmerican(this.professional.birthDate.toString())
+      const careerDateString = this.formatDateService.formatDateAmerican(this.professional.careerDate.toString());
+      this.professionalForm.setValue({
+        'name': this.professional.name,
+        'userLogin': this.professional.userLogin,
+        'email': this.professional.email,
+        'password': this.professional.password,
+        'city': this.professional.city,
+        'state': this.professional.state,
+        'birthDate': birthDateString,
+        'careerDate': careerDateString,
+        'instructionLevel': this.professional.instructionLevel
+      })
+
+      if(Object.keys(this.professional.jobRole).length > 0){
+        this.jobRoleForm.setValue({
+          'companyName': this.professional.jobRole.companyName,
+          'salary': this.professional.jobRole.salary,
+          'jobTitle': this.professional.jobRole.jobTitle
+        })
+      }
+    }
+
+    if(this.professional.paymentInfo){
+      this.contaPremium = true;
+      const cardValidationString = this.formatDateService.formatMonth(this.professional.paymentInfo.cardValidationDate.toString());
+      this.paymentInfoForm.setValue({
+        'cardName': this.professional.paymentInfo.cardName,
+        'cardNumber': this.professional.paymentInfo.cardNumber,
+        'cardValidationDate': cardValidationString,
+        'cardSecurityCode': this.professional.paymentInfo.cardSecurityCode,
+      })
+    }
+
+    if(this.professional.profileImage){
+      this.urlImage = this.professional.profileImage;
+    }
+  }
 
   onSubmit() {
     this.submitted = true;
@@ -121,7 +163,7 @@ export class FormCadastroComponent {
         'state': new FormControl(this.professional.state, [Validators.required]),
         'birthDate': new FormControl(this.professional.birthDate, [Validators.required, RxwebValidators.maxDate({value: new Date()})]),
         'careerDate': new FormControl(this.professional.careerDate, [Validators.required, RxwebValidators.maxDate({value: new Date()})]),
-        'instructionLevel': new FormControl(this.professional.instructionLevel, [Validators.required])        
+        'instructionLevel': new FormControl(this.professional.instructionLevel, [Validators.required])
     })
   }
 

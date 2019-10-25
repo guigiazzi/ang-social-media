@@ -23,6 +23,9 @@ export class HeaderToolbarComponent {
 
   searchPosts(searchValue) {
     this.searchUsers = [];
+    if(!searchValue){
+      return
+    }
     if(searchValue.length % 2 == 0){
       this.appservice.searchbar(searchValue)
       .subscribe(res => {
@@ -44,5 +47,9 @@ export class HeaderToolbarComponent {
 
   goTo(userId: string) {
     this.router.navigate([`postagens`, userId]);
+  }
+
+  goToFriends() {
+    this.router.navigate([`friends`,this.sessionService.getUserLogged()]);
   }
 }
