@@ -77,77 +77,28 @@
             </div>
           </div>
           <div class="col">
-              <div class="collapse multi-collapse" id="multiCollapseExample2">
-                <div class="card scroll card-body">
-                    <mat-grid-list cols="1" rowHeight="35px" gutterSize="1px" >
-                        <mat-grid-tile *ngFor="let topico of topics">
-                            <div fxLayout="row">
-                              <div>
-                                <div fxLayout="row">
-                                  <p class="pTopicos">{{topico}}</p>
-                                </div>
-                              </div>
-    
-                            </div>
-                        </mat-grid-tile>
-                      </mat-grid-list>
-                </div>
+            <div class="collapse multi-collapse" id="multiCollapseExample2">
+              <div class="card scroll card-body">
+                <mat-grid-list cols="1" rowHeight="35px" gutterSize="1px">
+                  <mat-grid-tile *ngFor="let topico of topics">
+                    <div fxLayout="row">
+                      <div>
+                        <div fxLayout="row">
+                          <p class="pTopicos">{{topico}}</p>
+                        </div>
+                      </div>
+
+                    </div>
+                  </mat-grid-tile>
+                </mat-grid-list>
               </div>
             </div>
+          </div>
         </div>
       </div>
-      <!-- <div clas="row">
-        <div clas="">
-          <p class="pNome">Cidade: </p>
-        </div>
-      </div> -->
-      <!-- <div class="row">
-        <div class="info2">
-          </div>
-        </div> 
-        <div class="col">
-            <div class="collapse multi-collapse" id="multiCollapseExample2">
-              <div class="card card-body">
-                <mat-card class="scroll">
-                  <mat-grid-list cols="1" rowHeight="100px" gutterSize="1px" >
-                    <mat-grid-tile *ngFor="let topico of topics">
-                        <div fxLayout="row">
-                          <div fxFlex fxFlexAlign="center">
-                            <div fxLayout="row">
-                              <p>{{topico}}</p>
-                              
-                            </div>
-                          </div>
-
-                        </div>
-                    </mat-grid-tile>
-                  </mat-grid-list>
-                </mat-card>
-
-
-
-
-
-
-                <div class="d-flex justify-content-around topicos">
-                  <mat-card *ngFor='let topico of topics' class="scroll">
-                    {{topico}}
-                  </mat-card>
-                  <mat-card *ngIf="topics.length == 0">
-                    <p>Ainda não cadastrou interesse por nenhum tópico!</p>
-                  </mat-card>
-                </div> 
-              </div>
-            </div>
-          </div>-->
-
-
-
     </div>
-
     <div class="Topic">
       <p class="d-flex justify-content-center"><b></b></p>
-
     </div>
   </mat-card>
   <div class="pt-2">

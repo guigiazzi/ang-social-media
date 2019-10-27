@@ -140,8 +140,9 @@ export class AppService {
    }
 
    cancelarSolicitacao(professionalID1: string, professionalID2: string): Observable<any> {
-     return;
-   } //Alterar qnd back end estiver pronto
+    const url = `${environment.dssmApiUrl}/revokeFriendshipRequest/${professionalID1}/${professionalID2}`;
+    return this.http.delete(url);
+   }
 
   getListFriends(professionalID: string): Observable<any> {
     const url = `${environment.dssmApiUrl}/returnFriendsList/${professionalID}`;
@@ -150,6 +151,19 @@ export class AppService {
 
   getFriendsInCommon(professionalID1: string, professionalID2: string): Observable<any> {
     const url = `${environment.dssmApiUrl}/getFriendsInCommon/${professionalID1}/${professionalID2}`;
+
+  getTop10ProfessionalsWithMostFriends(): Observable<any> {
+    const url = `${environment.dssmApiUrl}/getTop10ProfessionalsWithMostFriends`;
+    return this.http.get(url);
+  }
+
+  getAvgNumberOfFriends(): Observable<any> {
+    const url = `${environment.dssmApiUrl}/getAvgNumberOfFriends`;
+    return this.http.get(url);
+  }
+
+  getNumberOfProfessionals(): Observable<any> {
+    const url = `${environment.dssmApiUrl}/getNumberOfProfessionals`;
     return this.http.get(url);
   }
 }

@@ -23,6 +23,9 @@ export class HeaderToolbarComponent {
 
   searchPosts(searchValue) {
     this.searchUsers = [];
+    if(!searchValue){
+      return
+    }
     if(searchValue.length % 2 == 0){
       this.appservice.searchbar(searchValue)
       .subscribe(res => {

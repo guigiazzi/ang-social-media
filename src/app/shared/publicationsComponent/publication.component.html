@@ -7,9 +7,8 @@
         </mat-card-header>
         <hr>
         <mat-card-content>
-          <p>
-            {{publication.text}}
-          </p>
+          <pre style="white-space: pre-wrap;">{{publication.text}}
+          </pre>
           <hr>
           <div *ngIf="publication.thumbnailUrl">
             <div class="d-flex justify-content-center">

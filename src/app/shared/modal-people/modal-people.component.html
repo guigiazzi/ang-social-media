@@ -7,7 +7,9 @@
 </div>
 <hr>
 <div mat-dialog-content *ngFor="let user of users" class="align-self-start">
-  <div mat-card-avatar class="example-header-image"></div>
+  <div *ngIf="user.profileImage" mat-card-avatar (click)="goTo(user.professionalID)"
+  [ngStyle]="{ 'background-image': 'url('+ user.profileImage +')'}" class="image"></div>
+  <div *ngIf="!user.profileImage" mat-card-avatar class="imageNone" (click)="goTo(user.professionalID)"></div>
   <a class="userName" (click)="goTo(user.professionalID)">
     <b>{{ user.name }}</b>
   </a>

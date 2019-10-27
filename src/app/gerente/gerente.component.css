@@ -1,0 +1,21 @@
+.chart{
+  height: 50%;
+  width: 100%;
+  height: 27rem;
+}
+
+.container {
+  padding-top: 6%;
+}
+
+span{
+  font-size: 2em;
+}
+
+mat-icon{
+  font-size: 120%;
+}
+
+.avgFriends {
+  width: 33.8rem;
+}
