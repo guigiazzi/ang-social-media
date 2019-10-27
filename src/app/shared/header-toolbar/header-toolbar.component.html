@@ -27,8 +27,7 @@
       </div>
     </mat-toolbar-row>
   </mat-toolbar>
-  <div *ngFor="let person of searchUsers" class="d-flex justify-content-center persons">
-      <a class="border border-secondary rounded dropdownItens" color="white"
-      (click)="goTo(person.professionalID)">{{person.name}}</a>
+  <div *ngFor="let person of searchUsers" (click)="goTo(person.professionalID)" class="d-flex justify-content-center persons">
+      <a class="border border-secondary rounded dropdownItens" color="white">{{person.name}}</a>
   </div>
 </div>
