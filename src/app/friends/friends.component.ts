@@ -52,7 +52,7 @@ export class FriendsComponent implements OnInit {
   loadImage(friends: Professional[]) {
     friends.forEach(friend => {
       if (friend.profileImage !== null) {
-        this.imageFile = this.sanitizer.bypassSecurityTrustUrl(btoa(friend.profileImage));
+        this.imageFile = friend.profileImage;
         console.log(this.imageFile);
       }
     });

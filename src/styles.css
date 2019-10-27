@@ -28,3 +28,13 @@ a:hover{ cursor: pointer; }
 .mat-simple-snackbar-action {
   color: white;
 }
+
+.container {
+  padding-top: 6%;
+  padding-bottom: 3%;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 4px -2px #989898;
+  -moz-box-shadow: 0 4px 4px -2px #989898;
+  -webkit-box-shadow: 0 4px 4px -2px #989898;
+}
