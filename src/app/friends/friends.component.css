@@ -1,5 +1,5 @@
-.container {
-  padding-top: 6%;
+.container{
+  padding-bottom: 100% !important;
 }
 .friendCard {
   position: absolute;

@@ -149,6 +149,9 @@ export class AppService {
     return this.http.get<Professional>(url);
   }
 
+  getFriendsInCommon(professionalID1: string, professionalID2: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/getFriendsInCommon/${professionalID1}/${professionalID2}`;
+
   getTop10ProfessionalsWithMostFriends(): Observable<any> {
     const url = `${environment.dssmApiUrl}/getTop10ProfessionalsWithMostFriends`;
     return this.http.get(url);

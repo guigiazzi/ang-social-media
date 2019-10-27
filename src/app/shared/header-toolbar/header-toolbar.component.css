@@ -12,6 +12,10 @@
 
 .toolbar{
   justify-content: space-between;
+  border: 1px solid #4154af;
+  box-shadow: 0 0 0 -2px #989898;
+  -moz-box-shadow: 0 4px 4px -2px #989898;
+  -webkit-box-shadow: 0 4px 4px -2px #989898;
 }
 
 .search-bar {

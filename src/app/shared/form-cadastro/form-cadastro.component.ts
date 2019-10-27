@@ -12,7 +12,7 @@ import { FormatDateService } from '../formatDateService/format-date.service';
   templateUrl: './form-cadastro.component.html',
   styleUrls: ['./form-cadastro.component.css']
 })
-export class FormCadastroComponent implements OnInit{
+export class FormCadastroComponent implements OnInit {
   states: any = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'TO'];
   keys = Object.keys;
   public enums = InstructionLevel;
@@ -25,22 +25,22 @@ export class FormCadastroComponent implements OnInit{
   public submitted = false;
   public jobRoleForm: FormGroup;
   public paymentInfoForm: FormGroup;
-  public minDate = new Date().getFullYear() + '-' +((new Date().getMonth() < 10) ? '0' + new Date().getMonth() : new Date().getMonth());
-  public maxDate = new Date().getFullYear() + '-' +((new Date().getMonth() < 10) ? '0' + new Date().getMonth() : new Date().getMonth()) + '-' + ((new Date().getDate() < 10) ? '0' + new Date().getDate() : new Date().getDate());
+  public minDate = new Date().getFullYear() + '-' + ((new Date().getMonth() < 10) ? '0' + new Date().getMonth() : new Date().getMonth());
+  public maxDate = new Date().getFullYear() + '-' + ((new Date().getMonth() < 10) ? '0' + new Date().getMonth() : new Date().getMonth()) + '-' + ((new Date().getDate() < 10) ? '0' + new Date().getDate() : new Date().getDate());
 
   constructor(private snackbar: MatSnackBar, private formBuilder: FormBuilder, private formatDateService: FormatDateService) {
     this.professionalForm = this.createProfessionalFormGroup();
     this.jobRoleForm = this.createJobRoleFormGroup();
     this.paymentInfoForm = this.createPaymentInfoFormGroup();
-   }
+  }
 
   @Input() professional: Professional = <Professional>{};
   @Input() jobRole: JobRole = <JobRole>{};
   @Input() paymentInfo: PaymentInfo = <PaymentInfo>{};
   @Output() outProfessional: EventEmitter<Professional> = new EventEmitter();
 
-  ngOnInit(){
-    if(Object.keys(this.professional).length > 0){
+  ngOnInit() {
+    if (Object.keys(this.professional).length > 0) {
       const birthDateString = this.formatDateService.formatDateAmerican(this.professional.birthDate.toString())
       const careerDateString = this.formatDateService.formatDateAmerican(this.professional.careerDate.toString());
       this.professionalForm.setValue({
@@ -64,7 +64,15 @@ export class FormCadastroComponent implements OnInit{
       }
     }
 
-    if(this.professional.paymentInfo){
+      if (Object.keys(this.professional.jobRole).length > 0) {
+        this.jobRoleForm.setValue({
+          'companyName': this.professional.jobRole.companyName,
+          'salary': this.professional.jobRole.salary,
+          'jobTitle': this.professional.jobRole.jobTitle
+        })
+      }
+    }
+    if (this.professional.paymentInfo) {
       this.contaPremium = true;
       const cardValidationString = this.formatDateService.formatMonth(this.professional.paymentInfo.cardValidationDate.toString());
       this.paymentInfoForm.setValue({
@@ -75,17 +83,17 @@ export class FormCadastroComponent implements OnInit{
       })
     }
 
-    if(this.professional.profileImage){
+    if (this.professional.profileImage) {
       this.urlImage = this.professional.profileImage;
     }
   }
 
   onSubmit() {
     this.submitted = true;
-    if(this.professionalForm.invalid || this.jobRoleForm.invalid){
+    if (this.professionalForm.invalid || this.jobRoleForm.invalid) {
       return;
     }
-    if(this.contaPremium && this.paymentInfoForm.invalid){
+    if (this.contaPremium && this.paymentInfoForm.invalid) {
       return;
     }
 
@@ -93,7 +101,7 @@ export class FormCadastroComponent implements OnInit{
     this.professional.jobRole = this.jobRoleForm.value;
     this.professional.profileImage = this.urlImage;
 
-    if(this.contaPremium){
+    if (this.contaPremium) {
       this.professional.profileType = "PREMIUM";
       this.professional.paymentInfo = this.paymentInfoForm.value;
     } else {
@@ -109,7 +117,7 @@ export class FormCadastroComponent implements OnInit{
   }
 
   displayCard(cardNum) {
-    if(cardNum.length >= 4){
+    if (cardNum.length >= 4) {
       if (cardNum[0] === '5') {
         this.cardMaster = true;
       }
@@ -117,15 +125,15 @@ export class FormCadastroComponent implements OnInit{
         this.cardVisa = true;
       }
     }
-    if(cardNum[0] != '5') {
+    if (cardNum[0] != '5') {
       this.cardMaster = false;
     }
-    if(cardNum[0] != '4') {
+    if (cardNum[0] != '4') {
       this.cardVisa = false;
     }
   }
 
-  selecionarFoto(event:any) {
+  selecionarFoto(event: any) {
     if (event.target.files && event.target.files[0]) {
       let uploadedImage = event.target.files[0];
 
@@ -155,19 +163,19 @@ export class FormCadastroComponent implements OnInit{
 
   createProfessionalFormGroup() {
     return new FormGroup({
-       'name': new FormControl(this.professional.name, [Validators.required]),
-       'userLogin': new FormControl(this.professional.userLogin, [Validators.required]),
-       'email': new FormControl(this.professional.email, [Validators.required, Validators.email]),
-       'password': new FormControl(this.professional.password, [Validators.required, Validators.minLength(3)]),
-        'city': new FormControl(this.professional.email, [Validators.required]),
-        'state': new FormControl(this.professional.state, [Validators.required]),
-        'birthDate': new FormControl(this.professional.birthDate, [Validators.required, RxwebValidators.maxDate({value: new Date()})]),
-        'careerDate': new FormControl(this.professional.careerDate, [Validators.required, RxwebValidators.maxDate({value: new Date()})]),
-        'instructionLevel': new FormControl(this.professional.instructionLevel, [Validators.required])
+      'name': new FormControl(this.professional.name, [Validators.required]),
+      'userLogin': new FormControl(this.professional.userLogin, [Validators.required]),
+      'email': new FormControl(this.professional.email, [Validators.required, Validators.email]),
+      'password': new FormControl(this.professional.password, [Validators.required, Validators.minLength(3)]),
+      'city': new FormControl(this.professional.email, [Validators.required]),
+      'state': new FormControl(this.professional.state, [Validators.required]),
+      'birthDate': new FormControl(this.professional.birthDate, [Validators.required, RxwebValidators.maxDate({ value: new Date() })]),
+      'careerDate': new FormControl(this.professional.careerDate, [Validators.required, RxwebValidators.maxDate({ value: new Date() })]),
+      'instructionLevel': new FormControl(this.professional.instructionLevel, [Validators.required])
     })
   }
 
-  createJobRoleFormGroup(){
+  createJobRoleFormGroup() {
     return new FormGroup({
       'companyName': new FormControl(this.jobRole.companyName, [Validators.required]),
       'salary': new FormControl(this.jobRole.salary, [Validators.required]),
@@ -175,7 +183,7 @@ export class FormCadastroComponent implements OnInit{
     })
   }
 
-  createPaymentInfoFormGroup(){
+  createPaymentInfoFormGroup() {
     return new FormGroup({
       'cardName': new FormControl(this.paymentInfo.cardName, [Validators.required]),
       'cardNumber': new FormControl(this.paymentInfo.cardNumber, [Validators.required, Validators.minLength(16)]),

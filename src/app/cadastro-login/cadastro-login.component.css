@@ -35,3 +35,8 @@
     line-height: 1.5;
     color: white;
 }
+
+.container {
+    padding-top: 1% !important;
+    padding-bottom: 2% !important;
+}

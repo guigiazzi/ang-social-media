@@ -52,6 +52,17 @@ export class PostagensComponent implements OnInit {
     this.getProfessionalTopics(this.usuario.professionalID);
   }
 
+  private calculateAge(birthDate: Date): number {
+    const today = new Date();
+    const birth = new Date(birthDate);
+    let age = today.getFullYear() - birth.getFullYear();
+    const m = today.getMonth() - birth.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) {
+      age--;
+    }
+    return age;
+  }
+
   onSubmit() {
     this.showSpinner = true;
     this.publication.author = this.usuario.name;
@@ -97,6 +108,7 @@ export class PostagensComponent implements OnInit {
     this.appservice.retornarDadosUsuario(user)
       .subscribe(user => {
         if (user.birthDate) {
+          user.age = this.calculateAge(user.birthDate);
           user.birthDate = this.formatDateService.formatDatewithoutHour(user.birthDate);
         }
         if (user.careerDate) {
