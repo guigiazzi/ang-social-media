@@ -3,7 +3,7 @@
   <div *ngIf="showSpinner" class="d-flex justify-content-center mt-2">
     <mat-spinner></mat-spinner>
   </div>
-  <mat-card class="basic-container scroll col-md-5 mb-5 amigos">
+  <mat-card class="scroll col-md-5 mb-5 amigos">
     <p class="friendsCardTitle">Amigos</p>
     <mat-grid-list cols="1" rowHeight="100px" gutterSize="1px" [style.height]="'300px'">
       <mat-grid-tile *ngFor="let friend of friends">
@@ -12,7 +12,7 @@
             <div fxFlex fxFlexAlign="center">
               <div fxLayout="row">
                 <a (click)="goToUserProfile(friend.professionalID)">
-                  <img *ngIf="friend.profileImage !== null" [src]="imageFile" class="img">
+                  <img *ngIf="friend.profileImage !== null" [src]="friend.profileImage" class="img">
                   <img *ngIf="friend.profileImage === null" [src]="userDefault" class="img"> 
                   {{friend.name}}
                 </a>
@@ -24,21 +24,39 @@
       </mat-grid-tile>
     </mat-grid-list>
   </mat-card>
-  <mat-card class="basic-container scroll col-md-5 sugestao">
+  <mat-card class="scroll col-md-5 sugestao">
     <p class="SuggestionCardTitle">Sugestão de amizade</p>
     <mat-grid-list cols="1" rowHeight="100px" gutterSize="1px" [style.height]="'300px'">
-      <mat-grid-tile *ngFor="let friend of friends">
+      <mat-grid-tile *ngFor="let friend of commonFriends">
         <mat-card [style.width]="'80%'" class="friendCard suggestionCard">
           <div fxLayout="row">
             <div fxFlex fxFlexAlign="center">
               <div fxLayout="row">
                 <a (click)="goToUserProfile(friend.professionalID)">
-                  <img *ngIf="friend.profileImage !== null" [src]="imageFile" class="img">
+                  <img *ngIf="friend.profileImage !== null" [src]="friend.profileImage" class="img">
                   <img *ngIf="friend.profileImage === null" [src]="userDefault" class="img"> 
                   {{friend.name}}
                 </a>
                 <br>
-                <button class="btn btn-primary mt-2 col-sm-3 btnConnect">Conectar</button>
+                <div *ngIf="!isMyProfile">
+                  <button *ngIf="amizade === 4" type="submit" (click)="adicionarAmizade()" class="btn btn-primary mt-2 col-sm-3 btnConnect">
+                    <mat-icon>person_add</mat-icon> Conectar
+                  </button>
+                  <button *ngIf="amizade === 3" type="submit" (click)="aceitarAmizade()" class="btn btn-primary mt-2 col-sm-3 btnConnect">
+                    <mat-icon>person_add</mat-icon> Aceitar Amizade
+                  </button>
+                  <button *ngIf="amizade === 3" type="submit" (click)="rejeitarPedidoAmizade()"
+                    class="btn btn-primary mt-2 col-sm-3 btnConnect">
+                    Recusar Solicitação
+                  </button>
+                  <button *ngIf="amizade === 2" type="submit" (click)="cancelarSolicitacaoAmizade()"
+                    class="btn btn-primary mt-2 col-sm-3 btnConnect">
+                    Cancelar Solicitação
+                  </button>
+                  <button *ngIf="amizade === 1" type="submit" (click)="desfazerAmizade()" class="btn btn-primary mt-2 col-sm-3 btnConnect">
+                    Desfazer Amizade
+                  </button>
+                </div>
               </div>
             </div>
 

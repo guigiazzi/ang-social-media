@@ -18,4 +18,5 @@ export interface Professional {
   careerDate: Date;
   jobRole: JobRole;
   paymentInfo: PaymentInfo;
+  age: number;
 }
