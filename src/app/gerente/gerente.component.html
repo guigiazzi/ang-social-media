@@ -1,0 +1,29 @@
+<app-header-toolbar></app-header-toolbar>
+<div class="d-flex justify-content-center container">
+  <mat-card class="chart">
+    <mat-card-content>
+      <div class="d-flex justify-content-center">
+        <mat-spinner *ngIf="top10Users.length == 0"></mat-spinner>
+      </div>
+      <div id="chartContainer"></div>
+    </mat-card-content>
+  </mat-card>
+</div>
+<div class="row d-flex justify-content-center pt-5 mb-4">
+  <div class="d-flex justify-content-center mr-3">
+    <mat-card  class="avgFriends">
+      <mat-card-content>
+        <span class="d-flex justify-content-center"><mat-icon class="mr-3"> bar_chart</mat-icon> Média de amizades <mat-icon class="ml-2"> bar_chart</mat-icon></span>
+        <span class="d-flex justify-content-center">{{ avgOfFriends }}</span>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="d-flex justify-content-center ml-3">
+    <mat-card class="avgFriends">
+      <mat-card-content>
+        <span class="d-flex justify-content-center"><mat-icon class="mr-3"> people_outline</mat-icon> Profissionais cadastrados <mat-icon class="ml-2"> people_outline</mat-icon></span>
+        <span class="d-flex justify-content-center">{{ professionalNumbs }}</span>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
