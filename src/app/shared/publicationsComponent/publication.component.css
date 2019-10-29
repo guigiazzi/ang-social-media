@@ -29,3 +29,8 @@
 .hover:hover{
   cursor: pointer;
 }
+
+pre {
+  font-family: jomolhari;
+  font-size: 1rem;
+}
