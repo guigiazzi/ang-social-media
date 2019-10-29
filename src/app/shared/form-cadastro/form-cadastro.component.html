@@ -14,9 +14,8 @@
       <div>
         <input type='file' (change)="selecionarFoto($event)" id="foto" accept="image/*" class="d-none">
         <div *ngIf="urlImage" >
-            <mat-icon class="iconeSelect">image</mat-icon>
           <label for="foto" class="btn btn-primary botaoSelect">
-            Selecionar Foto de Perfil 
+            Selecionar Foto de Perfil <mat-icon class="iconeSelect">image</mat-icon>
           </label>
         </div>
       </div>
