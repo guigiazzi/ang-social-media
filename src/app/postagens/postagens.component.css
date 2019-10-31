@@ -50,8 +50,8 @@ figure {
 
 .recomendar {
   float: left;
-  margin-top: -4%;
-
+  margin-top: -3%;
+  margin-right: -5%;
 }
 
 .conectar {
@@ -59,9 +59,18 @@ figure {
   margin-top: -4%;
 }
 
-.buttonsNoIcons {
-  float: right;
+.solicitacaoStatus1 {
   margin-top: -4%;
+}
+
+.solicitacaoStatus2 {
+  float: right;
+  margin-top: -3%;
+}
+
+.solicitacaoStatus3 {
+  float: right;
+  margin-top: -1.5%;
 }
 
 .pNome {
@@ -94,4 +103,8 @@ figure {
 
 .card, .pTopicos {
   text-align: left;
+}
+
+.notificacao {
+  color: orange;
 }
