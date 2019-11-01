@@ -14,7 +14,8 @@ import { MatInputModule } from '@angular/material/input';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import {MatDialogModule} from '@angular/material/dialog';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
-import {NgxMaskModule, IConfig} from 'ngx-mask'
+import {NgxMaskModule, IConfig} from 'ngx-mask';
+import {MatMenuModule} from '@angular/material/menu';
 
 // Components
 import { AppComponent } from './app.component';
@@ -70,7 +71,8 @@ import { GerenteComponent } from './gerente/gerente.component';
     MatDialogModule,
     RxReactiveFormsModule,
     NgxMaskModule.forRoot(),
-    MatGridListModule
+    MatGridListModule,
+    MatMenuModule
   ],
   providers: [
     FormatDateService,

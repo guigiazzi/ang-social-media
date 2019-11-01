@@ -63,7 +63,7 @@ export class FormCadastroComponent implements OnInit {
         })
       }
     }
-    
+
     if (this.professional.paymentInfo) {
       this.contaPremium = true;
       const cardValidationString = this.formatDateService.formatMonth(this.professional.paymentInfo.cardValidationDate.toString());

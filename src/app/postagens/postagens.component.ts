@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Publication } from './../interfaces/publication';
 import { AppService } from './../app.service';
 import { MatSnackBar } from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormatDateService } from './../shared/formatDateService/format-date.service';
 import { SessionService } from './../shared/sessionService/session.service';
 import { Professional } from '../interfaces/professional';
@@ -27,6 +27,7 @@ export class PostagensComponent implements OnInit {
   public recommendationList: Professional[] = [];
   public userLoggedId: string;
   public amizade: number;
+  public solicitacoesPendentes: Professional[] = [];
 
   constructor(
     private appservice: AppService,
@@ -34,7 +35,8 @@ export class PostagensComponent implements OnInit {
     private route: ActivatedRoute,
     private formatDateService: FormatDateService,
     private sessionService: SessionService,
-    private openModalService: OpenModalService
+    private openModalService: OpenModalService,
+    private router: Router
     ) { }
 
   ngOnInit() {
@@ -50,6 +52,7 @@ export class PostagensComponent implements OnInit {
     this.retornaDadosUsuarios(this.usuario.professionalID);
     this.listarPostagens(this.usuario.professionalID);
     this.getProfessionalTopics(this.usuario.professionalID);
+    this.listarSolicitacoesPendentes();
   }
 
   private calculateAge(birthDate: Date): number {
@@ -324,9 +327,6 @@ export class PostagensComponent implements OnInit {
     })
   }
 
-
-
-
   statusAmizade() {
     this.appservice.getFriendshipStatus(this.userLoggedId, this.usuario.professionalID)
     .subscribe(res =>{
@@ -337,5 +337,16 @@ export class PostagensComponent implements OnInit {
       // 3 - Solicitacao pendente de aceitacao
       // 4 - Nao amigos
     })
+  }
+
+  listarSolicitacoesPendentes() {
+    this.appservice.getFriendshipRequestReceivedList(this.userLoggedId)
+    .subscribe(res => {
+      this.solicitacoesPendentes = res;
+    });
+  }
+
+  goTo(professionalID: string) {
+    this.router.navigate(['postagens', professionalID])
   }
 }
