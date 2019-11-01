@@ -168,4 +168,9 @@ export class AppService {
     const url = `${environment.dssmApiUrl}/getNumberOfProfessionals`;
     return this.http.get(url);
   }
+
+  getFriendshipRequestReceivedList(userId: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/returnFriendshipRequestReceivedList/${userId}`;
+    return this.http.get(url);
+  }
 }

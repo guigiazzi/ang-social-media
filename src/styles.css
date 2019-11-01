@@ -2,8 +2,8 @@
 
 html, body { height: 100%; }
 
-body { 
-  margin: 0; 
+body {
+  margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: #fafafa;
 }
@@ -37,4 +37,10 @@ a:hover{ cursor: pointer; }
   box-shadow: 0 4px 4px -2px #989898;
   -moz-box-shadow: 0 4px 4px -2px #989898;
   -webkit-box-shadow: 0 4px 4px -2px #989898;
+}
+
+
+@font-face {
+  font-family: jomolhari;
+  src: url(./app/lib/Jomolhari-alpha3c-0605331.ttf) format("opentype");
 }
