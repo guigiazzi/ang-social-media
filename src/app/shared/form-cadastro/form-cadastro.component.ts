@@ -64,14 +64,6 @@ export class FormCadastroComponent implements OnInit {
       }
     }
 
-      if (Object.keys(this.professional.jobRole).length > 0) {
-        this.jobRoleForm.setValue({
-          'companyName': this.professional.jobRole.companyName,
-          'salary': this.professional.jobRole.salary,
-          'jobTitle': this.professional.jobRole.jobTitle
-        })
-      }
-    
     if (this.professional.paymentInfo) {
       this.contaPremium = true;
       const cardValidationString = this.formatDateService.formatMonth(this.professional.paymentInfo.cardValidationDate.toString());
