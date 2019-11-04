@@ -28,7 +28,8 @@ figure {
   height: 10rem;
   float: left;
   object-fit: scale-down;
-  border-radius: 100%;
+  padding-right: 5%;
+  padding-bottom: 5%;
 }
 
 .profile-box {

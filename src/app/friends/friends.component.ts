@@ -17,7 +17,6 @@ export class FriendsComponent implements OnInit {
   public showSpinner = false;
   public userDefault = '../../assets/images/user-icon.jpg';
   public commonFriends: Professional[] = [];
-  public amizade: number;
   public isMyProfile = false;
 
 
@@ -38,14 +37,13 @@ export class FriendsComponent implements OnInit {
     }
     this.usuario.professionalID = this.route.snapshot.paramMap.get('id');
     this.appservice.getListFriends(this.usuario.professionalID)
-      .subscribe(res => {
-        this.friends = res;
-        // console.log('FRIENDS'+this.friends);
-        this.showSpinner = false;
-        this.getFriendsInCommon(res);
+    .subscribe(res => {
+      this.friends = res;
+      this.showSpinner = false;
+      this.suggestedProfessionals(this.usuario.professionalID);
       },
         err => {
-          console.log(err);
+          // console.log(err);
           this.snackbar.open('Ocorreu um erro ao carregar a lista de Amigos!', 'Dismiss', {
             duration: 4000,
             panelClass: ['error-snackbar']
@@ -53,130 +51,71 @@ export class FriendsComponent implements OnInit {
           this.showSpinner = false;
         })
   }
+  suggestedProfessionals(professionalID: string){
+    this.appservice.suggestedProfessionals(professionalID)
+    .subscribe(
+      res => {
+        res.forEach(response => {
+          // console.log(response);
+          this.statusAmizade(response);
+          // console.log('aqui')
+        });
+        // console.log(res);
+        this.commonFriends = res;
+      },
+      err => {
+        // console.log(err);
+      }
+    )
+  }
+
   goToUserProfile(id: String) {
-    // console.log(id);
-    this.router.navigate([`friends`, id]);
+    this.router.navigate([`postagens`, id]);
   }
 
-  getFriendsInCommon(friends: Professional[]) {
-    let tempCommonFriends: Professional[];
-    friends.forEach(friend => {
-      this.appservice.getFriendsInCommon(this.usuario.professionalID, friend.professionalID)
-        .subscribe(
-          res => {
-            tempCommonFriends = res;
-// Adicionando lista temp à lista ofical
-            tempCommonFriends.forEach(commonFriend => {
-              this.commonFriends.push(commonFriend);
-              console.log(this.commonFriends);
-            });
+   adicionarAmizade(professional: Professional) {
+     this.appservice.sendFriendshipRequest(this.userLoggedId, professional.professionalID)
+     .subscribe(res => {
+       this.statusAmizade(professional);
+       this.snackbar.open(`Solicitação enviada!`, 'Dismiss', {
+         duration: 4000,
+         panelClass: ['success-snackbar']
+       });
+     }, err => {
+       console.log(err);
+       this.snackbar.open(`Erro enviar solicitação de amizade!`, 'Dismiss', {
+         duration: 4000,
+         panelClass: ['error-snackbar']
+       });
+     });
+   }
 
-          },
-          err => {
-            console.log(err);
-            this.snackbar.open('Ocorreu um erro ao carregar a lista de Amigos!', 'Dismiss', {
-              duration: 4000,
-              panelClass: ['error-snackbar']
-            });
-            this.showSpinner = false;
-          }
-        );
-    });
-  }
-
-  adicionarAmizade() {
-    this.appservice.sendFriendshipRequest(this.userLoggedId, this.usuario.professionalID)
-    .subscribe(res => {
-      this.statusAmizade();
-      this.snackbar.open(`Solicitação enviada!`, 'Dismiss', {
-        duration: 4000,
-        panelClass: ['success-snackbar']
-      });
-    }, err => {
-      console.log(err);
-      this.snackbar.open(`Erro enviar solicitação de amizade!`, 'Dismiss', {
-        duration: 4000,
-        panelClass: ['error-snackbar']
-      });
-    });
-  }
-
-  aceitarAmizade() {
-    this.appservice.acceptFriendShipRequest(this.userLoggedId, this.usuario.professionalID)
-    .subscribe(res => {
-      this.statusAmizade()
-      this.snackbar.open('Solicitação de amizade aceita!', 'Dismiss', {
-        duration: 4000,
-        panelClass: ['success-snackbar']
-      })
-    },err => {
-      console.log(err)
-      this.snackbar.open('Erro ao aceitar solicitação de amizade!', 'Dismiss', {
-        duration: 4000,
-        panelClass: ['error-snackbar']
-      });
-    });
-  }
-
-  rejeitarPedidoAmizade() {
-    this.appservice.rejectFriendshipRequest(this.userLoggedId, this.usuario.professionalID)
-    .subscribe(res => {
-      this.statusAmizade()
-      this.snackbar.open(`Amizade Recusada com sucesso!`, 'Dismiss', {
-        duration: 4000,
-        panelClass: ['success-snackbar']
-      })
-    },err => {
-      console.log(err)
-      this.snackbar.open(`Erro ao recusar solicitação de amizade!`, 'Dismiss', {
-        duration: 4000,
-        panelClass: ['error-snackbar']
-      })
-    })
-  }
-
-  desfazerAmizade() {
-    this.appservice.unfriend(this.userLoggedId, this.usuario.professionalID)
-    .subscribe(res => {
-      this.statusAmizade()
-      this.snackbar.open('Amizade desfeita com sucesso!', 'Dismiss', {
-        duration: 4000,
-        panelClass: ['success-snackbar']
-      })
-    },err => {
-      console.log(err)
-      this.snackbar.open('Erro ao desfazer amizade!', 'Dismiss', {
-        duration: 4000,
-        panelClass: ['error-snackbar']
-      })
-    })
-  }
-
-  cancelarSolicitacaoAmizade() {
-    this.appservice.cancelarSolicitacao(this.userLoggedId, this.usuario.professionalID)
-    .subscribe(res => {
-      this.statusAmizade()
-      this.snackbar.open('Solicitação de amizade cancelada com sucesso!', 'Dismiss', {
-        duration: 4000,
-        panelClass: ['success-snackbar']
-      })
-    }, err => {
-      console.log(err)
-      this.snackbar.open('Erro ao cancelar pedido de amizade!', 'Dismiss', {
-        duration: 4000,
-        panelClass: ['error-snackbar']
-      })
-    })
-  }
+   cancelarSolicitacaoAmizade(professional:Professional) {
+     this.appservice.cancelarSolicitacao(this.userLoggedId, professional.professionalID)
+     .subscribe(res => {
+       this.statusAmizade(professional);
+       this.snackbar.open('Solicitação de amizade cancelada com sucesso!', 'Dismiss', {
+         duration: 4000,
+         panelClass: ['success-snackbar']
+       })
+     }, err => {
+       console.log(err)
+       this.snackbar.open('Erro ao cancelar pedido de amizade!', 'Dismiss', {
+         duration: 4000,
+         panelClass: ['error-snackbar']
+       })
+     })
+   }
 
 
 
 
-  statusAmizade() {
-    this.appservice.getFriendshipStatus(this.userLoggedId, this.usuario.professionalID)
+  statusAmizade(usuario2: Professional) {
+    console.log(usuario2)
+    this.appservice.getFriendshipStatus(this.userLoggedId, usuario2.professionalID)
     .subscribe(res =>{
       console.log(res)
-      this.amizade = res;
+      usuario2.statusAmizade = res;
       // 1 - Amigos
       // 2 - Solicitacao enviada
       // 3 - Solicitacao pendente de aceitacao

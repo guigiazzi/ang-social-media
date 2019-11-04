@@ -154,6 +154,11 @@ export class AppService {
     return this.http.get(url);
   }
 
+  suggestedProfessionals(professionalID: string): Observable<any> {
+    const url = `${environment.dssmApiUrl}/suggestedProfessionals/${professionalID}`;
+    return this.http.get(url);
+  }
+
   getTop10ProfessionalsWithMostFriends(): Observable<any> {
     const url = `${environment.dssmApiUrl}/getTop10ProfessionalsWithMostFriends`;
     return this.http.get(url);
