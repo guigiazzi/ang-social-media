@@ -19,4 +19,5 @@ export interface Professional {
   jobRole: JobRole;
   paymentInfo: PaymentInfo;
   age: number;
+  statusAmizade: number;
 }

@@ -21,7 +21,7 @@
   overflow-y: auto;
 }
 .img {
-  padding-right: 5%;
+  padding-right: 1%;
   width:15%;
 }
 
@@ -34,7 +34,7 @@
   float: right;
 }
 .btnConnect {
-  padding-left: 3%;
+  float: right;
   font-size: 0.8rem;
 }
 
