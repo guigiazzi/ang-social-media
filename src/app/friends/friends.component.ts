@@ -40,7 +40,6 @@ export class FriendsComponent implements OnInit {
     this.appservice.getListFriends(this.usuario.professionalID)
     .subscribe(res => {
       this.friends = res;
-      // console.log('FRIENDS'+this.friends);
       this.showSpinner = false;
       this.suggestedProfessionals(this.usuario.professionalID);
       },
@@ -57,6 +56,9 @@ export class FriendsComponent implements OnInit {
     this.appservice.suggestedProfessionals(professionalID)
     .subscribe(
       res => {
+        res.forEach(response => {
+          this.statusAmizade(response.professionalID);
+        });
         console.log(res);
         this.commonFriends = res;
       },
@@ -67,40 +69,13 @@ export class FriendsComponent implements OnInit {
   }
 
   goToUserProfile(id: String) {
-    // console.log(id);
     this.router.navigate([`friends`, id]);
   }
-
-//   getFriendsInCommon(friends: Professional[]) {
-//     let tempCommonFriends: Professional[];
-//     friends.forEach(friend => {
-//       this.appservice.getFriendsInCommon(this.usuario.professionalID, friend.professionalID)
-//         .subscribe(
-//           res => {
-//             tempCommonFriends = res;
-// // Adicionando lista temp à lista ofical
-//             tempCommonFriends.forEach(commonFriend => {
-//               this.commonFriends.push(commonFriend);
-//               console.log(this.commonFriends);
-//             });
-
-//           },
-//           err => {
-//             console.log(err);
-//             this.snackbar.open('Ocorreu um erro ao carregar a lista de Amigos!', 'Dismiss', {
-//               duration: 4000,
-//               panelClass: ['error-snackbar']
-//             });
-//             this.showSpinner = false;
-//           }
-//         );
-//     });
-//   }
 
   adicionarAmizade() {
     this.appservice.sendFriendshipRequest(this.userLoggedId, this.usuario.professionalID)
     .subscribe(res => {
-      this.statusAmizade();
+      // this.statusAmizade();
       this.snackbar.open(`Solicitação enviada!`, 'Dismiss', {
         duration: 4000,
         panelClass: ['success-snackbar']
@@ -117,7 +92,7 @@ export class FriendsComponent implements OnInit {
   aceitarAmizade() {
     this.appservice.acceptFriendShipRequest(this.userLoggedId, this.usuario.professionalID)
     .subscribe(res => {
-      this.statusAmizade()
+      // this.statusAmizade()
       this.snackbar.open('Solicitação de amizade aceita!', 'Dismiss', {
         duration: 4000,
         panelClass: ['success-snackbar']
@@ -134,7 +109,7 @@ export class FriendsComponent implements OnInit {
   rejeitarPedidoAmizade() {
     this.appservice.rejectFriendshipRequest(this.userLoggedId, this.usuario.professionalID)
     .subscribe(res => {
-      this.statusAmizade()
+      // this.statusAmizade()
       this.snackbar.open(`Amizade Recusada com sucesso!`, 'Dismiss', {
         duration: 4000,
         panelClass: ['success-snackbar']
@@ -151,7 +126,7 @@ export class FriendsComponent implements OnInit {
   desfazerAmizade() {
     this.appservice.unfriend(this.userLoggedId, this.usuario.professionalID)
     .subscribe(res => {
-      this.statusAmizade()
+      // this.statusAmizade()
       this.snackbar.open('Amizade desfeita com sucesso!', 'Dismiss', {
         duration: 4000,
         panelClass: ['success-snackbar']
@@ -168,7 +143,7 @@ export class FriendsComponent implements OnInit {
   cancelarSolicitacaoAmizade() {
     this.appservice.cancelarSolicitacao(this.userLoggedId, this.usuario.professionalID)
     .subscribe(res => {
-      this.statusAmizade()
+      // this.statusAmizade();
       this.snackbar.open('Solicitação de amizade cancelada com sucesso!', 'Dismiss', {
         duration: 4000,
         panelClass: ['success-snackbar']
@@ -185,8 +160,8 @@ export class FriendsComponent implements OnInit {
 
 
 
-  statusAmizade() {
-    this.appservice.getFriendshipStatus(this.userLoggedId, this.usuario.professionalID)
+  statusAmizade(usuario2: string) {
+    this.appservice.getFriendshipStatus(this.userLoggedId, usuario2)
     .subscribe(res =>{
       console.log(res)
       this.amizade = res;
