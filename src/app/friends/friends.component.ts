@@ -38,11 +38,11 @@ export class FriendsComponent implements OnInit {
     }
     this.usuario.professionalID = this.route.snapshot.paramMap.get('id');
     this.appservice.getListFriends(this.usuario.professionalID)
-      .subscribe(res => {
-        this.friends = res;
-        // console.log('FRIENDS'+this.friends);
-        this.showSpinner = false;
-        this.getFriendsInCommon(res);
+    .subscribe(res => {
+      this.friends = res;
+      // console.log('FRIENDS'+this.friends);
+      this.showSpinner = false;
+      this.suggestedProfessionals(this.usuario.professionalID);
       },
         err => {
           console.log(err);
@@ -53,36 +53,49 @@ export class FriendsComponent implements OnInit {
           this.showSpinner = false;
         })
   }
+  suggestedProfessionals(professionalID: string){
+    this.appservice.suggestedProfessionals(professionalID)
+    .subscribe(
+      res => {
+        console.log(res);
+        this.commonFriends = res;
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
+
   goToUserProfile(id: String) {
     // console.log(id);
     this.router.navigate([`friends`, id]);
   }
 
-  getFriendsInCommon(friends: Professional[]) {
-    let tempCommonFriends: Professional[];
-    friends.forEach(friend => {
-      this.appservice.getFriendsInCommon(this.usuario.professionalID, friend.professionalID)
-        .subscribe(
-          res => {
-            tempCommonFriends = res;
-// Adicionando lista temp à lista ofical
-            tempCommonFriends.forEach(commonFriend => {
-              this.commonFriends.push(commonFriend);
-              console.log(this.commonFriends);
-            });
+//   getFriendsInCommon(friends: Professional[]) {
+//     let tempCommonFriends: Professional[];
+//     friends.forEach(friend => {
+//       this.appservice.getFriendsInCommon(this.usuario.professionalID, friend.professionalID)
+//         .subscribe(
+//           res => {
+//             tempCommonFriends = res;
+// // Adicionando lista temp à lista ofical
+//             tempCommonFriends.forEach(commonFriend => {
+//               this.commonFriends.push(commonFriend);
+//               console.log(this.commonFriends);
+//             });
 
-          },
-          err => {
-            console.log(err);
-            this.snackbar.open('Ocorreu um erro ao carregar a lista de Amigos!', 'Dismiss', {
-              duration: 4000,
-              panelClass: ['error-snackbar']
-            });
-            this.showSpinner = false;
-          }
-        );
-    });
-  }
+//           },
+//           err => {
+//             console.log(err);
+//             this.snackbar.open('Ocorreu um erro ao carregar a lista de Amigos!', 'Dismiss', {
+//               duration: 4000,
+//               panelClass: ['error-snackbar']
+//             });
+//             this.showSpinner = false;
+//           }
+//         );
+//     });
+//   }
 
   adicionarAmizade() {
     this.appservice.sendFriendshipRequest(this.userLoggedId, this.usuario.professionalID)
