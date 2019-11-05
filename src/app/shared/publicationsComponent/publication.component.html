@@ -10,15 +10,6 @@
           <pre style="white-space: pre-wrap;">{{publication.text}}
           </pre>
           <hr>
-          <div *ngIf="publication.thumbnailUrl">
-            <div class="d-flex justify-content-center">
-              <a [href]="publication.videoUrl" target="_blank" class="thumbnail">
-                <img [src]="publication.thumbnailUrl" class="w-100">
-              </a>
-            </div>
-            <p style="color: black;" class="d-flex justify-content-center"><b>{{publication.videoTitle}}</b></p>
-            <hr>
-          </div>
           <div style="display: flex;">
             <div class="d-flex justify-content-start">
               <button class="btn btn-primary" (click)="likesPessoas()">{{ likeLength }}</button>
