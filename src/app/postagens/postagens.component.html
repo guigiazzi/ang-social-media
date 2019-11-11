@@ -2,7 +2,7 @@
 <div class="container">
   <mat-card class="profile-box">
     <div *ngIf="isMyProfile" class="editarPerfil" data-toggle="tooltip" data-placement="left" title="Editar Perfil">
-      <button mat-icon-button [matMenuTriggerFor]="menu" class="border-0 mr-3">
+      <button mat-icon-button [matMenuTriggerFor]="menu" class="border-0 mr-3 buttonNot">
           <mat-icon [ngClass]="{'notificacao': solicitacoesPendentes.length > 0}">notifications_active</mat-icon>
       </button>
         <mat-menu #menu="matMenu">
