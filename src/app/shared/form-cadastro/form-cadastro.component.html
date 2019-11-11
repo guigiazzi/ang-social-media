@@ -88,7 +88,7 @@
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="birthDate">Data de aniversário</label>
+      <label for="birthDate">Data de nascimento</label>
       <input type="date" data-provide="datepicker" class="form-control" id="birthDate" formControlName="birthDate" max="{{maxDate}}" placeholder="10/10/1990">
       <div *ngIf="submitted && birthDate.invalid">
           <span *ngIf="birthDate.errors.required"> *Data de nascimento incorreta. </span>
@@ -150,9 +150,15 @@
       </div>
     </div>
     </div>
+    <div>
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="gerenteChecked">
+        <label class="custom-control-label" for="gerenteChecked" (click)="habilitaGerente()">Conta Gerente</label>
+      </div>
+    </div>
     <div class="form-group">
       <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="defaultUnchecked" [checked]="contaPremium">
+        <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
         <label class="custom-control-label" for="defaultUnchecked" (click)="habilitaPagamento()">Conta Premium</label>
       </div>
     </div>
