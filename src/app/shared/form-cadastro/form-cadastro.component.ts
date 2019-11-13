@@ -27,7 +27,6 @@ export class FormCadastroComponent implements OnInit {
   public paymentInfoForm: FormGroup;
   public minDate = new Date().getFullYear() + '-' + ((new Date().getMonth() < 10) ? '0' + new Date().getMonth() : new Date().getMonth());
   public maxDate = new Date().getFullYear() + '-' + ((new Date().getMonth() < 10) ? '0' + new Date().getMonth() : new Date().getMonth()) + '-' + ((new Date().getDate() < 10) ? '0' + new Date().getDate() : new Date().getDate());
-  public gerente: boolean = false;
 
   constructor(private snackbar: MatSnackBar, private formBuilder: FormBuilder, private formatDateService: FormatDateService) {
     this.professionalForm = this.createProfessionalFormGroup();
@@ -63,10 +62,6 @@ export class FormCadastroComponent implements OnInit {
           'jobTitle': this.professional.jobRole.jobTitle
         })
       }
-
-      if(this.professional.profileType === "GERENTE"){
-        this.gerente = true;
-      }
     }
 
     if (this.professional.paymentInfo) {
@@ -101,8 +96,6 @@ export class FormCadastroComponent implements OnInit {
     if (this.contaPremium) {
       this.professional.profileType = "PREMIUM";
       this.professional.paymentInfo = this.paymentInfoForm.value;
-    } else if (this.gerente) {
-      this.professional.profileType = 'GERENTE';
     } else {
       this.professional.profileType = 'STANDARD';
       delete this.professional.paymentInfo;
@@ -116,14 +109,6 @@ export class FormCadastroComponent implements OnInit {
       this.contaPremium = false;
     } else if (this.contaPremium == false) {
       this.contaPremium = true;
-    }
-  }
-
-  habilitaGerente() {
-    if(this.gerente == true){
-      this.gerente = false;
-    } else if (this.gerente == false) {
-      this.gerente = true;
     }
   }
 
