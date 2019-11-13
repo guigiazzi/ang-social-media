@@ -2,8 +2,8 @@
 <div class="container">
   <mat-card class="profile-box">
     <div *ngIf="isMyProfile" class="editarPerfil" data-toggle="tooltip" data-placement="left" title="Editar Perfil">
-      <button mat-icon-button [matMenuTriggerFor]="menu" class="border-0 mr-3">
-        <mat-icon [ngClass]="{'notificacao': solicitacoesPendentes.length > 0}">notifications_active</mat-icon>
+      <button mat-icon-button [matMenuTriggerFor]="menu" class="border-0 mr-3 buttonNot">
+          <mat-icon [ngClass]="{'notificacao': solicitacoesPendentes.length > 0}">notifications_active</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
         <span *ngIf="solicitacoesPendentes.length > 0" class="mr-2 ml-2">Solicitações de Amizade</span>
@@ -151,12 +151,9 @@
     <h1 class="text-center">Postagens</h1>
     <div *ngIf="isMyProfile">
       <form #ngForm="ngForm" (ngSubmit)="onSubmit()">
-        <input type="text" class="form-control postagem" id="text" #text="ngModel" name="text"
-          [(ngModel)]="publication.text" placeholder="Digite aqui o que deseja postar!">
+        <textarea type="text" class="form-control postagem" id="text" #text="ngModel" name="text"
+          [(ngModel)]="publication.text" placeholder="Digite aqui o que deseja postar!"></textarea>
         <div class="form-group mr-2 form-inline">
-          <label for="videoUrl" class="mr-2">Adicione a Url do vídeo aqui (opcional):</label>
-          <input type="text" class="form-control video" id="videoUrl" #videoUrl="ngModel" name="videoUrl"
-            [(ngModel)]="publication.videoUrl" placeholder="Inserir a Url inteira - https://youtube.com.br/ex/2jiwij3">
           <button type="submit" class="btn btn-primary button-postar" mat-button>Postar</button>
         </div>
       </form>

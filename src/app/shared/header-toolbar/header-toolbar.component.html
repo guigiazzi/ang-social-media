@@ -11,6 +11,10 @@
         </div>
       </div>
       <div class="perfil-amigos">
+        <a *ngIf="usuario === 'GERENTE'" class="menuItens" (click)="goToGerente()">
+          <mat-icon>bar_chart</mat-icon>
+          Gerente |
+        </a>
         <a class="menuItens" (click)="goToHome()">
           <mat-icon>home</mat-icon>
           Home |
@@ -19,15 +23,16 @@
           <mat-icon>person</mat-icon>
           Perfil |
         </a>
-          <a class='menuItens' (click)="goToFriends()">
-            <mat-icon>people</mat-icon>
-            Amigos |
-          </a>
+        <a class='menuItens' (click)="goToFriends()">
+          <mat-icon>people</mat-icon>
+          Amigos |
+        </a>
         <a class="menuItens" (click)="logout()" routerLink="/">Logout</a>
       </div>
     </mat-toolbar-row>
   </mat-toolbar>
-  <div *ngFor="let person of searchUsers" (click)="goTo(person.professionalID)" class="d-flex justify-content-center persons">
-      <a class="border border-secondary rounded dropdownItens" color="white">{{person.name}}</a>
+  <div *ngFor="let person of searchUsers" (click)="goTo(person.professionalID)"
+    class="d-flex justify-content-center persons">
+    <a class="border border-secondary rounded dropdownItens" color="white">{{person.name}}</a>
   </div>
 </div>
