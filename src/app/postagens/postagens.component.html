@@ -122,6 +122,10 @@
                               <img *ngIf="friend.profileImage === null" [src]="userDefault" class="img">
                               {{friend.name}}
                             </a>
+                            <button *ngIf="friend.statusAmizade === 1 && !isMyProfile" type="submit"
+                              (click)="goToUserProfile(friend.professionalID)" class="btn btn-primary ml-2 btnConnect">
+                              <mat-icon>person</mat-icon>
+                            </button>
                             <button *ngIf="friend.statusAmizade === 4 && !isMyProfile" type="submit"
                               (click)="adicionarAmizade2(friend)" class="btn btn-primary ml-2 btnConnect">
                               <mat-icon>person_add</mat-icon>
