@@ -107,7 +107,7 @@ export class FormCadastroComponent implements OnInit {
       this.professional.profileType = 'STANDARD';
       delete this.professional.paymentInfo;
     }
-    console.log(this.professional)
+    // console.log(this.professional)
     this.outProfessional.emit(this.professional);
   }
 
@@ -155,7 +155,7 @@ export class FormCadastroComponent implements OnInit {
 
           reader.onload = (event) => {
             this.urlImage = reader.result;
-            console.log(this.urlImage);
+            // console.log(this.urlImage);
           }
         } else {
           this.snackbar.open('Tamanho da imagem muito grande! (maior que 2Mb)', 'Dismiss', {

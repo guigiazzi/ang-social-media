@@ -112,7 +112,7 @@ export class PublicationComponent implements OnInit {
     const data = { title: 'Curtidas', noneText: 'Ainda não há nenhuma curtida!', users: this.likeList }
     this.openModalPeopleService.openDialog(data)
       .subscribe(res => {
-        console.log('Modal de recomendacoes fechado');
+        // console.log('Modal de recomendacoes fechado');
       });
   }
 

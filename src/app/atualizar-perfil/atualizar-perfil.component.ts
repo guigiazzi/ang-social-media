@@ -18,7 +18,7 @@ export class AtualizarPerfilComponent implements OnInit{
   constructor(private appService: AppService, private snackbar: MatSnackBar, private router: Router, private sessionService: SessionService) { }
 
   ngOnInit(){
-    console.log(this.idP)
+    // console.log(this.idP)
     this.appService.retornarDadosUsuario(this.idP)
     .subscribe(res =>{
       this.professional = res;
