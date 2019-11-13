@@ -111,10 +111,10 @@ export class FriendsComponent implements OnInit {
 
 
   statusAmizade(usuario2: Professional) {
-    console.log(usuario2)
+    // console.log(usuario2)
     this.appservice.getFriendshipStatus(this.userLoggedId, usuario2.professionalID)
     .subscribe(res =>{
-      console.log(res)
+      // console.log(res)
       usuario2.statusAmizade = res;
       // 1 - Amigos
       // 2 - Solicitacao enviada
