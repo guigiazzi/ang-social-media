@@ -3,7 +3,7 @@
   <mat-card class="profile-box">
     <div *ngIf="isMyProfile" class="editarPerfil" data-toggle="tooltip" data-placement="left" title="Editar Perfil">
       <button mat-icon-button [matMenuTriggerFor]="menu" class="border-0 mr-3 buttonNot">
-          <mat-icon [ngClass]="{'notificacao': solicitacoesPendentes.length > 0}">notifications_active</mat-icon>
+        <mat-icon [ngClass]="{'notificacao': solicitacoesPendentes.length > 0}">notifications_active</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
         <span *ngIf="solicitacoesPendentes.length > 0" class="mr-2 ml-2">Solicitações de Amizade</span>
@@ -134,6 +134,7 @@
                               (click)="cancelarSolicitacaoAmizade2(friend)" class="btn btn-info ml-2 btnConnect">
                               <mat-icon>cancel</mat-icon>
                             </button>
+                            <p *ngIf="friend.statusAmizade === 1" class="pAmigoComum">Amigo em comum</p>
                           </div>
                         </div>
 

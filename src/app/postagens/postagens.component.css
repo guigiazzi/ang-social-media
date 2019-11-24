@@ -155,3 +155,11 @@ figure {
   background-color: white;
 }
 
+.pAmigoComum{
+  margin: 0;
+  /* float: left; */
+  font-size: 0.6rem;
+  position: absolute;
+  left: 21%;
+  bottom: 21%;
+}
